@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F774FC350DB282FAC79A591 /* libPods-SharedBicycle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D25C88AB0B5B8EEA66B3DC86 /* libPods-SharedBicycle.a */; };
 		A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563853203FCDBC00BB0A9C /* AppDelegate.m */; };
 		A0563857203FCDBC00BB0A9C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563856203FCDBC00BB0A9C /* ViewController.m */; };
 		A056385A203FCDBC00BB0A9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0563858203FCDBC00BB0A9C /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 		A0563862203FCDBC00BB0A9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563861203FCDBC00BB0A9C /* main.m */; };
 		A056386C203FCDBC00BB0A9C /* SharedBicycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A056386B203FCDBC00BB0A9C /* SharedBicycleTests.m */; };
 		A0563877203FCDBC00BB0A9C /* SharedBicycleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */; };
+		A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D27524204AE24400ABF73B /* MenuViewController.m */; };
+		A0D27527204AE24400ABF73B /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D27525204AE24400ABF73B /* MenuViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62AC9F4B460C9E3E2BDF474D /* Pods-SharedBicycle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedBicycle.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharedBicycle/Pods-SharedBicycle.release.xcconfig"; sourceTree = "<group>"; };
+		843C27E28B9C13EF7A199611 /* Pods-SharedBicycle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedBicycle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharedBicycle/Pods-SharedBicycle.debug.xcconfig"; sourceTree = "<group>"; };
 		A056384F203FCDBC00BB0A9C /* SharedBicycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharedBicycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0563852203FCDBC00BB0A9C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A0563853203FCDBC00BB0A9C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +56,10 @@
 		A0563872203FCDBC00BB0A9C /* SharedBicycleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedBicycleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedBicycleUITests.m; sourceTree = "<group>"; };
 		A0563878203FCDBC00BB0A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0D27523204AE24400ABF73B /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		A0D27524204AE24400ABF73B /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		A0D27525204AE24400ABF73B /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		D25C88AB0B5B8EEA66B3DC86 /* libPods-SharedBicycle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SharedBicycle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F774FC350DB282FAC79A591 /* libPods-SharedBicycle.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +95,8 @@
 				A056386A203FCDBC00BB0A9C /* SharedBicycleTests */,
 				A0563875203FCDBC00BB0A9C /* SharedBicycleUITests */,
 				A0563850203FCDBC00BB0A9C /* Products */,
+				D850BFFCE218B3009608F9CE /* Pods */,
+				AF77B08ED16E4E74E855CE60 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,11 +113,12 @@
 		A0563851203FCDBC00BB0A9C /* SharedBicycle */ = {
 			isa = PBXGroup;
 			children = (
+				A056388420401B4900BB0A9C /* Images */,
+				A056388720401B7700BB0A9C /* Models */,
+				A056388620401B6C00BB0A9C /* Views */,
+				A056388520401B5900BB0A9C /* Controllers */,
 				A0563852203FCDBC00BB0A9C /* AppDelegate.h */,
 				A0563853203FCDBC00BB0A9C /* AppDelegate.m */,
-				A0563855203FCDBC00BB0A9C /* ViewController.h */,
-				A0563856203FCDBC00BB0A9C /* ViewController.m */,
-				A0563858203FCDBC00BB0A9C /* Main.storyboard */,
 				A056385B203FCDBC00BB0A9C /* Assets.xcassets */,
 				A056385D203FCDBC00BB0A9C /* LaunchScreen.storyboard */,
 				A0563860203FCDBC00BB0A9C /* Info.plist */,
@@ -132,6 +145,57 @@
 			path = SharedBicycleUITests;
 			sourceTree = "<group>";
 		};
+		A056388420401B4900BB0A9C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		A056388520401B5900BB0A9C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A0563855203FCDBC00BB0A9C /* ViewController.h */,
+				A0563856203FCDBC00BB0A9C /* ViewController.m */,
+				A0D27523204AE24400ABF73B /* MenuViewController.h */,
+				A0D27524204AE24400ABF73B /* MenuViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A056388620401B6C00BB0A9C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A0563858203FCDBC00BB0A9C /* Main.storyboard */,
+				A0D27525204AE24400ABF73B /* MenuViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A056388720401B7700BB0A9C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AF77B08ED16E4E74E855CE60 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D25C88AB0B5B8EEA66B3DC86 /* libPods-SharedBicycle.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D850BFFCE218B3009608F9CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				843C27E28B9C13EF7A199611 /* Pods-SharedBicycle.debug.xcconfig */,
+				62AC9F4B460C9E3E2BDF474D /* Pods-SharedBicycle.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A056387B203FCDBC00BB0A9C /* Build configuration list for PBXNativeTarget "SharedBicycle" */;
 			buildPhases = (
+				2486C41B6AA895D7C6B8F872 /* [CP] Check Pods Manifest.lock */,
 				A056384B203FCDBC00BB0A9C /* Sources */,
 				A056384C203FCDBC00BB0A9C /* Frameworks */,
 				A056384D203FCDBC00BB0A9C /* Resources */,
+				5AB2CF3EAA1D3535F99E22D1 /* [CP] Embed Pods Frameworks */,
+				2BF72AD994E7BB8F579B7546 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -239,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A056385F203FCDBC00BB0A9C /* LaunchScreen.storyboard in Resources */,
+				A0D27527204AE24400ABF73B /* MenuViewController.xib in Resources */,
 				A056385C203FCDBC00BB0A9C /* Assets.xcassets in Resources */,
 				A056385A203FCDBC00BB0A9C /* Main.storyboard in Resources */,
 			);
@@ -260,12 +328,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2486C41B6AA895D7C6B8F872 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SharedBicycle-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2BF72AD994E7BB8F579B7546 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SharedBicycle/Pods-SharedBicycle-resources.sh",
+				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SharedBicycle/Pods-SharedBicycle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5AB2CF3EAA1D3535F99E22D1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SharedBicycle/Pods-SharedBicycle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A056384B203FCDBC00BB0A9C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A0563857203FCDBC00BB0A9C /* ViewController.m in Sources */,
+				A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */,
 				A0563862203FCDBC00BB0A9C /* main.m in Sources */,
 				A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */,
 			);
@@ -428,6 +551,7 @@
 		};
 		A056387C203FCDBC00BB0A9C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 843C27E28B9C13EF7A199611 /* Pods-SharedBicycle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -442,6 +566,7 @@
 		};
 		A056387D203FCDBC00BB0A9C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62AC9F4B460C9E3E2BDF474D /* Pods-SharedBicycle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

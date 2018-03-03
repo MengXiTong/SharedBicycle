@@ -7,6 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "MenuViewController.h"
+#import <AFNetworking.h>
+#import <UIViewController+CWLateralSlide.h>
+
 
 @interface ViewController ()
 
@@ -25,5 +29,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)leftViewShow:(id)sender {
+    MenuViewController *vc = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+    vc.drawerType = DrawerDefaultLeft;
+    [self cw_showDefaultDrawerViewController:vc];
+}
 
 @end
