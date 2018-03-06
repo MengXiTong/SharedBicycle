@@ -20,9 +20,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initVite];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)initVite {
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

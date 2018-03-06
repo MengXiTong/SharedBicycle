@@ -17,6 +17,8 @@
 		A0563862203FCDBC00BB0A9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563861203FCDBC00BB0A9C /* main.m */; };
 		A056386C203FCDBC00BB0A9C /* SharedBicycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A056386B203FCDBC00BB0A9C /* SharedBicycleTests.m */; };
 		A0563877203FCDBC00BB0A9C /* SharedBicycleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */; };
+		A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D0547B204ECCA600654513 /* MenuTableViewCell.m */; };
+		A0D0547E204ECCA600654513 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D0547C204ECCA600654513 /* MenuTableViewCell.xib */; };
 		A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D27524204AE24400ABF73B /* MenuViewController.m */; };
 		A0D27527204AE24400ABF73B /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D27525204AE24400ABF73B /* MenuViewController.xib */; };
 /* End PBXBuildFile section */
@@ -59,6 +61,9 @@
 		A0563872203FCDBC00BB0A9C /* SharedBicycleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedBicycleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedBicycleUITests.m; sourceTree = "<group>"; };
 		A0563878203FCDBC00BB0A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0D0547A204ECCA600654513 /* MenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
+		A0D0547B204ECCA600654513 /* MenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
+		A0D0547C204ECCA600654513 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		A0D27523204AE24400ABF73B /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		A0D27524204AE24400ABF73B /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		A0D27525204AE24400ABF73B /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
@@ -167,11 +172,10 @@
 		A056388520401B5900BB0A9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A0BC3873204EBC9D0031F880 /* Menu */,
 				A006D8B4204D787300E4B85E /* Login */,
 				A0563855203FCDBC00BB0A9C /* ViewController.h */,
 				A0563856203FCDBC00BB0A9C /* ViewController.m */,
-				A0D27523204AE24400ABF73B /* MenuViewController.h */,
-				A0D27524204AE24400ABF73B /* MenuViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -181,6 +185,7 @@
 			children = (
 				A0563858203FCDBC00BB0A9C /* Main.storyboard */,
 				A0D27525204AE24400ABF73B /* MenuViewController.xib */,
+				A0D0547C204ECCA600654513 /* MenuTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,6 +195,17 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A0BC3873204EBC9D0031F880 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				A0D27523204AE24400ABF73B /* MenuViewController.h */,
+				A0D27524204AE24400ABF73B /* MenuViewController.m */,
+				A0D0547A204ECCA600654513 /* MenuTableViewCell.h */,
+				A0D0547B204ECCA600654513 /* MenuTableViewCell.m */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		AF77B08ED16E4E74E855CE60 /* Frameworks */ = {
@@ -321,6 +337,7 @@
 				A056385F203FCDBC00BB0A9C /* LaunchScreen.storyboard in Resources */,
 				A0D27527204AE24400ABF73B /* MenuViewController.xib in Resources */,
 				A056385C203FCDBC00BB0A9C /* Assets.xcassets in Resources */,
+				A0D0547E204ECCA600654513 /* MenuTableViewCell.xib in Resources */,
 				A056385A203FCDBC00BB0A9C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,6 +421,7 @@
 				A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */,
 				A0563862203FCDBC00BB0A9C /* main.m in Sources */,
 				A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */,
+				A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */,
 				A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
