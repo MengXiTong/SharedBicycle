@@ -1,0 +1,1 @@
+../../../CWLateralSlide/CWLateralSlide/CWInteractiveTransition.h

@@ -1,0 +1,9 @@
+platform :ios, '7.0'
+  
+target 'SharedBicycle' do
+ pod 'AMap2DMap'
+ pod 'AMapSearch'
+ pod 'AMapLocation'
+ pod 'AFNetworking'
+ pod 'CWLateralSlide', '~> 1.5.8'
+end
