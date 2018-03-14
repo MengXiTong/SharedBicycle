@@ -44,6 +44,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifierMenu"];
     cell.lblName.text = _titleArray[indexPath.row];
+    cell.imgIcon.image = [UIImage imageNamed:@"ImgPerson"];
     return cell;
 }
 
