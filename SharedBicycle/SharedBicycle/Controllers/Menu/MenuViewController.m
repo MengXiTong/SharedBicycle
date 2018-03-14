@@ -12,9 +12,6 @@
 
 @interface MenuViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) NSArray *titleArray;
-@property (strong, nonatomic) UITableView *tableView;
-
 @end
 
 @implementation MenuViewController
@@ -27,9 +24,9 @@
 
 - (void)initView {
     //加载背景图片
-    _viewMain.layer.contents = (id)([UIImage imageNamed:@"ImgMenu"].CGImage);
+//    _viewMain.layer.contents = (id)([UIImage imageNamed:@"ImgMenu"].CGImage);
     NSLog(@"%f,%f",_viewMain.frame.size.width,_viewMain.frame.size.height);
-    CGFloat tblY = _imgHead.frame.origin.y+_imgHead.frame.size.height+20;
+    CGFloat tblY = _lblCredit.frame.origin.y+_lblCredit.frame.size.height+20;
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, tblY, _viewMain.frame.size.width, _viewMain.frame.size.height-tblY) style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"MenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"CellIdentifierMenu"];
     _tableView.delegate = self;

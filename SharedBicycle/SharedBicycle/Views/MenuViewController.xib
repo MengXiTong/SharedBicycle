@@ -14,6 +14,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController">
             <connections>
                 <outlet property="imgHead" destination="uSJ-0c-B1W" id="WZz-7G-Q2n"/>
+                <outlet property="lblCredit" destination="jzM-kq-Num" id="yhl-Rc-NHa"/>
+                <outlet property="lblPhone" destination="QKF-jz-vr1" id="w9z-oN-8p2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewMain" destination="brp-ow-4Oe" id="3sa-NP-twX"/>
             </connections>
@@ -40,9 +42,33 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="151****3708" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKF-jz-vr1">
+                            <rect key="frame" x="40" y="180" width="110" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="a1v-7Q-rF9"/>
+                                <constraint firstAttribute="width" constant="110" id="vtp-Cx-no5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已认证.信用分106" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzM-kq-Num">
+                            <rect key="frame" x="40" y="215" width="103" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="103" id="geh-ip-J1M"/>
+                                <constraint firstAttribute="height" constant="20" id="uVO-wS-Wuf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="jzM-kq-Num" firstAttribute="top" secondItem="QKF-jz-vr1" secondAttribute="bottom" constant="5" id="C6A-Vg-cj1"/>
+                        <constraint firstItem="QKF-jz-vr1" firstAttribute="top" secondItem="uSJ-0c-B1W" secondAttribute="bottom" constant="20" id="Jyu-X2-0BB"/>
                         <constraint firstItem="uSJ-0c-B1W" firstAttribute="top" secondItem="brp-ow-4Oe" secondAttribute="top" constant="80" id="OIK-0L-WR6"/>
+                        <constraint firstItem="QKF-jz-vr1" firstAttribute="leading" secondItem="brp-ow-4Oe" secondAttribute="leading" constant="40" id="RpF-EF-QbN"/>
+                        <constraint firstItem="jzM-kq-Num" firstAttribute="leading" secondItem="brp-ow-4Oe" secondAttribute="leading" constant="40" id="aAf-9c-cBQ"/>
                         <constraint firstItem="uSJ-0c-B1W" firstAttribute="leading" secondItem="brp-ow-4Oe" secondAttribute="leading" constant="40" id="cJc-Xb-5ta"/>
                     </constraints>
                 </view>
