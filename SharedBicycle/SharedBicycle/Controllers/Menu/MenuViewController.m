@@ -33,18 +33,25 @@
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_viewMain addSubview:_tableView];
-    _titleArray = @[@"present下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"显示alertView",@"主动收起抽屉"];
+    _aryTitle = [[NSMutableArray alloc] init];
+    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"我的行程",@"title",@"Order",@"icon",nil]];
+    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"我的钱包",@"title",@"Wallet",@"icon",nil]];
+    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"违章记录",@"title",@"Illegal",@"icon",nil]];
+    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"维修处理",@"title",@"Repair",@"icon",nil]];
+    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"单车信息",@"title",@"Bike",@"icon",nil]];
+    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"身份认证",@"title",@"Authentication",@"icon",nil]];
+    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"收益报表",@"title",@"ReportForm",@"icon",nil]];
 //    screen = [[UIScreen mainScreen] bounds];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _titleArray.count;
+    return _aryTitle.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifierMenu"];
-    cell.lblName.text = _titleArray[indexPath.row];
-    cell.imgIcon.image = [UIImage imageNamed:@"ImgPerson"];
+    cell.lblName.text = [_aryTitle[indexPath.row] objectForKey:@"title"];
+    cell.imgIcon.image = [UIImage imageNamed:[_aryTitle[indexPath.row] objectForKey:@"icon"]];
     return cell;
 }
 

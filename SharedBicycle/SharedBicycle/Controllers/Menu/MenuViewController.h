@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger,DrawerType) {
 @property (weak, nonatomic) IBOutlet UILabel *lblCredit;
 
 @property (nonatomic,assign) DrawerType drawerType; // 抽屉类型
-@property (nonatomic,strong) NSArray *titleArray;
+@property (nonatomic,strong) NSMutableArray *aryTitle;
 @property (strong, nonatomic) UITableView *tableView;
 
 @end
