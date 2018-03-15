@@ -10,14 +10,13 @@
 #import "MenuViewController.h"
 #import <AFNetworking.h>
 #import <UIViewController+CWLateralSlide.h>
-
+#import "ScanCodeViewController.h"
 
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initVite];
@@ -37,6 +36,10 @@
     MenuViewController *vc = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
     vc.drawerType = DrawerDefaultLeft;
     [self cw_showDefaultDrawerViewController:vc];
+}
+- (IBAction)scanning:(id)sender {
+    ScanCodeViewController *scanCodeVC = [[ScanCodeViewController alloc] init];
+    [self presentViewController:scanCodeVC animated:YES completion:nil];
 }
 
 @end
