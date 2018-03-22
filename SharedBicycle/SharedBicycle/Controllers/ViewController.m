@@ -24,7 +24,7 @@
 }
 
 - (void)initVite {
-    
+    _navCtrl = [self navigationController];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +39,7 @@
 }
 - (IBAction)scanning:(id)sender {
     ScanCodeViewController *scanCodeVC = [[ScanCodeViewController alloc] init];
-    [self presentViewController:scanCodeVC animated:YES completion:nil];
+    [_navCtrl pushViewController:scanCodeVC animated:YES];
 }
 
 @end

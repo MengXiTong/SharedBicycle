@@ -12,5 +12,7 @@
     
 }
 
+@property (strong, nonatomic) UINavigationController *navCtrl;
+
 @end
 
