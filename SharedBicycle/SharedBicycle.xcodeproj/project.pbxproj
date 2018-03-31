@@ -11,7 +11,7 @@
 		A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A006D8B6204D78A000E4B85E /* LoginViewController.m */; };
 		A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04D6373205AD5EC0013E26A /* ShadowView.m */; };
 		A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563853203FCDBC00BB0A9C /* AppDelegate.m */; };
-		A0563857203FCDBC00BB0A9C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563856203FCDBC00BB0A9C /* ViewController.m */; };
+		A0563857203FCDBC00BB0A9C /* UseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563856203FCDBC00BB0A9C /* UseViewController.m */; };
 		A056385A203FCDBC00BB0A9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0563858203FCDBC00BB0A9C /* Main.storyboard */; };
 		A056385C203FCDBC00BB0A9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A056385B203FCDBC00BB0A9C /* Assets.xcassets */; };
 		A056385F203FCDBC00BB0A9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A056385D203FCDBC00BB0A9C /* LaunchScreen.storyboard */; };
@@ -52,8 +52,8 @@
 		A056384F203FCDBC00BB0A9C /* SharedBicycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharedBicycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0563852203FCDBC00BB0A9C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A0563853203FCDBC00BB0A9C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A0563855203FCDBC00BB0A9C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A0563856203FCDBC00BB0A9C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A0563855203FCDBC00BB0A9C /* UseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseViewController.h; sourceTree = "<group>"; };
+		A0563856203FCDBC00BB0A9C /* UseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseViewController.m; sourceTree = "<group>"; };
 		A0563859203FCDBC00BB0A9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A056385B203FCDBC00BB0A9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A056385E203FCDBC00BB0A9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -178,10 +178,9 @@
 		A056388520401B5900BB0A9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A0E9441B206F95B60097845A /* Use */,
 				A0BC3873204EBC9D0031F880 /* Menu */,
 				A006D8B4204D787300E4B85E /* Login */,
-				A0563855203FCDBC00BB0A9C /* ViewController.h */,
-				A0563856203FCDBC00BB0A9C /* ViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -216,6 +215,15 @@
 				A0D0547B204ECCA600654513 /* MenuTableViewCell.m */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		A0E9441B206F95B60097845A /* Use */ = {
+			isa = PBXGroup;
+			children = (
+				A0563855203FCDBC00BB0A9C /* UseViewController.h */,
+				A0563856203FCDBC00BB0A9C /* UseViewController.m */,
+			);
+			path = Use;
 			sourceTree = "<group>";
 		};
 		AF77B08ED16E4E74E855CE60 /* Frameworks */ = {
@@ -427,7 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0563857203FCDBC00BB0A9C /* ViewController.m in Sources */,
+				A0563857203FCDBC00BB0A9C /* UseViewController.m in Sources */,
 				A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */,
 				A0D22983205AD7CE003871FA /* ScanCodeeViewController.m in Sources */,
 				A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */,

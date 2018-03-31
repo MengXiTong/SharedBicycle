@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController {
+@interface UseViewController : UIViewController {
     
 }
-
-@property (strong, nonatomic) UINavigationController *navCtrl;
 
 @end
 

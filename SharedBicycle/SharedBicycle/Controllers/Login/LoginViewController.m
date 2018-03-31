@@ -9,6 +9,10 @@
 #import "LoginViewController.h"
 
 @interface LoginViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *lblVerification;
+@property (weak, nonatomic) IBOutlet UITextField *txtVerification;
+@property (weak, nonatomic) IBOutlet UITextField *txtID;
+@property (weak, nonatomic) IBOutlet UITextField *txtPwd;
 
 @end
 
@@ -31,11 +35,31 @@
     tapGestureRecognizer.cancelsTouchesInView = NO;
     //将触摸事件添加到当前view
     [self.view addGestureRecognizer:tapGestureRecognizer];
+    //获取随机数
+    self.lblVerification.text = [self getVerification];
+}
+
+- (NSString *) getVerification {
+    int value = arc4random() % 900000 + 100000;
+    NSString *str = [[NSString alloc] initWithFormat:@"%d",value];
+    return str;
 }
 
 -(void)keyboardHide:(UITapGestureRecognizer*)tap{
     //隐藏键盘
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+}
+
+- (IBAction)login:(id)sender {
+    if(_txtVerification.text == _lblVerification.text){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UINavigationController *navC = (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDNavC"];
+        [self presentViewController:navC animated:YES completion:nil];
+    }
+}
+
+- (IBAction)register:(id)sender {
+    
 }
 
 @end

@@ -6,17 +6,17 @@
 //  Copyright © 2018年 俞健. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "UseViewController.h"
 #import "MenuViewController.h"
 #import <AFNetworking.h>
 #import <UIViewController+CWLateralSlide.h>
 #import "ScanCodeViewController.h"
 
-@interface ViewController ()
+@interface UseViewController ()
 
 @end
 
-@implementation ViewController
+@implementation UseViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initVite];
@@ -24,7 +24,7 @@
 }
 
 - (void)initVite {
-    _navCtrl = [self navigationController];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +39,7 @@
 }
 - (IBAction)scanning:(id)sender {
     ScanCodeViewController *scanCodeVC = [[ScanCodeViewController alloc] init];
-    [_navCtrl pushViewController:scanCodeVC animated:YES];
+    [[self navigationController] pushViewController:scanCodeVC animated:YES];
 }
 
 @end
