@@ -6,17 +6,18 @@
 //  Copyright © 2018年 俞健. All rights reserved.
 //
 
-#import "UseViewController.h"
+#import "CycleViewController.h"
 #import "MenuViewController.h"
 #import <AFNetworking.h>
 #import <UIViewController+CWLateralSlide.h>
 #import "ScanCodeViewController.h"
+#import "UserInfoViewController.h"
 
-@interface UseViewController ()
+@interface CycleViewController ()
 
 @end
 
-@implementation UseViewController
+@implementation CycleViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initVite];
@@ -24,7 +25,7 @@
 }
 
 - (void)initVite {
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,8 +35,8 @@
 
 - (IBAction)leftViewShow:(id)sender {
     MenuViewController *vc = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-    vc.drawerType = DrawerDefaultLeft;
-    [self cw_showDefaultDrawerViewController:vc];
+    UINavigationController *navC = self.navigationController;
+    [navC cw_showDefaultDrawerViewController:vc];
 }
 - (IBAction)scanning:(id)sender {
     ScanCodeViewController *scanCodeVC = [[ScanCodeViewController alloc] init];

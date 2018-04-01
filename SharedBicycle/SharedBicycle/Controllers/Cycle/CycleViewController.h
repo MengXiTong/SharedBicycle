@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UseViewController : UIViewController {
+@interface CycleViewController : UIViewController {
     
 }
 

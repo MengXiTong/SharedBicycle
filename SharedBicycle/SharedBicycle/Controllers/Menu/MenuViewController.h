@@ -18,12 +18,10 @@ typedef NS_ENUM(NSUInteger,DrawerType) {
     //屏幕信息
     CGRect screen;
 }
-@property (weak, nonatomic) IBOutlet UIView *viewMain;
 @property (weak, nonatomic) IBOutlet UIImageView *imgHead;
 @property (weak, nonatomic) IBOutlet UILabel *lblPhone;
 @property (weak, nonatomic) IBOutlet UILabel *lblCredit;
 
-@property (nonatomic,assign) DrawerType drawerType; // 抽屉类型
 @property (nonatomic,strong) NSMutableArray *aryTitle;
 @property (strong, nonatomic) UITableView *tableView;
 

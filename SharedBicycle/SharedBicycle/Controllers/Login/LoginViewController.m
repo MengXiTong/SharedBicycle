@@ -7,8 +7,10 @@
 //
 
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *lblVerification;
 @property (weak, nonatomic) IBOutlet UITextField *txtVerification;
 @property (weak, nonatomic) IBOutlet UITextField *txtID;
@@ -51,11 +53,15 @@
 }
 
 - (IBAction)login:(id)sender {
-    if(_txtVerification.text == _lblVerification.text){
+//    if(_txtVerification.text == _lblVerification.text){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UINavigationController *navC = (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDNavC"];
-        [self presentViewController:navC animated:YES completion:nil];
-    }
+        //登录成功后
+        [self presentViewController:navC animated:YES completion:^(void){
+            [[UIApplication sharedApplication] delegate].window.rootViewController = navC;
+            [[[UIApplication sharedApplication] delegate].window makeKeyWindow];
+        }];
+//    }
 }
 
 - (IBAction)register:(id)sender {

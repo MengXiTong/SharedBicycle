@@ -11,13 +11,14 @@
 		A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A006D8B6204D78A000E4B85E /* LoginViewController.m */; };
 		A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04D6373205AD5EC0013E26A /* ShadowView.m */; };
 		A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563853203FCDBC00BB0A9C /* AppDelegate.m */; };
-		A0563857203FCDBC00BB0A9C /* UseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563856203FCDBC00BB0A9C /* UseViewController.m */; };
+		A0563857203FCDBC00BB0A9C /* CycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563856203FCDBC00BB0A9C /* CycleViewController.m */; };
 		A056385A203FCDBC00BB0A9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0563858203FCDBC00BB0A9C /* Main.storyboard */; };
 		A056385C203FCDBC00BB0A9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A056385B203FCDBC00BB0A9C /* Assets.xcassets */; };
 		A056385F203FCDBC00BB0A9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A056385D203FCDBC00BB0A9C /* LaunchScreen.storyboard */; };
 		A0563862203FCDBC00BB0A9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563861203FCDBC00BB0A9C /* main.m */; };
 		A056386C203FCDBC00BB0A9C /* SharedBicycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A056386B203FCDBC00BB0A9C /* SharedBicycleTests.m */; };
 		A0563877203FCDBC00BB0A9C /* SharedBicycleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */; };
+		A081420A207104B100B9BAE3 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0814209207104B100B9BAE3 /* UserInfoViewController.m */; };
 		A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D0547B204ECCA600654513 /* MenuTableViewCell.m */; };
 		A0D0547E204ECCA600654513 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D0547C204ECCA600654513 /* MenuTableViewCell.xib */; };
 		A0D22983205AD7CE003871FA /* ScanCodeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D22982205AD7CE003871FA /* ScanCodeeViewController.m */; };
@@ -52,8 +53,8 @@
 		A056384F203FCDBC00BB0A9C /* SharedBicycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharedBicycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0563852203FCDBC00BB0A9C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A0563853203FCDBC00BB0A9C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A0563855203FCDBC00BB0A9C /* UseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseViewController.h; sourceTree = "<group>"; };
-		A0563856203FCDBC00BB0A9C /* UseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseViewController.m; sourceTree = "<group>"; };
+		A0563855203FCDBC00BB0A9C /* CycleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CycleViewController.h; sourceTree = "<group>"; };
+		A0563856203FCDBC00BB0A9C /* CycleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CycleViewController.m; sourceTree = "<group>"; };
 		A0563859203FCDBC00BB0A9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A056385B203FCDBC00BB0A9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A056385E203FCDBC00BB0A9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -65,6 +66,8 @@
 		A0563872203FCDBC00BB0A9C /* SharedBicycleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedBicycleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedBicycleUITests.m; sourceTree = "<group>"; };
 		A0563878203FCDBC00BB0A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0814208207104B100B9BAE3 /* UserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		A0814209207104B100B9BAE3 /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		A0D0547A204ECCA600654513 /* MenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
 		A0D0547B204ECCA600654513 /* MenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
 		A0D0547C204ECCA600654513 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
@@ -178,7 +181,8 @@
 		A056388520401B5900BB0A9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A0E9441B206F95B60097845A /* Use */,
+				A0814207207103E500B9BAE3 /* User */,
+				A0E9441B206F95B60097845A /* Cycle */,
 				A0BC3873204EBC9D0031F880 /* Menu */,
 				A006D8B4204D787300E4B85E /* Login */,
 			);
@@ -206,6 +210,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		A0814207207103E500B9BAE3 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A0814208207104B100B9BAE3 /* UserInfoViewController.h */,
+				A0814209207104B100B9BAE3 /* UserInfoViewController.m */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		A0BC3873204EBC9D0031F880 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,13 +230,13 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
-		A0E9441B206F95B60097845A /* Use */ = {
+		A0E9441B206F95B60097845A /* Cycle */ = {
 			isa = PBXGroup;
 			children = (
-				A0563855203FCDBC00BB0A9C /* UseViewController.h */,
-				A0563856203FCDBC00BB0A9C /* UseViewController.m */,
+				A0563855203FCDBC00BB0A9C /* CycleViewController.h */,
+				A0563856203FCDBC00BB0A9C /* CycleViewController.m */,
 			);
-			path = Use;
+			path = Cycle;
 			sourceTree = "<group>";
 		};
 		AF77B08ED16E4E74E855CE60 /* Frameworks */ = {
@@ -435,7 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0563857203FCDBC00BB0A9C /* UseViewController.m in Sources */,
+				A0563857203FCDBC00BB0A9C /* CycleViewController.m in Sources */,
 				A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */,
 				A0D22983205AD7CE003871FA /* ScanCodeeViewController.m in Sources */,
 				A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */,
@@ -443,6 +456,7 @@
 				A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */,
 				A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */,
 				A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */,
+				A081420A207104B100B9BAE3 /* UserInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
