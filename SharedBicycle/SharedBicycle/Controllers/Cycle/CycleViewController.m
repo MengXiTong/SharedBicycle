@@ -11,7 +11,6 @@
 #import <AFNetworking.h>
 #import <UIViewController+CWLateralSlide.h>
 #import "ScanCodeViewController.h"
-#import "UserInfoViewController.h"
 
 @interface CycleViewController ()
 

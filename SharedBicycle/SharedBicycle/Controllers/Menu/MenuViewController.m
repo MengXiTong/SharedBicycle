@@ -9,7 +9,7 @@
 #import "MenuViewController.h"
 #import "UIViewController+CWLateralSlide.h"
 #import "MenuTableViewCell.h"
-#import "UserInfoViewController.h"
+#import "UserInfoTableViewController.h"
 
 @interface MenuViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -44,7 +44,7 @@
 //    screen = [[UIScreen mainScreen] bounds];
     //添加查看个人信息点击事件
     _imgHead.userInteractionEnabled = YES;
-    [_imgHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionimgHead:)]];
+    [_imgHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionImgHead:)]];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -66,12 +66,11 @@
     self.view.frame = rect;
 }
 
-- (IBAction)actionimgHead:(id)sender {
+- (IBAction)actionImgHead:(id)sender {
     NSLog(@"dasdasdasd");
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UserInfoViewController *userInfoVC = (UserInfoViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDUserInfoVC"];
-    [self cw_pushViewController:userInfoVC];
-//    [[self navigationController] pushViewController:userInfoVC animated:YES];
+    UserInfoTableViewController *userInfoTblVC = (UserInfoTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDUserInfoTblVC"];
+    [self cw_pushViewController:userInfoTblVC];
 }
 
 - (void)didReceiveMemoryWarning {
