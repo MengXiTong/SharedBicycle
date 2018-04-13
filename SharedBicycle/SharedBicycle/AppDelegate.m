@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //高德地图的Key
+    [AMapServices sharedServices].apiKey = @"1ee6d8b3f2df43444732d34f7e1a68d6";
     return YES;
 }
 

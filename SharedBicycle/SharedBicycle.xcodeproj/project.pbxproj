@@ -19,6 +19,7 @@
 		A0563862203FCDBC00BB0A9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563861203FCDBC00BB0A9C /* main.m */; };
 		A056386C203FCDBC00BB0A9C /* SharedBicycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A056386B203FCDBC00BB0A9C /* SharedBicycleTests.m */; };
 		A0563877203FCDBC00BB0A9C /* SharedBicycleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */; };
+		A0A522892080E9DC00D45903 /* RegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A522882080E9DC00D45903 /* RegisterTableViewController.m */; };
 		A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D0547B204ECCA600654513 /* MenuTableViewCell.m */; };
 		A0D0547E204ECCA600654513 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D0547C204ECCA600654513 /* MenuTableViewCell.xib */; };
 		A0D22983205AD7CE003871FA /* ScanCodeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D22982205AD7CE003871FA /* ScanCodeeViewController.m */; };
@@ -68,6 +69,8 @@
 		A0563872203FCDBC00BB0A9C /* SharedBicycleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedBicycleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedBicycleUITests.m; sourceTree = "<group>"; };
 		A0563878203FCDBC00BB0A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0A522872080E9DC00D45903 /* RegisterTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterTableViewController.h; sourceTree = "<group>"; };
+		A0A522882080E9DC00D45903 /* RegisterTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterTableViewController.m; sourceTree = "<group>"; };
 		A0D0547A204ECCA600654513 /* MenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
 		A0D0547B204ECCA600654513 /* MenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
 		A0D0547C204ECCA600654513 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 			children = (
 				A01F6FA0207E433A00FF7912 /* UserInfoTableViewController.h */,
 				A01F6FA1207E433A00FF7912 /* UserInfoTableViewController.m */,
+				A0A522872080E9DC00D45903 /* RegisterTableViewController.h */,
+				A0A522882080E9DC00D45903 /* RegisterTableViewController.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -327,6 +332,11 @@
 					A056384E203FCDBC00BB0A9C = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A0563866203FCDBC00BB0A9C = {
 						CreatedOnToolsVersion = 9.2;
@@ -454,6 +464,7 @@
 				A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */,
 				A01F6FA2207E433A00FF7912 /* UserInfoTableViewController.m in Sources */,
 				A0563862203FCDBC00BB0A9C /* main.m in Sources */,
+				A0A522892080E9DC00D45903 /* RegisterTableViewController.m in Sources */,
 				A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */,
 				A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */,
 				A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */,
