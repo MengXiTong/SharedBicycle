@@ -48,7 +48,6 @@
     NSString *strURL = [HTTP stringByAppendingString: UserHandler];
     NSDictionary *param = @{@"UserID":self.user.UserID};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if(responseObject){

@@ -9,6 +9,11 @@
 #import "UserInfoTableViewController.h"
 #import "UpdateUserViewController.h"
 #import <TZImagePickerController.h>
+#import <AFNetworking.h>
+#import "Until.h"
+#import "Config.h"
+#import <MBProgressHUD.h>
+#import "Toast.h"
 
 @interface UserInfoTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
 
@@ -34,6 +39,9 @@
     NSDateFormatter *formatter;
     CGRect screen;
     UIStoryboard *storyboard;
+    AFHTTPSessionManager *manager;
+    NSString *strURL;
+    MBProgressHUD *HUD;
 }
 
 - (void)viewDidLoad {
@@ -58,6 +66,10 @@
     [self initSexPicker];
     //初始化头像选择器
     [self initPhotoPicker];
+    //初始化Session
+    manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    strURL = [HTTP stringByAppendingString: UserHandler];
 }
 
 - (void)initValue{
@@ -188,7 +200,7 @@
 //相机拍照代理
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera && [info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
-        _imgPhoto.image = info[UIImagePickerControllerOriginalImage];
+        [self putImagePhoto:info[UIImagePickerControllerOriginalImage] isNeedCompress:YES];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -200,11 +212,42 @@
 
 //相册选择照片代理
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto{
-    _imgPhoto.image = [photos objectAtIndex:0];
+    [self putImagePhoto:[photos objectAtIndex:0] isNeedCompress:NO];
+}
+
+- (void)putImagePhoto:(UIImage *) image isNeedCompress:(BOOL) isNeedCompress{
+    [self initHUD];
+    NSString *strImg =[Until getPhotoString:image isNeedCompress:isNeedCompress];
+    NSLog(@"%@",strImg);
+    _user.Photo = strImg;
+    NSDictionary *user = @{@"UserID":_user.UserID,@"Photo":_user.Photo};
+    NSDictionary *param = @{@"type":@"photo",@"user":user};
+    [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            _imgPhoto.image = image;
+            [Toast showAlertWithMessage:@"更新头像成功" withView:self];
+        }
+        else{
+            [Toast showAlertWithMessage:@"更新头像失败" withView:self];
+            NSLog(@"%@",[responseObject objectForKey:@"message"]);
+        }
+        [HUD removeFromSuperview];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [HUD removeFromSuperview];
+        NSLog(@"UserInfoError: %@",error);
+    }];
 }
 
 - (IBAction)actionImgPhoto:(id)sender {
     [self presentViewController:alertPhoto animated:YES completion:nil];
+}
+
+//初始化加载条
+- (void)initHUD {
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.label.text = @"请稍等";
+    [HUD showAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Until : NSObject
 
 + (BOOL)checkPhone:(NSString *) phone;
 + (BOOL)checkPassWord:(NSString *) passWord;
 + (BOOL)checkUserName:(NSString *) userName;
++ (NSString *)getPhotoString:(UIImage *) imgPhoto isNeedCompress:(BOOL) isNeedCompress;
 
 @end

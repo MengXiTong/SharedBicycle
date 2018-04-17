@@ -34,4 +34,15 @@
     return [pred evaluateWithObject:userName];
 }
 
++ (NSString *)getPhotoString:(UIImage *) imgPhoto isNeedCompress:(BOOL) isNeedCompress{
+    NSData *data = nil;
+    if(isNeedCompress){
+        data = UIImageJPEGRepresentation(imgPhoto, 0.01);
+    }
+    else{
+        data = UIImageJPEGRepresentation(imgPhoto, 1.0);
+    }
+    return [data base64EncodedStringWithOptions:0];;
+}
+
 @end

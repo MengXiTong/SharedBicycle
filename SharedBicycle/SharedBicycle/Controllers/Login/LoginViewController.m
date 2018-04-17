@@ -81,12 +81,11 @@
     NSString *strURL = [HTTP stringByAppendingString: LoginHandler];
     NSDictionary *param = @{@"UserID":_tfID.text,@"Passward":_tfPwd.text};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [HUD removeFromSuperview];
         //登录成功后
-        if([responseObject objectForKey:@"status"]){
+        if([[responseObject objectForKey:@"status"] boolValue]){
             NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
             [userDef setObject:self.tfID.text forKey:@"ID"];
             [userDef setObject:self.tfPwd.text forKey:@"Pwd"];
