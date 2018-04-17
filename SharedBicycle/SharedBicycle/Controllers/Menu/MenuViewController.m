@@ -26,6 +26,18 @@
 - (void)initView {
     //加载背景图片
 //    _viewMain.layer.contents = (id)([UIImage imageNamed:@"ImgMenu"].CGImage);
+    [self initMenu];
+    NSData *dataPhoto   = [[NSData alloc] initWithBase64EncodedString:_user.Photo options:0];
+    _imgHead.image = [UIImage imageWithData:dataPhoto];
+    //添加查看个人信息点击事件
+    _imgHead.userInteractionEnabled = YES;
+    [_imgHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionImgHead:)]];
+    NSString *strPhone = [[NSString alloc] initWithFormat:@"%@****%@",[_user.Phone substringToIndex:3],[_user.Phone substringFromIndex:7]];
+    _lblPhone.text = strPhone;
+    _lblCredit.text = [[NSString alloc] initWithFormat:@"已认证.信用分%@",_user.CreditScore];
+}
+
+- (void) initMenu{
     CGFloat tblY = _lblCredit.frame.origin.y+_lblCredit.frame.size.height+20;
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, tblY, self.view.frame.size.width, self.view.frame.size.height-tblY) style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"MenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"CellIdentifierMenu"];
@@ -41,10 +53,6 @@
     [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"单车信息",@"title",@"Bike",@"icon",nil]];
     [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"身份认证",@"title",@"Authentication",@"icon",nil]];
     [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"收益报表",@"title",@"ReportForm",@"icon",nil]];
-//    screen = [[UIScreen mainScreen] bounds];
-    //添加查看个人信息点击事件
-    _imgHead.userInteractionEnabled = YES;
-    [_imgHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionImgHead:)]];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -70,6 +78,7 @@
     NSLog(@"dasdasdasd");
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UserInfoTableViewController *userInfoTblVC = (UserInfoTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDUserInfoTblVC"];
+    userInfoTblVC.user = _user;
     [self cw_pushViewController:userInfoTblVC];
 }
 

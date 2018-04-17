@@ -14,6 +14,9 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
+#import "Config.h"
+#import "UserNavController.h"
+#import <MBProgressHUD.h>
 
 @interface CycleViewController () <MAMapViewDelegate, AMapLocationManagerDelegate>
 
@@ -24,15 +27,49 @@
 
 @end
 
-@implementation CycleViewController
+@implementation CycleViewController{
+    MBProgressHUD *HUD;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initVite];
+    [self initView];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)initVite {
+- (void)initView {
     [self initMapView];
+    [self initUserInfo];
+}
+
+- (void)initUserInfo {
+    [self initHUD];
+    UserNavController *userNavC = (UserNavController *)self.navigationController;
+    _user = userNavC.user;
+    NSString *strURL = [HTTP stringByAppendingString: UserHandler];
+    NSDictionary *param = @{@"UserID":self.user.UserID};
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if(responseObject){
+            _user.UserID = [responseObject objectForKey:@"UserID"];
+            _user.Passward = [responseObject objectForKey:@"Passward"];
+            _user.Name = [responseObject objectForKey:@"Name"];
+            _user.Sex = [responseObject objectForKey:@"Sex"];
+            _user.Birthday = [responseObject objectForKey:@"Birthday"];
+            _user.IdentityID = [responseObject objectForKey:@"IdentityID"];
+            _user.IdentityName = [responseObject objectForKey:@"IdentityName"];
+            _user.Phone = [responseObject objectForKey:@"Phone"];
+            _user.CreditScore = [responseObject objectForKey:@"CreditScore"];
+            _user.Photo = [responseObject objectForKey:@"Photo"];
+            _user.Balance = [responseObject objectForKey:@"Balance"];
+            _user.Deposit = [responseObject objectForKey:@"Deposit"];
+        }
+        [HUD removeFromSuperview];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"LoginError: %@",error);
+        [HUD removeFromSuperview];
+    }];
 }
 
 - (void)initMapView {
@@ -71,6 +108,14 @@
     NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
 }
 
+//初始化加载条
+- (void)initHUD {
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.label.text = @"加载中";
+    [HUD showAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -78,8 +123,8 @@
 
 - (IBAction)leftViewShow:(id)sender {
     MenuViewController *vc = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-    UINavigationController *navC = self.navigationController;
-    [navC cw_showDefaultDrawerViewController:vc];
+    vc.user = self.user;
+    [self cw_showDefaultDrawerViewController:vc];
 }
 - (IBAction)scanning:(id)sender {
     ScanCodeViewController *scanCodeVC = [[ScanCodeViewController alloc] init];

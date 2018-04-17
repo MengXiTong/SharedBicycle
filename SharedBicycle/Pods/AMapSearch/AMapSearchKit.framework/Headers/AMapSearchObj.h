@@ -43,6 +43,15 @@ typedef NS_ENUM(NSInteger, AMapNearbySearchType)
     AMapNearbySearchTypeDriving = 1, ///< 驾车行驶距离
 };
 
+///货车类型
+typedef NS_ENUM(NSInteger, AMapTruckSizeType)
+{
+    AMapTruckSizeTypeMini   = 1, ///< 微型车
+    AMapTruckSizeTypeLight  = 2, ///< 轻型车
+    AMapTruckSizeTypeMedium = 3, ///< 中型车
+    AMapTruckSizeTypeHeavy  = 4, ///< 重型车
+};
+
 #pragma mark - AMapPOISearchBaseRequest
 
 ///POI搜索请求基类
@@ -297,7 +306,24 @@ typedef NS_ENUM(NSInteger, AMapNearbySearchType)
 
 ///驾车路径规划
 @interface AMapDrivingRouteSearchRequest : AMapRouteSearchBaseRequest
-///驾车导航策略([default = 0])\n 0速度优先（时间)\n 1费用优先（不走收费路段的最快道路）\n 2距离优先\n 3不走快速路\n 4躲避拥堵\n 5多策略（同时使用速度优先、费用优先、距离优先三个策略计算路径）。其中必须说明，就算使用三个策略算路，会根据路况不固定的返回一~三条路径规划信息\n 6不走高速\n 7不走高速且避免收费\n 8躲避收费和拥堵\n 9不走高速且躲避收费和拥堵\n 10多备选，时间最短，距离最短，躲避拥堵（考虑路况）\n 11多备选，时间最短，距离最短\n 12多备选，躲避拥堵（考虑路况）\n 13多备选，不走高速\n 14多备选，费用优先\n 15多备选，躲避拥堵，不走高速（考虑路况）\n 16多备选，费用有限，不走高速\n 17多备选，躲避拥堵，费用优先（考虑路况）\n 18多备选，躲避拥堵，不走高速，费用优先（考虑路况）\n 19多备选，高速优先\n 20多备选，高速优先，躲避拥堵（考虑路况）
+
+/**
+ 驾车导航策略，默认策略为0。
+    0，速度优先（时间)；1，费用优先（不走收费路段的最快道路）；2，距离优先；3，不走快速路；4，躲避拥堵；
+    5，多策略（同时使用速度优先、费用优先、距离优先三个策略计算路径），其中必须说明，就算使用三个策略算路，会根据路况不固定的返回一至三条路径规划信息；
+    6，不走高速；7，不走高速且避免收费；8，躲避收费和拥堵；9，不走高速且躲避收费和拥堵；
+    10，多备选，时间最短，距离最短，躲避拥堵（考虑路况）；
+    11，多备选，时间最短，距离最短；
+    12，多备选，躲避拥堵（考虑路况）；
+    13，多备选，不走高速；
+    14，多备选，费用优先；
+    15，多备选，躲避拥堵，不走高速（考虑路况）；
+    16，多备选，费用有限，不走高速；
+    17，多备选，躲避拥堵，费用优先（考虑路况）；
+    18，多备选，躲避拥堵，不走高速，费用优先（考虑路况）；
+    19，多备选，高速优先；
+    20，多备选，高速优先，躲避拥堵（考虑路况）
+ */
 @property (nonatomic, assign) NSInteger strategy;
 ///途经点 AMapGeoPoint 数组，最多支持16个途经点
 @property (nonatomic, copy) NSArray<AMapGeoPoint *> *waypoints;
@@ -366,6 +392,73 @@ typedef NS_ENUM(NSInteger, AMapNearbySearchType)
 @interface AMapRidingRouteSearchResponse : AMapRouteSearchResponse
 @end
 
+#pragma mark - AMapTruckRouteSearchRequest
+
+///货车路径规划（since 6.1.0）
+@interface AMapTruckRouteSearchRequest : AMapRouteSearchBaseRequest
+
+/**
+ 驾车导航策略，默认为策略1。
+    1，返回的结果考虑路况，尽量躲避拥堵而规划路径，与高德地图的“躲避拥堵”策略一致；
+    2，返回的结果不走高速，与高德地图“不走高速”策略一致；
+    3，返回的结果尽可能规划收费较低甚至免费的路径，与高德地图“避免收费”策略一致；
+    4，返回的结果考虑路况，尽量躲避拥堵而规划路径，并且不走高速，与高德地图的“躲避拥堵&不走高速”策略一致；
+    5，返回的结果尽量不走高速，并且尽量规划收费较低甚至免费的路径结果，与高德地图的“避免收费&不走高速”策略一致；
+    6，返回路径规划结果会尽量的躲避拥堵，并且规划收费较低甚至免费的路径结果，与高德地图的“躲避拥堵&避免收费”策略一致；
+    7，返回的结果尽量躲避拥堵，规划收费较低甚至免费的路径结果，并且尽量不走高速路，与高德地图的“避免拥堵&避免收费&不走高速”策略一致；
+    8，返回的结果会优先选择高速路，与高德地图的“高速优先”策略一致；
+    9，返回的结果会优先考虑高速路，并且会考虑路况躲避拥堵，与高德地图的“躲避拥堵&高速优先”策略一致。
+ */
+@property (nonatomic, assign) NSInteger strategy;
+///途经点 AMapGeoPoint 数组，最多支持16个途经点
+@property (nonatomic, copy) NSArray<AMapGeoPoint *> *waypoints;
+///出发点 POI ID
+@property (nonatomic, copy) NSString *originId;
+///目的地 POI ID
+@property (nonatomic, copy) NSString *destinationId;
+///出发点POI类型编码
+@property (nonatomic, copy) NSString *origintype;
+///目的地POI类型编码
+@property (nonatomic, copy) NSString *destinationtype;
+///车牌省份，用汉字填入车牌省份缩写。用于判断是否限行
+@property (nonatomic, copy) NSString *plateProvince;
+///车牌详情,填入除省份及标点之外的字母和数字（需大写）。用于判断是否限行。
+@property (nonatomic, copy) NSString *plateNumber;
+///货车大小，默认为 轻型车（AMapTruckSizeTypeLight）
+@property (nonatomic, assign) AMapTruckSizeType size;
+///车辆高度，单位米，取值[0 – 25.5]米，默认 1.6 米
+@property (nonatomic, assign) CGFloat height;
+///车辆宽度，单位米，取值[0 – 25.5]米，默认 2.5 米
+@property (nonatomic, assign) CGFloat width;
+///车辆总重，单位吨，取值[0 – 6553.5]吨，默认 0.9 吨
+@property (nonatomic, assign) CGFloat load;
+///货车核定载重，单位吨，取值[0 – 6553.5]吨，默认 10 吨
+@property (nonatomic, assign) CGFloat weight;
+///车辆轴数，单位个，取值[0 –255]个，默认 2个轴
+@property (nonatomic, assign) NSInteger axis;
+
+@end
+
+#pragma mark - AMapDistanceSearchRequest
+
+///距离查询请求（since 6.1.0）
+@interface AMapDistanceSearchRequest : AMapSearchObject
+///起点坐标数组，最多支持100个点。
+@property (nonatomic, strong) NSArray<AMapGeoPoint *> *origins;
+///终点坐标
+@property (nonatomic, strong) AMapGeoPoint *destination;
+///路径计算的方式和方法.0：直线距离; 1：驾车导航距离（仅支持国内坐标）此时会考虑路况，故在不同时间请求返回结果可能不同，此策略和driving接口的 strategy=4策略一致; 默认为1
+@property (nonatomic, assign) NSInteger type;
+
+@end
+
+///距离查询结果（since 6.1.0）
+@interface AMapDistanceSearchResponse : AMapSearchObject
+///距离查询结果 AMapDistanceResult 数组。
+@property (nonatomic, strong) NSArray<AMapDistanceResult *> *results;
+
+@end
+
 #pragma mark - AMapWeatherSearchRequest
 
 ///天气查询请求
@@ -403,7 +496,7 @@ typedef NS_ENUM(NSInteger, AMapNearbySearchType)
 ///道路名称，可通过逆地理编码查询获取
 @property (nonatomic, copy)   NSString *roadName;
 
-///城市adcode，可参考http://a.amap.com/lbs/static/zip/AMap_adcode_citycode.zip
+///城市adcode，可参考 http://a.amap.com/lbs/static/zip/AMap_adcode_citycode.zip
 @property (nonatomic, copy)   NSString *adcode;
 
 @end

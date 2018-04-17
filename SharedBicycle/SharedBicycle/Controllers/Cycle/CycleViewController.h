@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface CycleViewController : UIViewController {
     
 }
+
+@property (nonatomic, strong) User *user;
 
 @end
 

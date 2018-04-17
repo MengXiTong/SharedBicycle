@@ -19,9 +19,11 @@ PODS:
   - AMapFoundation (1.4.3)
   - AMapLocation (2.6.0):
     - AMapFoundation (~> 1.4)
-  - AMapSearch (5.7.0):
+  - AMapSearch (6.1.0):
     - AMapFoundation (~> 1.4)
-  - CWLateralSlide (1.5.8)
+  - CWLateralSlide (1.5.9)
+  - MBProgressHUD (1.0.0)
+  - TZImagePickerController (2.0.1)
 
 DEPENDENCIES:
   - AFNetworking
@@ -29,15 +31,19 @@ DEPENDENCIES:
   - AMapLocation
   - AMapSearch
   - CWLateralSlide (~> 1.5.8)
+  - MBProgressHUD
+  - TZImagePickerController
 
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   AMap2DMap: cf0bfd6ae97951b55cc061903b814f924ba6c221
   AMapFoundation: 973682cfe60b92efd73a8ef8f1144fa0fa8e1296
   AMapLocation: 55116a2c8956eab7550cbb56e989aa5cdcc424e3
-  AMapSearch: 314f75e9ce282b53dbf66455efa416c39f12b5b1
-  CWLateralSlide: 3af190c8ffa08040abfd9780f279dac94d531f8b
+  AMapSearch: e3f96bd0681abe70abba303709a1a05625a8f76c
+  CWLateralSlide: f91ec07f1b8f0d22ebcb661c879b7f91a3e7481d
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
 
-PODFILE CHECKSUM: 040beacba7e63b000a05299c062786077261b482
+PODFILE CHECKSUM: e568616042c576eb56a3604d5dd66bc3a1cdb072
 
 COCOAPODS: 1.4.0

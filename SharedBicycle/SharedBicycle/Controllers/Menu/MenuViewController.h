@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 typedef NS_ENUM(NSUInteger,DrawerType) {
     DrawerDefaultLeft = 1, // 默认动画，左侧划出
@@ -15,14 +16,13 @@ typedef NS_ENUM(NSUInteger,DrawerType) {
     DrawerTypeMaskRight    // 遮盖动画，右侧滑出
 };
 @interface MenuViewController : UIViewController {
-    //屏幕信息
-    CGRect screen;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *imgHead;
 @property (weak, nonatomic) IBOutlet UILabel *lblPhone;
 @property (weak, nonatomic) IBOutlet UILabel *lblCredit;
 
-@property (nonatomic,strong) NSMutableArray *aryTitle;
-@property (strong, nonatomic) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *aryTitle;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) User *user;
 
 @end

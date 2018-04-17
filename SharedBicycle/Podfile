@@ -6,4 +6,6 @@ target 'SharedBicycle' do
  pod 'AMapLocation'
  pod 'AFNetworking'
  pod 'CWLateralSlide', '~> 1.5.8'
+ pod 'MBProgressHUD'
+ pod 'TZImagePickerController'
 end

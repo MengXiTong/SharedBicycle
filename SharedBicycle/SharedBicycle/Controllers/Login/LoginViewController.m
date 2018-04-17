@@ -8,17 +8,24 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import <AFNetworking.h>
+#import "Toast.h"
+#import "Config.h"
+#import "UserNavController.h"
+#import <MBProgressHUD.h>
 
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *lblVerification;
-@property (weak, nonatomic) IBOutlet UITextField *txtVerification;
-@property (weak, nonatomic) IBOutlet UITextField *txtID;
-@property (weak, nonatomic) IBOutlet UITextField *txtPwd;
+@property (weak, nonatomic) IBOutlet UITextField *tfID;
+@property (weak, nonatomic) IBOutlet UITextField *tfVerification;
+@property (weak, nonatomic) IBOutlet UITextField *tfPwd;
 
 @end
 
-@implementation LoginViewController
+@implementation LoginViewController{
+    MBProgressHUD *HUD;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +44,10 @@
     tapGestureRecognizer.cancelsTouchesInView = NO;
     //将触摸事件添加到当前view
     [self.view addGestureRecognizer:tapGestureRecognizer];
+    //显示记住的密码
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    self.tfID.text = [userDef stringForKey:@"ID"];
+    self.tfPwd.text = [userDef stringForKey:@"Pwd"];
     //获取随机数
     self.lblVerification.text = [self getVerification];
 }
@@ -53,15 +64,59 @@
 }
 
 - (IBAction)login:(id)sender {
-//    if(_txtVerification.text == _lblVerification.text){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UINavigationController *navC = (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDNavC"];
-        //登录成功后
-        [self presentViewController:navC animated:YES completion:^(void){
-            [[UIApplication sharedApplication] delegate].window.rootViewController = navC;
-            [[[UIApplication sharedApplication] delegate].window makeKeyWindow];
-        }];
+    if ([self.tfID.text isEqualToString:@""]){
+        [Toast showAlertWithMessage:@"请输入登录账号" withView:self];
+        return;
+    }
+    if ([self.tfPwd.text isEqualToString:@""]){
+        [Toast showAlertWithMessage:@"请输入登录密码" withView:self];
+        return;
+    }
+//    if(_tfVerification.text != _lblVerification.text){
+//        [Toast showAlertWithMessage:@"请输入正确的验证码" withView:self];
+//        return;
 //    }
+    //初始化加载条
+    [self initHUD];
+    NSString *strURL = [HTTP stringByAppendingString: LoginHandler];
+    NSDictionary *param = @{@"UserID":_tfID.text,@"Passward":_tfPwd.text};
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [HUD removeFromSuperview];
+        //登录成功后
+        if([responseObject objectForKey:@"status"]){
+            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+            [userDef setObject:self.tfID.text forKey:@"ID"];
+            [userDef setObject:self.tfPwd.text forKey:@"Pwd"];
+            [userDef synchronize];
+            [Toast showAlertWithMessage:@"登录成功" withView:self];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UserNavController *userNavC = (UserNavController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDNavC"];
+            User *user = [[User alloc] init];
+            user.UserID = _tfID.text;
+            userNavC.user = user;
+            [self presentViewController:userNavC animated:YES completion:^(void){
+                [[UIApplication sharedApplication] delegate].window.rootViewController = userNavC;
+                [[[UIApplication sharedApplication] delegate].window makeKeyWindow];
+            }];
+        }
+        else{
+            [Toast showAlertWithMessage:@"登录失败" withView:self];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [HUD removeFromSuperview];
+        NSLog(@"LoginError: %@",error);
+    }];
+}
+
+//初始化加载条
+- (void)initHUD {
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.label.text = @"登录中";
+    [HUD showAnimated:YES];
 }
 
 - (IBAction)register:(id)sender {

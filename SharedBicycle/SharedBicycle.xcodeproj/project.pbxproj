@@ -25,6 +25,11 @@
 		A0D22983205AD7CE003871FA /* ScanCodeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D22982205AD7CE003871FA /* ScanCodeeViewController.m */; };
 		A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D27524204AE24400ABF73B /* MenuViewController.m */; };
 		A0D27527204AE24400ABF73B /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D27525204AE24400ABF73B /* MenuViewController.xib */; };
+		A0E575AC2081E504008BCFC2 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E575AA2081E503008BCFC2 /* Toast.m */; };
+		A0E575AF2082EFB0008BCFC2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E575AD2082EFAF008BCFC2 /* User.m */; };
+		A0E575B2208351FC008BCFC2 /* UserNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E575B1208351FC008BCFC2 /* UserNavController.m */; };
+		A0E575BB20859176008BCFC2 /* UpdateUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E575BA20859176008BCFC2 /* UpdateUserViewController.m */; };
+		A0E575C120859BD7008BCFC2 /* Until.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E575C020859BD7008BCFC2 /* Until.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +84,17 @@
 		A0D27523204AE24400ABF73B /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		A0D27524204AE24400ABF73B /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		A0D27525204AE24400ABF73B /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		A0E575A92081E301008BCFC2 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		A0E575AA2081E503008BCFC2 /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
+		A0E575AB2081E504008BCFC2 /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
+		A0E575AD2082EFAF008BCFC2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		A0E575AE2082EFB0008BCFC2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		A0E575B0208351FC008BCFC2 /* UserNavController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserNavController.h; sourceTree = "<group>"; };
+		A0E575B1208351FC008BCFC2 /* UserNavController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNavController.m; sourceTree = "<group>"; };
+		A0E575B920859176008BCFC2 /* UpdateUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateUserViewController.h; sourceTree = "<group>"; };
+		A0E575BA20859176008BCFC2 /* UpdateUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateUserViewController.m; sourceTree = "<group>"; };
+		A0E575BF20859BD7008BCFC2 /* Until.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Until.h; sourceTree = "<group>"; };
+		A0E575C020859BD7008BCFC2 /* Until.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Until.m; sourceTree = "<group>"; };
 		D25C88AB0B5B8EEA66B3DC86 /* libPods-SharedBicycle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SharedBicycle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -205,10 +221,15 @@
 		A056388720401B7700BB0A9C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A0E575AB2081E504008BCFC2 /* Toast.h */,
+				A0E575AA2081E503008BCFC2 /* Toast.m */,
 				A04D6372205AD5EC0013E26A /* ShadowView.h */,
 				A04D6373205AD5EC0013E26A /* ShadowView.m */,
 				A0D22981205AD7CE003871FA /* ScanCodeViewController.h */,
 				A0D22982205AD7CE003871FA /* ScanCodeeViewController.m */,
+				A0E575A92081E301008BCFC2 /* Config.h */,
+				A0E575BF20859BD7008BCFC2 /* Until.h */,
+				A0E575C020859BD7008BCFC2 /* Until.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,10 +237,16 @@
 		A0814207207103E500B9BAE3 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				A0E575AE2082EFB0008BCFC2 /* User.h */,
+				A0E575AD2082EFAF008BCFC2 /* User.m */,
 				A01F6FA0207E433A00FF7912 /* UserInfoTableViewController.h */,
 				A01F6FA1207E433A00FF7912 /* UserInfoTableViewController.m */,
 				A0A522872080E9DC00D45903 /* RegisterTableViewController.h */,
 				A0A522882080E9DC00D45903 /* RegisterTableViewController.m */,
+				A0E575B0208351FC008BCFC2 /* UserNavController.h */,
+				A0E575B1208351FC008BCFC2 /* UserNavController.m */,
+				A0E575B920859176008BCFC2 /* UpdateUserViewController.h */,
+				A0E575BA20859176008BCFC2 /* UpdateUserViewController.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -426,10 +453,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SharedBicycle/Pods-SharedBicycle-resources.sh",
 				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -464,10 +493,15 @@
 				A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */,
 				A01F6FA2207E433A00FF7912 /* UserInfoTableViewController.m in Sources */,
 				A0563862203FCDBC00BB0A9C /* main.m in Sources */,
+				A0E575C120859BD7008BCFC2 /* Until.m in Sources */,
+				A0E575BB20859176008BCFC2 /* UpdateUserViewController.m in Sources */,
+				A0E575AC2081E504008BCFC2 /* Toast.m in Sources */,
 				A0A522892080E9DC00D45903 /* RegisterTableViewController.m in Sources */,
+				A0E575AF2082EFB0008BCFC2 /* User.m in Sources */,
 				A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */,
 				A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */,
 				A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */,
+				A0E575B2208351FC008BCFC2 /* UserNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

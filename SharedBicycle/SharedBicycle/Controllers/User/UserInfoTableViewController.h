@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface UserInfoTableViewController : UITableViewController
+
+@property (nonatomic, strong) User *user;
 
 @end

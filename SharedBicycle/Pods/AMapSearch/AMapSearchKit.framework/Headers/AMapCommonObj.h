@@ -25,7 +25,7 @@
 
 #pragma mark - 通用数据结构
 
-///经纬度
+///经纬度, description中格式为 <经度,纬度>
 @interface AMapGeoPoint : AMapSearchObject
 ///纬度（垂直方向）
 @property (nonatomic, assign) CGFloat latitude;
@@ -507,7 +507,19 @@
 @property (nonatomic, assign) NSInteger  tollDistance; 
 ///此方案交通信号灯个数
 @property (nonatomic, assign) NSInteger  totalTrafficLights;
-///限行信息。0 代表限行已规避或未限行; 1 代表限行无法规避
+
+/**
+ 限行信息，仅在驾车和货车路径规划时有效。（since 6.0.0）
+ 驾车路径规划时：
+ 0 代表限行已规避或未限行; 1 代表限行无法规避。
+ 货车路径规划时：
+ 0，未知（未输入完整/正确车牌号信息时候显示）
+ 1，已规避限行
+ 2，起点限行
+ 3，途径点在限行区域内（设置途径点才出现此报错）
+ 4，途径限行区域
+ 5，终点限行
+ */
 @property (nonatomic, assign) NSInteger restriction;
 @end
 
@@ -645,6 +657,22 @@
 @property (nonatomic, strong) NSArray<AMapPath *> *paths; 
 ///公交换乘方案列表 AMapTransit 数组
 @property (nonatomic, strong) NSArray<AMapTransit *> *transits; 
+@end
+
+///距离测量结果
+@interface AMapDistanceResult : AMapSearchObject
+///起点坐标，起点坐标序列号（从１开始）
+@property (nonatomic, assign) NSInteger originID;
+///终点坐标，终点坐标序列号（从１开始）
+@property (nonatomic, assign) NSInteger destID;
+///路径距离，单位：米
+@property (nonatomic, assign) NSInteger distance;
+///预计行驶时间，单位：秒
+@property (nonatomic, assign) NSInteger duration;
+///错误信息，建议用此字段判断请求是否成功
+@property (nonatomic, copy) NSString *info;
+///在驾车模式下有效。默认为0；1：指定地点之间没有可以行车的道路；2：起点/终点 距离所有道路均距离过远（例如在海洋/矿业）；3；起点/终点不在中国境内；
+@property (nonatomic, assign) NSInteger code;
 @end
 
 #pragma mark - 天气查询
