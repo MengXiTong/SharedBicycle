@@ -14,6 +14,9 @@
 }
 
 @property (nonatomic, strong) User *user;
+@property (weak, nonatomic) IBOutlet UIView *vScan;
+@property (weak, nonatomic) IBOutlet UIView *vInUse;
+@property (weak, nonatomic) IBOutlet UIView *vPay;
 
 @end
 
