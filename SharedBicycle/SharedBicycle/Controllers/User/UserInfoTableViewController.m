@@ -17,17 +17,6 @@
 
 @interface UserInfoTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *lblShowPhone;
-@property (weak, nonatomic) IBOutlet UIImageView *imgPhoto;
-@property (weak, nonatomic) IBOutlet UILabel *lblCreditScore;
-@property (weak, nonatomic) IBOutlet UILabel *lblName;
-@property (weak, nonatomic) IBOutlet UILabel *lblSex;
-@property (weak, nonatomic) IBOutlet UILabel *lblBirthday;
-@property (weak, nonatomic) IBOutlet UILabel *lblIdentity;
-@property (weak, nonatomic) IBOutlet UILabel *lblPhone;
-@property (weak, nonatomic) IBOutlet UITableViewCell *cellBirthday;
-@property (weak, nonatomic) IBOutlet UITableViewCell *cellSex;
-
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 
 @end
@@ -126,7 +115,10 @@
     [alertBirthday.view addSubview:dpBirthday];
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString* currentTime = [formatter stringFromDate:dpBirthday.date];
-        self.lblBirthday.text = currentTime;
+        if(![_user.Birthday isEqualToString:currentTime]){
+            _user.Birthday = currentTime;
+            [self putBirthday];
+        }
         [self.cellBirthday setSelected:NO animated:YES];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -139,13 +131,17 @@
 -(void)initSexPicker{
     alertSex = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *manAction = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        _user.Sex = @"true";
-        self.lblSex.text = @"男";
+        if(![[_user.Sex lowercaseString] isEqualToString:@"true"]){
+            _user.Sex = @"true";
+            [self putSex];
+        }
         [self.cellSex setSelected:NO animated:YES];
     }];
     UIAlertAction *womanAction = [UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        _user.Sex = @"false";
-        self.lblSex.text = @"女";
+        if([[_user.Sex lowercaseString] isEqualToString:@"true"]){
+            _user.Sex = @"false";
+            [self putSex];
+        }
         [self.cellSex setSelected:NO animated:YES];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -229,6 +225,46 @@
         }
         else{
             [Toast showAlertWithMessage:@"更新头像失败" withView:self];
+            NSLog(@"%@",[responseObject objectForKey:@"message"]);
+        }
+        [HUD removeFromSuperview];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [HUD removeFromSuperview];
+        NSLog(@"UserInfoError: %@",error);
+    }];
+}
+
+- (void)putSex{
+    [self initHUD];
+    NSDictionary *user = @{@"UserID":_user.UserID,@"Sex":_user.Sex};
+    NSDictionary *param = @{@"type":@"sex",@"user":user};
+    [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            self.lblSex.text = [[_user.Sex lowercaseString] isEqualToString:@"true"]?@"男":@"女";
+            [Toast showAlertWithMessage:@"更新性别成功" withView:self];
+        }
+        else{
+            [Toast showAlertWithMessage:@"更新性别失败" withView:self];
+            NSLog(@"%@",[responseObject objectForKey:@"message"]);
+        }
+        [HUD removeFromSuperview];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [HUD removeFromSuperview];
+        NSLog(@"UserInfoError: %@",error);
+    }];
+}
+
+- (void)putBirthday{
+    [self initHUD];
+    NSDictionary *user = @{@"UserID":_user.UserID,@"Birthday":_user.Birthday};
+    NSDictionary *param = @{@"type":@"birthday",@"user":user};
+    [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            _lblBirthday.text = _user.Birthday;
+            [Toast showAlertWithMessage:@"更新生日成功" withView:self];
+        }
+        else{
+            [Toast showAlertWithMessage:@"更新生日失败" withView:self];
             NSLog(@"%@",[responseObject objectForKey:@"message"]);
         }
         [HUD removeFromSuperview];

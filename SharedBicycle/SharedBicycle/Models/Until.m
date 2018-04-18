@@ -20,18 +20,26 @@
 
 + (BOOL)checkPassWord:(NSString *)passWord
 {
-    //6-20位数字和字母组成
-    NSString *regex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$";
+    //6-16位数字和字母组成
+    NSString *regex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
     NSPredicate *   pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [pred evaluateWithObject:passWord];
 }
 
 + (BOOL)checkUserName : (NSString *) userName
 {
-    //正则匹配用户姓名,4-20位的中文或英文
-    NSString *regex = @"^[a-zA-Z\u4E00-\u9FA5]{4,20}";
+    //正则匹配用户姓名,2-20位的中文或英文
+    NSString *regex = @"^[a-zA-Z\u4E00-\u9FA5]{2,20}";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [pred evaluateWithObject:userName];
+}
+
++ (BOOL)checkUserID : (NSString *) userID
+{
+    //正则匹配用户账号,2-10位的数字或者字母
+    NSString *regex = @"^[0-9A-Za-z]{2,10}";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [pred evaluateWithObject:userID];
 }
 
 + (NSString *)getPhotoString:(UIImage *) imgPhoto isNeedCompress:(BOOL) isNeedCompress{

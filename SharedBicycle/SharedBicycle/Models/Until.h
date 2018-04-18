@@ -14,6 +14,7 @@
 + (BOOL)checkPhone:(NSString *) phone;
 + (BOOL)checkPassWord:(NSString *) passWord;
 + (BOOL)checkUserName:(NSString *) userName;
++ (BOOL)checkUserID : (NSString *) userID;
 + (NSString *)getPhotoString:(UIImage *) imgPhoto isNeedCompress:(BOOL) isNeedCompress;
 
 @end

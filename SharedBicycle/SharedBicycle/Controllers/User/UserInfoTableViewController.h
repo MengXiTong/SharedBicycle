@@ -11,6 +11,17 @@
 
 @interface UserInfoTableViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *lblShowPhone;
+@property (weak, nonatomic) IBOutlet UIImageView *imgPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *lblCreditScore;
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
+@property (weak, nonatomic) IBOutlet UILabel *lblSex;
+@property (weak, nonatomic) IBOutlet UILabel *lblBirthday;
+@property (weak, nonatomic) IBOutlet UILabel *lblIdentity;
+@property (weak, nonatomic) IBOutlet UILabel *lblPhone;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellBirthday;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellSex;
+
 @property (nonatomic, strong) User *user;
 
 @end

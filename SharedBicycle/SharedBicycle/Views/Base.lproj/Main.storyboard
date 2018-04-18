@@ -42,7 +42,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nxg-ok-InH">
                                 <rect key="frame" x="40" y="303" width="295" height="44"/>
@@ -51,7 +51,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5We-48-D8p">
                                 <rect key="frame" x="40" y="447" width="132.5" height="44"/>
@@ -391,8 +391,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4-20个字符，仅支持中文或英文" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esj-9Y-y2m">
-                                <rect key="frame" x="20" y="104" width="261" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9个字符，仅以13/14/15/17/18开头的数字字符" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esj-9Y-y2m">
+                                <rect key="frame" x="20" y="104" width="335" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -404,6 +404,7 @@
                             <constraint firstItem="CeX-MT-FgB" firstAttribute="trailing" secondItem="7Sp-Eq-D7g" secondAttribute="trailing" constant="20" id="YCR-xX-aWC"/>
                             <constraint firstItem="esj-9Y-y2m" firstAttribute="leading" secondItem="CeX-MT-FgB" secondAttribute="leading" constant="20" id="dGW-aL-EwA"/>
                             <constraint firstItem="esj-9Y-y2m" firstAttribute="top" secondItem="7Sp-Eq-D7g" secondAttribute="bottom" constant="20" id="jTP-UK-Y91"/>
+                            <constraint firstAttribute="trailing" secondItem="esj-9Y-y2m" secondAttribute="trailing" constant="20" id="rbi-l3-M7w"/>
                             <constraint firstItem="7Sp-Eq-D7g" firstAttribute="leading" secondItem="CeX-MT-FgB" secondAttribute="leading" constant="20" id="v8R-u5-MpU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CeX-MT-FgB"/>
@@ -527,7 +528,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -559,7 +560,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -591,7 +592,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -683,8 +684,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egs-6G-5Vb">
-                                                    <rect key="frame" x="304.5" y="17" width="18.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egs-6G-5Vb">
+                                                    <rect key="frame" x="323" y="27.5" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -711,8 +712,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1995-02-28" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3c-az-Bz6">
-                                                    <rect key="frame" x="223" y="17" width="100" height="21.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3c-az-Bz6">
+                                                    <rect key="frame" x="323" y="28" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -805,15 +806,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="xAm-sd-JdF">
-                                        <rect key="frame" x="0.0" y="540" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="70" id="xAm-sd-JdF">
+                                        <rect key="frame" x="0.0" y="540" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xAm-sd-JdF" id="TeR-7Q-ehd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtX-Xc-Iuu">
-                                                    <rect key="frame" x="20" y="28" width="335" height="44"/>
+                                                    <rect key="frame" x="20" y="13" width="335" height="44"/>
                                                     <color key="backgroundColor" red="0.2392156869" green="0.67450982329999998" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="mqR-Dl-juY"/>
@@ -829,6 +830,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
+                                                        <action selector="actionBtnRegister:" destination="heG-P4-Kht" eventType="touchUpInside" id="sb7-Nd-kuU"/>
                                                         <action selector="login:" destination="UQv-JY-JXb" eventType="touchUpInside" id="jzu-1f-h0v"/>
                                                     </connections>
                                                 </button>
@@ -850,7 +852,18 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="注册" id="jhN-Cm-xKz"/>
                     <connections>
+                        <outlet property="cellBirthday" destination="Eyc-HS-rwu" id="sAv-N3-xW6"/>
+                        <outlet property="cellSex" destination="XvK-WH-TJ1" id="Gbx-aP-sh7"/>
+                        <outlet property="imgPhoto" destination="2Ly-4o-Wul" id="Cuy-wz-FvU"/>
+                        <outlet property="lblBirthday" destination="G3c-az-Bz6" id="qXB-Rd-zIX"/>
+                        <outlet property="lblSex" destination="Egs-6G-5Vb" id="sMz-w5-tmo"/>
                         <outlet property="lblVerification" destination="Msc-RK-t07" id="Ex8-ZV-Tqt"/>
+                        <outlet property="tfName" destination="Pry-fU-nbN" id="x5B-7O-e8n"/>
+                        <outlet property="tfPhone" destination="HAJ-ia-KED" id="bAt-3N-GQm"/>
+                        <outlet property="tfPwd" destination="EGP-XE-gHI" id="eCI-UX-4C4"/>
+                        <outlet property="tfPwdAgain" destination="IFb-VT-kzg" id="t3t-3q-JRO"/>
+                        <outlet property="tfUserID" destination="uSL-bZ-sKG" id="qPG-a9-1Ue"/>
+                        <outlet property="tfVerification" destination="pJL-MC-g3Z" id="hrq-Dl-F8B"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMi-o9-Xby" userLabel="First Responder" sceneMemberID="firstResponder"/>
