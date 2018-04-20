@@ -13,6 +13,8 @@ static NSString *HTTP = @"http://172.27.35.1:20072";
 static NSString *LoginHandler = @"/LoginHandler.ashx";
 //用户信息接口地址
 static NSString *UserHandler = @"/UserHandler.ashx";
+//用户信息接口地址
+static NSString *TripHandler = @"/TripHandler.ashx";
 
 
 #endif /* Config_h */

@@ -29,6 +29,9 @@
 
 @implementation CycleViewController{
     MBProgressHUD *HUD;
+    dispatch_source_t source;
+    AFHTTPSessionManager *manager;
+    int count;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,20 +44,24 @@
     _vInUse.layer.contents = (id)([UIImage imageNamed:@"BG"].CGImage);
     _vScan.layer.contents = (id)([UIImage imageNamed:@"BG"].CGImage);
     _vPay.layer.contents = (id)([UIImage imageNamed:@"BG"].CGImage);
+    //初始化session
+    manager = [AFHTTPSessionManager manager];
     [self initMapView];
+    [self initSource];
     [self initUserInfo];
-    [self isInUse];
+    [self initTripState];
 }
 
 - (void)initUserInfo {
-    [self initHUD];
     UserNavController *userNavC = (UserNavController *)self.navigationController;
     _user = userNavC.user;
     NSString *strURL = [HTTP stringByAppendingString: UserHandler];
     NSDictionary *param = @{@"UserID":self.user.UserID};
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    //[AFHTTPRequestSerializer serializer]这是默认编码格式
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_source_merge_data(source, ++count);
         if(responseObject){
             _user.UserID = [responseObject objectForKey:@"UserID"];
             _user.Passward = [responseObject objectForKey:@"Passward"];
@@ -69,17 +76,53 @@
             _user.Balance = [responseObject objectForKey:@"Balance"];
             _user.Deposit = [responseObject objectForKey:@"Deposit"];
         }
-        [HUD removeFromSuperview];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"LoginError: %@",error);
-        [HUD removeFromSuperview];
+        NSLog(@"UserError: %@",error);
+        dispatch_source_merge_data(source, ++count);
     }];
 }
 
-- (void)isInUse{
-    [_vInUse setHidden:YES];
-//    [_vPay setHidden:YES];
-    [_vScan setHidden:YES];
+-(void)initSource{
+    [self initHUD];
+    count = 0;
+    source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_event_handler(source, ^{
+        NSLog(@"%ld",dispatch_source_get_data(source));
+        if(dispatch_source_get_data(source)==2){
+            [HUD removeFromSuperview];
+        }
+    });
+    dispatch_resume(source);
+}
+
+- (void)initTripState{
+    _trip = [[Trip alloc] init];
+    NSString *strURL = [HTTP stringByAppendingString: TripHandler];
+    NSDictionary *param = @{@"UserID":self.user.UserID};
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_source_merge_data(source, ++count);
+//        NSLog(@"%@",[responseObject objectForKey:@"message"]);
+        if([[responseObject objectForKey:@"state"] isEqual:@"finish"]){
+            [_vInUse setHidden:YES];
+            [_vPay setHidden:YES];
+            [_vScan setHidden:NO];
+        }
+        else if([[responseObject objectForKey:@"state"] isEqual:@"defray"]){
+            [_vInUse setHidden:YES];
+            [_vPay setHidden:NO];
+            [_vScan setHidden:YES];
+        }
+        else if([[responseObject objectForKey:@"state"] isEqual:@"unfinish"]){
+            [_vInUse setHidden:NO];
+            [_vPay setHidden:YES];
+            [_vScan setHidden:YES];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"TripError: %@",error);
+        dispatch_source_merge_data(source, ++count);
+    }];
 }
 
 - (void)initMapView {
@@ -106,7 +149,7 @@
         self.locationManager.allowsBackgroundLocationUpdates = YES;
     }
     [self.locationManager setLocatingWithReGeocode:YES];
-    [self.locationManager startUpdatingLocation];
+//    [self.locationManager startUpdatingLocation];
 }
 
 - (void)startUpdatingLocation{
@@ -138,7 +181,12 @@
 
 - (IBAction)scanning:(id)sender {
     ScanCodeViewController *scanCodeVC = [[ScanCodeViewController alloc] init];
+    scanCodeVC.user = _user;
     [[self navigationController] pushViewController:scanCodeVC animated:YES];
+}
+- (IBAction)overTrip:(id)sender {
+}
+- (IBAction)pay:(id)sender {
 }
 
 @end

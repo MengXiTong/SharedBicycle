@@ -7,6 +7,11 @@
 //
 
 #import "ScanCodeViewController.h"
+#import "CycleViewController.h"
+#import "Config.h"
+#import <MBProgressHUD.h>
+#import <AFNetworking.h>
+#import "Trip.h"
 
 @interface ScanCodeViewController () <AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -27,7 +32,11 @@
 
 @end
 
-@implementation ScanCodeViewController
+@implementation ScanCodeViewController{
+    AFHTTPSessionManager *manager;
+    MBProgressHUD *HUD;
+    NSDateFormatter *formatter;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,9 +52,10 @@
     //设置可用扫码范围
     [self allowScanRect];
     //添加上层阴影视图
-    self.shadowView = [[ShadowView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight - 64)];
-    [self.view addSubview:self.shadowView];
-    self.shadowView.showSize = self.showSize;
+    [self initShadowView];
+    manager = [AFHTTPSessionManager manager];
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     // Do any additional setup after loading the view.
 }
 
@@ -85,21 +95,65 @@
 
 #pragma mark - 实现代理方法, 完成二维码扫描
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
-    
+    //停止扫描
+    [self.session stopRunning];
+    [self.shadowView removeAnimationAboutScan];
     if (metadataObjects.count > 0) {
-        
-        // 停止动画, 看完全篇记得打开注释, 不然扫描条会一直有动画效果
-        [self.shadowView removeAnimationAboutScan];
-        
-        //停止扫描
-        [self.session stopRunning];
-        
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex : 0 ];
-        //输出扫描字符串
-        NSLog(@"%@",metadataObject.stringValue);
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"提示" message:[NSString stringWithFormat:@"%@", metadataObject.stringValue] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+        NSString *strResult = metadataObject.stringValue;
+        // 停止动画, 看完全篇记得打开注释, 不然扫描条会一直有动画效果
+        if([strResult hasPrefix:@"BikeID:"]){
+            //输出扫描字符串
+            NSLog(@"%@",[strResult substringFromIndex:7]);
+            [self postStartTrip:^(Trip *trip) {
+                CycleViewController *cycleVC = (CycleViewController *)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                cycleVC.trip.BikeID = [strResult substringFromIndex:7];
+                cycleVC.trip.UserID = trip.UserID;
+                cycleVC.trip.StartTime = trip.StartTime;
+                cycleVC.trip.TripID = trip.TripID;
+                cycleVC.trip.State = trip.State;
+                [cycleVC.vInUse setHidden:NO];
+                [cycleVC.vPay setHidden:YES];
+                [cycleVC.vScan setHidden:YES];
+                [self.navigationController popToViewController:cycleVC animated:true];
+            } withBikeID:[strResult substringFromIndex:7]];
+        }
+        else{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请扫描正确的二维码" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                [self.session startRunning];
+                [self initShadowView];
+            }];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
     }
+}
+
+- (void)postStartTrip:(void(^)(Trip *trip))callBack withBikeID:(NSString *)BikeID{
+    NSString *strURL = [HTTP stringByAppendingString: TripHandler];
+    NSDictionary *param = @{@"UserID":_user.UserID,@"BikeID":BikeID,@"StartTime":[formatter stringFromDate:[NSDate date]]};
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager POST:strURL parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"%@",[responseObject objectForKey:@"message"]);
+        if(responseObject){
+            Trip *trip = [Trip alloc];
+            trip.TripID = [responseObject objectForKey:@"TripID"];
+            trip.StartTime = [responseObject objectForKey:@"StartTime"];
+            trip.UserID = [responseObject objectForKey:@"UserID"];
+            trip.State = [responseObject objectForKey:@"State"];
+            callBack(trip);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"ScanCodeError: %@",error);
+    }];
+}
+
+- (void)initShadowView{
+    self.shadowView = [[ShadowView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight - 64)];
+    [self.view addSubview:self.shadowView];
+    self.shadowView.showSize = self.showSize;
 }
 
 /** 配置扫码范围 */
@@ -147,6 +201,14 @@
                                                 shearRect.size.width / finalWidth);
     }
     
+}
+
+//初始化加载条
+- (void)initHUD {
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.label.text = @"开锁中";
+    [HUD showAnimated:YES];
 }
 
 @end

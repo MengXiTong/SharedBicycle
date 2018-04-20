@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ShadowView.h"
+#import "User.h"
 
 #define kWidth [UIScreen mainScreen].bounds.size.width
 #define kHeight [UIScreen mainScreen].bounds.size.height
 #define customShowSize CGSizeMake(200, 200);
 
 @interface ScanCodeViewController : UIViewController
+
+@property (nonatomic, strong) User *user;
 
 @end

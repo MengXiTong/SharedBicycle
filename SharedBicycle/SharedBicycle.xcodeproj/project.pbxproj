@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F774FC350DB282FAC79A591 /* libPods-SharedBicycle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D25C88AB0B5B8EEA66B3DC86 /* libPods-SharedBicycle.a */; };
+		A0020F742089D38100077804 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = A0020F732089D38100077804 /* Trip.m */; };
 		A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A006D8B6204D78A000E4B85E /* LoginViewController.m */; };
 		A01F6FA2207E433A00FF7912 /* UserInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01F6FA1207E433A00FF7912 /* UserInfoTableViewController.m */; };
 		A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04D6373205AD5EC0013E26A /* ShadowView.m */; };
@@ -52,6 +53,8 @@
 /* Begin PBXFileReference section */
 		62AC9F4B460C9E3E2BDF474D /* Pods-SharedBicycle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedBicycle.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharedBicycle/Pods-SharedBicycle.release.xcconfig"; sourceTree = "<group>"; };
 		843C27E28B9C13EF7A199611 /* Pods-SharedBicycle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedBicycle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharedBicycle/Pods-SharedBicycle.debug.xcconfig"; sourceTree = "<group>"; };
+		A0020F722089D38100077804 /* Trip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
+		A0020F732089D38100077804 /* Trip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		A006D8B5204D78A000E4B85E /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A006D8B6204D78A000E4B85E /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A01F6FA0207E433A00FF7912 /* UserInfoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewController.h; sourceTree = "<group>"; };
@@ -225,11 +228,13 @@
 				A0E575AA2081E503008BCFC2 /* Toast.m */,
 				A04D6372205AD5EC0013E26A /* ShadowView.h */,
 				A04D6373205AD5EC0013E26A /* ShadowView.m */,
-				A0D22981205AD7CE003871FA /* ScanCodeViewController.h */,
-				A0D22982205AD7CE003871FA /* ScanCodeeViewController.m */,
 				A0E575A92081E301008BCFC2 /* Config.h */,
 				A0E575BF20859BD7008BCFC2 /* Until.h */,
 				A0E575C020859BD7008BCFC2 /* Until.m */,
+				A0E575AE2082EFB0008BCFC2 /* User.h */,
+				A0E575AD2082EFAF008BCFC2 /* User.m */,
+				A0020F722089D38100077804 /* Trip.h */,
+				A0020F732089D38100077804 /* Trip.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -237,8 +242,6 @@
 		A0814207207103E500B9BAE3 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				A0E575AE2082EFB0008BCFC2 /* User.h */,
-				A0E575AD2082EFAF008BCFC2 /* User.m */,
 				A01F6FA0207E433A00FF7912 /* UserInfoTableViewController.h */,
 				A01F6FA1207E433A00FF7912 /* UserInfoTableViewController.m */,
 				A0A522872080E9DC00D45903 /* RegisterTableViewController.h */,
@@ -267,6 +270,8 @@
 			children = (
 				A0563855203FCDBC00BB0A9C /* CycleViewController.h */,
 				A0563856203FCDBC00BB0A9C /* CycleViewController.m */,
+				A0D22981205AD7CE003871FA /* ScanCodeViewController.h */,
+				A0D22982205AD7CE003871FA /* ScanCodeeViewController.m */,
 			);
 			path = Cycle;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0020F742089D38100077804 /* Trip.m in Sources */,
 				A0563857203FCDBC00BB0A9C /* CycleViewController.m in Sources */,
 				A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */,
 				A0D22983205AD7CE003871FA /* ScanCodeeViewController.m in Sources */,

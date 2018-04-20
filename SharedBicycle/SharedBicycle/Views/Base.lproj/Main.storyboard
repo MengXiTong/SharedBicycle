@@ -544,8 +544,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="actionBtnRegister:" destination="heG-P4-Kht" eventType="touchUpInside" id="sZ9-Rf-Ncg"/>
-                                            <action selector="login:" destination="UQv-JY-JXb" eventType="touchUpInside" id="Y6s-Sg-JKg"/>
+                                            <action selector="overTrip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NIi-vq-S1h"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -612,8 +611,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="actionBtnRegister:" destination="heG-P4-Kht" eventType="touchUpInside" id="bjz-My-af5"/>
-                                            <action selector="login:" destination="UQv-JY-JXb" eventType="touchUpInside" id="nTG-oi-1NA"/>
+                                            <action selector="pay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qAc-Rf-wdM"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -649,6 +647,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="用车" id="vJn-bI-dGi"/>
                     <connections>
+                        <outlet property="lblPayCoupon" destination="L5c-1W-N3R" id="xSp-V3-Hs4"/>
+                        <outlet property="lblPayReal" destination="Q15-Dv-fcM" id="6j2-8J-GR7"/>
+                        <outlet property="lblPayTotal" destination="wjs-97-kkW" id="m5U-q2-ecf"/>
+                        <outlet property="lblUseMoney" destination="AnM-7h-BwL" id="Qyl-Om-ofi"/>
+                        <outlet property="lblUseTime" destination="vwD-4K-Q6G" id="WWP-Dw-tlJ"/>
                         <outlet property="vInUse" destination="1X8-iH-bYM" id="6tE-2y-N8p"/>
                         <outlet property="vPay" destination="tTG-CF-M8f" id="bho-Tr-HGe"/>
                         <outlet property="vScan" destination="bN0-Zw-6lK" id="iDN-Ab-sdG"/>
@@ -993,7 +996,6 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="actionBtnRegister:" destination="heG-P4-Kht" eventType="touchUpInside" id="sb7-Nd-kuU"/>
-                                                        <action selector="login:" destination="UQv-JY-JXb" eventType="touchUpInside" id="jzu-1f-h0v"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
