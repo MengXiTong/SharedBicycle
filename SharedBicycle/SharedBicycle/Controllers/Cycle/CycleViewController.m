@@ -187,7 +187,7 @@
     [self initHUD];
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         NSString *strURL = [HTTP stringByAppendingString: TripHandler];
-        NSDictionary *trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_trip.Consume,@"EndTime":_trip.EndTime};
+        NSDictionary *trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_trip.Consume,@"EndTime":_trip.EndTime,@"StartTime":_trip.StartTime};
         NSDictionary *param = @{@"type":@"pay",@"trip":trip};
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
