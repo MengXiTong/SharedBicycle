@@ -53,4 +53,20 @@
     return [data base64EncodedStringWithOptions:0];;
 }
 
++ (NSDateComponents *)getDateComponents : (NSDate *)startDate WithEndDate:(NSDate *)endDate{
+    NSCalendar *calender=[NSCalendar currentCalendar];
+    NSCalendarUnit unitsave=NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond;
+    NSDateComponents *comps = [calender components:unitsave fromDate:startDate toDate:endDate options:0];
+    return comps;
+}
+
++ (NSString *)numberFormatter: (NSInteger *)num{
+    if(num>9){
+        return [[NSString alloc] initWithFormat:@"%ld",num];
+    }
+    else{
+        return [[NSString alloc] initWithFormat:@"0%ld",num];
+    }
+}
+
 @end

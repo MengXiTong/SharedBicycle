@@ -16,5 +16,7 @@
 + (BOOL)checkUserName:(NSString *) userName;
 + (BOOL)checkUserID : (NSString *) userID;
 + (NSString *)getPhotoString:(UIImage *) imgPhoto isNeedCompress:(BOOL) isNeedCompress;
++ (NSDateComponents *)getDateComponents : (NSDate *)startDate WithEndDate:(NSDate *)endDate;
++ (NSString *)numberFormatter: (NSInteger *)num;
 
 @end

@@ -12,6 +12,7 @@
 #import <MBProgressHUD.h>
 #import <AFNetworking.h>
 #import "Trip.h"
+#import "Toast.h"
 
 @interface ScanCodeViewController () <AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -119,35 +120,46 @@
             } withBikeID:[strResult substringFromIndex:7]];
         }
         else{
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请扫描正确的二维码" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                [self.session startRunning];
-                [self initShadowView];
-            }];
-            [alert addAction:cancelAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [self initAlert:@"请扫描正确的二维码"];
         }
     }
 }
 
 - (void)postStartTrip:(void(^)(Trip *trip))callBack withBikeID:(NSString *)BikeID{
+    [self initHUD];
     NSString *strURL = [HTTP stringByAppendingString: TripHandler];
     NSDictionary *param = @{@"UserID":_user.UserID,@"BikeID":BikeID,@"StartTime":[formatter stringFromDate:[NSDate date]]};
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:strURL parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",[responseObject objectForKey:@"message"]);
-        if(responseObject){
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            NSDictionary *dicTrip = [responseObject objectForKey:@"trip"];
             Trip *trip = [Trip alloc];
-            trip.TripID = [responseObject objectForKey:@"TripID"];
-            trip.StartTime = [responseObject objectForKey:@"StartTime"];
-            trip.UserID = [responseObject objectForKey:@"UserID"];
-            trip.State = [responseObject objectForKey:@"State"];
+            trip.TripID = [dicTrip objectForKey:@"TripID"];
+            trip.StartTime = [dicTrip objectForKey:@"StartTime"];
+            trip.UserID = [dicTrip objectForKey:@"UserID"];
+            trip.State = [dicTrip objectForKey:@"State"];
             callBack(trip);
         }
+        else{
+            [self initAlert:[responseObject objectForKey:@"message"]];
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
+        }
+        [HUD removeFromSuperview];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"ScanCodeError: %@",error);
+        [HUD removeFromSuperview];
     }];
+}
+
+- (void)initAlert:(NSString *)message{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self.session startRunning];
+        [self initShadowView];
+    }];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)initShadowView{

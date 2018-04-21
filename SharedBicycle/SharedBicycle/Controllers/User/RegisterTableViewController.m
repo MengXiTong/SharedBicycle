@@ -244,8 +244,8 @@
             }];
         }
         else{
-            [Toast showAlertWithMessage:@"注册失败" withView:self];
-            NSLog(@"%@",[responseObject objectForKey:@"message"]);
+            [Toast showAlertWithMessage:[responseObject objectForKey:@"message"] withView:self];
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
         [HUD removeFromSuperview];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

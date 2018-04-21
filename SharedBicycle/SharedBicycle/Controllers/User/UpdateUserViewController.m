@@ -47,7 +47,7 @@
         self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     }
     else if([_type isEqualToString:@"phone"]){
-        _lblholder.text = @"9个字符，仅以13/14/15/17/18开头的数字字符";
+        _lblholder.text = @"11个字符，仅以13/14/15/17/18开头的数字字符";
         _tfUpdate.placeholder = @"请输入您的新手机号";
         _tfUpdate.keyboardType = UIKeyboardTypeNumberPad;
         self.navigationItem.title = @"修改手机号";
@@ -97,7 +97,7 @@
         }
         else{
             [Toast showAlertWithMessage:@"更新姓名失败" withView:self];
-            NSLog(@"%@",[responseObject objectForKey:@"message"]);
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
         [HUD removeFromSuperview];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -118,7 +118,7 @@
         }
         else{
             [Toast showAlertWithMessage:@"更新手机号失败" withView:self];
-            NSLog(@"%@",[responseObject objectForKey:@"message"]);
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
         [HUD removeFromSuperview];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

@@ -225,7 +225,7 @@
         }
         else{
             [Toast showAlertWithMessage:@"更新头像失败" withView:self];
-            NSLog(@"%@",[responseObject objectForKey:@"message"]);
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
         [HUD removeFromSuperview];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -245,7 +245,7 @@
         }
         else{
             [Toast showAlertWithMessage:@"更新性别失败" withView:self];
-            NSLog(@"%@",[responseObject objectForKey:@"message"]);
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
         [HUD removeFromSuperview];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -265,7 +265,7 @@
         }
         else{
             [Toast showAlertWithMessage:@"更新生日失败" withView:self];
-            NSLog(@"%@",[responseObject objectForKey:@"message"]);
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
         [HUD removeFromSuperview];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

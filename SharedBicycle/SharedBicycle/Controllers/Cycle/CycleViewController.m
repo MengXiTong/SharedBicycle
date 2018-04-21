@@ -17,6 +17,8 @@
 #import "Config.h"
 #import "UserNavController.h"
 #import <MBProgressHUD.h>
+#import "Until.h"
+#import "Toast.h"
 
 @interface CycleViewController () <MAMapViewDelegate, AMapLocationManagerDelegate>
 
@@ -31,7 +33,10 @@
     MBProgressHUD *HUD;
     dispatch_source_t source;
     AFHTTPSessionManager *manager;
+    NSTimer *timer;
     int count;
+    NSDateFormatter *formatter;
+    NSDateComponents *comps;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,6 +51,9 @@
     _vPay.layer.contents = (id)([UIImage imageNamed:@"BG"].CGImage);
     //初始化session
     manager = [AFHTTPSessionManager manager];
+    //初始化时间格式
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     [self initMapView];
     [self initSource];
     [self initUserInfo];
@@ -62,19 +70,23 @@
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_source_merge_data(source, ++count);
-        if(responseObject){
-            _user.UserID = [responseObject objectForKey:@"UserID"];
-            _user.Passward = [responseObject objectForKey:@"Passward"];
-            _user.Name = [responseObject objectForKey:@"Name"];
-            _user.Sex = [responseObject objectForKey:@"Sex"];
-            _user.Birthday = [responseObject objectForKey:@"Birthday"];
-            _user.IdentityID = [responseObject objectForKey:@"IdentityID"];
-            _user.IdentityName = [responseObject objectForKey:@"IdentityName"];
-            _user.Phone = [responseObject objectForKey:@"Phone"];
-            _user.CreditScore = [responseObject objectForKey:@"CreditScore"];
-            _user.Photo = [responseObject objectForKey:@"Photo"];
-            _user.Balance = [responseObject objectForKey:@"Balance"];
-            _user.Deposit = [responseObject objectForKey:@"Deposit"];
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            NSDictionary *dicUser = [responseObject objectForKey:@"user"];
+            _user.UserID = [dicUser objectForKey:@"UserID"];
+            _user.Passward = [dicUser objectForKey:@"Passward"];
+            _user.Name = [dicUser objectForKey:@"Name"];
+            _user.Sex = [dicUser objectForKey:@"Sex"];
+            _user.Birthday = [dicUser objectForKey:@"Birthday"];
+            _user.IdentityID = [dicUser objectForKey:@"IdentityID"];
+            _user.IdentityName = [dicUser objectForKey:@"IdentityName"];
+            _user.Phone = [dicUser objectForKey:@"Phone"];
+            _user.CreditScore = [dicUser objectForKey:@"CreditScore"];
+            _user.Photo = [dicUser objectForKey:@"Photo"];
+            _user.Balance = [dicUser objectForKey:@"Balance"];
+            _user.Deposit = [dicUser objectForKey:@"Deposit"];
+        }
+        else{
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"UserError: %@",error);
@@ -87,7 +99,6 @@
     count = 0;
     source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
     dispatch_source_set_event_handler(source, ^{
-        NSLog(@"%ld",dispatch_source_get_data(source));
         if(dispatch_source_get_data(source)==2){
             [HUD removeFromSuperview];
         }
@@ -103,26 +114,126 @@
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_source_merge_data(source, ++count);
-//        NSLog(@"%@",[responseObject objectForKey:@"message"]);
-        if([[responseObject objectForKey:@"state"] isEqual:@"finish"]){
-            [_vInUse setHidden:YES];
-            [_vPay setHidden:YES];
-            [_vScan setHidden:NO];
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            NSDictionary *dicTrip = [responseObject objectForKey:@"trip"];
+            _trip.State = [dicTrip objectForKey:@"State"];
+            _trip.TripID = [dicTrip objectForKey:@"TripID"];
+            _trip.UserID = [dicTrip objectForKey:@"UserID"];
+            _trip.BikeID = [dicTrip objectForKey:@"BikeID"];
+            _trip.StartTime = [dicTrip objectForKey:@"StartTime"];
+            _trip.EndTime = [dicTrip objectForKey:@"EndTime"];
+            _trip.Consume = [dicTrip objectForKey:@"Consume"];
+            _trip.Position = [dicTrip objectForKey:@"Position"];
+            if([_trip.State isEqual:@"finish"]){
+                [_vInUse setHidden:YES];
+                [_vPay setHidden:YES];
+                [_vScan setHidden:NO];
+            }
+            else if([_trip.State isEqual:@"defray"]){
+                _lblPayTotal.text = [NSString stringWithFormat:@"总费用：%0.1f元",[_trip.Consume floatValue]];
+                _lblPayReal.text = [NSString stringWithFormat:@"%0.2f",[_trip.Consume floatValue]];
+                [_vInUse setHidden:YES];
+                [_vPay setHidden:NO];
+                [_vScan setHidden:YES];
+            }
+            else if([_trip.State isEqual:@"unfinish"]){
+                [_vInUse setHidden:NO];
+                [_vPay setHidden:YES];
+                [_vScan setHidden:YES];
+                [self takeUse];
+            }
         }
-        else if([[responseObject objectForKey:@"state"] isEqual:@"defray"]){
-            [_vInUse setHidden:YES];
-            [_vPay setHidden:NO];
-            [_vScan setHidden:YES];
-        }
-        else if([[responseObject objectForKey:@"state"] isEqual:@"unfinish"]){
-            [_vInUse setHidden:NO];
-            [_vPay setHidden:YES];
-            [_vScan setHidden:YES];
+        else{
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"TripError: %@",error);
         dispatch_source_merge_data(source, ++count);
     }];
+}
+
+- (void)putOverTrip{
+    [self initHUD];
+    _trip.EndTime = [formatter stringFromDate:[NSDate date]];
+    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        NSString *strURL = [HTTP stringByAppendingString: TripHandler];
+        NSDictionary *trip = @{@"TripID":_trip.TripID,@"Position":[NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude],@"BikeID":_trip.BikeID,@"Consume":_trip.Consume,@"EndTime":_trip.EndTime};
+        NSDictionary *param = @{@"type":@"end",@"trip":trip};
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if([[responseObject objectForKey:@"status"] boolValue]){
+                if(timer){
+                    [timer invalidate];
+                    timer = nil;
+                }
+                _lblPayTotal.text = [NSString stringWithFormat:@"总费用：%0.1f元",[_trip.Consume floatValue]];
+                _lblPayReal.text = [NSString stringWithFormat:@"%0.2f",[_trip.Consume floatValue]];
+                [_vInUse setHidden:YES];
+                [_vPay setHidden:NO];
+                [_vScan setHidden:YES];
+            }
+            else{
+                NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
+            }
+            [HUD removeFromSuperview];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"TripError: %@",error);
+            [HUD removeFromSuperview];
+        }];
+    }];
+}
+
+- (void)putPay{
+    [self initHUD];
+    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        NSString *strURL = [HTTP stringByAppendingString: TripHandler];
+        NSDictionary *trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_trip.Consume,@"EndTime":_trip.EndTime};
+        NSDictionary *param = @{@"type":@"pay",@"trip":trip};
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if([[responseObject objectForKey:@"status"] boolValue]){
+                [Toast showAlertWithMessage:@"支付成功" withView:self];
+                [_vInUse setHidden:YES];
+                [_vPay setHidden:YES];
+                [_vScan setHidden:NO];
+            }
+            else{
+                NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
+            }
+            [HUD removeFromSuperview];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"TripError: %@",error);
+            [HUD removeFromSuperview];
+        }];
+    }];
+}
+
+- (void)takeUse {
+    [self getCurrentTime];
+    if(comps.day>0){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"您已违规超时" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"结束用车" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self putOverTrip];
+        }];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(getCurrentTime) userInfo:nil repeats:YES];
+}
+
+- (void)getCurrentTime{
+    comps = [Until getDateComponents:[formatter dateFromString:_trip.StartTime] WithEndDate:[NSDate date]];
+    self.lblUseTime.text = [[NSString alloc] initWithFormat:@"%@:%@:%@",[Until numberFormatter:comps.hour],[Until numberFormatter:comps.minute],[Until numberFormatter:comps.second]];
+    if(comps.day>0){
+        _trip.Consume = @"24.0";
+    }
+    else if(comps.minute>5){
+        _trip.Consume = [NSString stringWithFormat:@"%ld.0",comps.hour+1];
+    }
+    else{
+        _trip.Consume = [NSString stringWithFormat:@"%ld.0",comps.hour];
+    }
+    _lblUseMoney.text = _trip.Consume;
 }
 
 - (void)initMapView {
@@ -148,16 +259,16 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
         self.locationManager.allowsBackgroundLocationUpdates = YES;
     }
-    [self.locationManager setLocatingWithReGeocode:YES];
-//    [self.locationManager startUpdatingLocation];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    self.locationManager.locationTimeout =2;
+    self.locationManager.reGeocodeTimeout = 2;
+    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
+    }];
 }
 
 - (void)startUpdatingLocation{
     [self.locationManager startUpdatingLocation];
-}
-
-- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode{
-    NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
 }
 
 //初始化加载条
@@ -185,8 +296,15 @@
     [[self navigationController] pushViewController:scanCodeVC animated:YES];
 }
 - (IBAction)overTrip:(id)sender {
+    [self putOverTrip];
 }
 - (IBAction)pay:(id)sender {
+    [self putPay];
+}
+
+- (void)dealloc {
+    [timer invalidate];
+    timer = nil;
 }
 
 @end

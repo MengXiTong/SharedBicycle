@@ -84,25 +84,30 @@
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [HUD removeFromSuperview];
-        //登录成功后
         if([[responseObject objectForKey:@"status"] boolValue]){
-            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-            [userDef setObject:self.tfID.text forKey:@"ID"];
-            [userDef setObject:self.tfPwd.text forKey:@"Pwd"];
-            [userDef synchronize];
-            [Toast showAlertWithMessage:@"登录成功" withView:self];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UserNavController *userNavC = (UserNavController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDNavC"];
-            User *user = [[User alloc] init];
-            user.UserID = _tfID.text;
-            userNavC.user = user;
-            [self presentViewController:userNavC animated:YES completion:^(void){
-                [[UIApplication sharedApplication] delegate].window.rootViewController = userNavC;
-                [[[UIApplication sharedApplication] delegate].window makeKeyWindow];
-            }];
+            if([[responseObject objectForKey:@"login"] boolValue]){
+                //登录成功后
+                NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+                [userDef setObject:self.tfID.text forKey:@"ID"];
+                [userDef setObject:self.tfPwd.text forKey:@"Pwd"];
+                [userDef synchronize];
+                [Toast showAlertWithMessage:@"登录成功" withView:self];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UserNavController *userNavC = (UserNavController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDNavC"];
+                User *user = [[User alloc] init];
+                user.UserID = _tfID.text;
+                userNavC.user = user;
+                [self presentViewController:userNavC animated:YES completion:^(void){
+                    [[UIApplication sharedApplication] delegate].window.rootViewController = userNavC;
+                    [[[UIApplication sharedApplication] delegate].window makeKeyWindow];
+                }];
+            }
+            else{
+                [Toast showAlertWithMessage:@"登录失败" withView:self];
+            }
         }
         else{
-            [Toast showAlertWithMessage:@"登录失败" withView:self];
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [HUD removeFromSuperview];
