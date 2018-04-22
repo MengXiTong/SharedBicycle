@@ -25,5 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPayTotal;
 @property (weak, nonatomic) IBOutlet UILabel *lblPayCoupon;
 
+- (void)takeUse;
+
 @end
 

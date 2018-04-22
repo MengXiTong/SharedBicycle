@@ -116,6 +116,7 @@
                 [cycleVC.vInUse setHidden:NO];
                 [cycleVC.vPay setHidden:YES];
                 [cycleVC.vScan setHidden:YES];
+                [cycleVC takeUse];
                 [self.navigationController popToViewController:cycleVC animated:true];
             } withBikeID:[strResult substringFromIndex:7]];
         }
