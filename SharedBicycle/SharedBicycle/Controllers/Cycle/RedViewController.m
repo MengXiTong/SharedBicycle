@@ -16,7 +16,9 @@
 
 @implementation RedViewController{
     AFHTTPSessionManager *manager;
+    NSString *strURL;
     MBProgressHUD *HUD;
+    NSMutableArray *listCouponType;
 }
 
 - (void)viewDidLoad {
@@ -28,6 +30,13 @@
 - (void)initView{
     //初始化session
     manager = [AFHTTPSessionManager manager];
+    strURL = [HTTP stringByAppendingString: CouponHandler];
+    if([_type isEqualToString:@"show"]){
+        [self showRed];
+    }
+    else if([_type isEqualToString:@"over"]){
+        [self overRed];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,18 +57,46 @@
     [_lblHide setHidden:YES];
     [_lblCouponTypeName setHidden:YES];
     [self initHUD];
-    NSString *strURL = [HTTP stringByAppendingString: TripHandler];
+    NSDictionary *param = @{@"Type":@"couponType"};
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            listCouponType = [responseObject objectForKey:@"couponTypeList"];
+        }
+        else{
+           NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
+        }
+        [HUD removeFromSuperview];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"RedError: %@",error);
+        [HUD removeFromSuperview];
+    }];
 }
 
 - (void)openRed{
-    _imgBg.image = [UIImage imageNamed:@"RedOpen"];
-    [_btnLook setHidden:NO];
-    [_btnOpen setHidden:YES];
-    [_lblHide setHidden:YES];
-    [_lblCouponTypeName setHidden:NO];
     [self initHUD];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    int index = arc4random() % listCouponType.count;
+    NSDictionary *param = @{@"CouponTypeID":[listCouponType[index] objectForKey:@"CouponTypeID"],@"UserID":_user.UserID};
+    [manager POST:strURL parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            _lblCouponTypeName.text = [listCouponType[index] objectForKey:@"CouponTypeName"];
+            _imgBg.image = [UIImage imageNamed:@"RedOpen"];
+            [_btnLook setHidden:NO];
+            [_btnOpen setHidden:YES];
+            [_lblHide setHidden:YES];
+            [_lblCouponTypeName setHidden:NO];
+        }
+        else{
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
+        }
+        [HUD removeFromSuperview];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"RedError: %@",error);
+        [HUD removeFromSuperview];
+    }];
 }
 
 - (void)overRed{

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface RedViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imgBg;
@@ -15,8 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnOpen;
 @property (weak, nonatomic) IBOutlet UILabel *lblCouponTypeName;
 
-- (void)showRed;
-- (void)openRed;
-- (void)overRed;
+@property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) User *user;
 
 @end

@@ -15,6 +15,8 @@ static NSString *LoginHandler = @"/LoginHandler.ashx";
 static NSString *UserHandler = @"/UserHandler.ashx";
 //用户信息接口地址
 static NSString *TripHandler = @"/TripHandler.ashx";
+//优惠券接口地址
+static NSString *CouponHandler = @"/CouponHandler.ashx";
 
 
 #endif /* Config_h */

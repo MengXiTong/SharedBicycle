@@ -320,12 +320,13 @@
                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                     RedViewController *redVC = (RedViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDRedVC"];
 //                    if([_trip.Consume floatValue]>=1){
-//                        [redVC showRed];
+//                        redVC.type = @"show";
 //                    }
 //                    else{
-//                        [redVC overRed];
+//                        redVC.type = @"over";
 //                    }
-                    [redVC showRed];
+                    redVC.type = @"show";
+                    redVC.user = _user;
                     [self.navigationController pushViewController:redVC animated:YES];
                     _trip.State = @"finish";
                     [_mapView removeFromSuperview];
