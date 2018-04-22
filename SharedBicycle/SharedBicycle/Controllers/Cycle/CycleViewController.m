@@ -19,6 +19,7 @@
 #import <MBProgressHUD.h>
 #import "Until.h"
 #import "Toast.h"
+#import "RedViewController.h"
 
 @interface CycleViewController () <MAMapViewDelegate, AMapLocationManagerDelegate>
 
@@ -300,28 +301,49 @@
 - (void)putPay{
     [self initHUD];
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        NSString *strURL = [HTTP stringByAppendingString: TripHandler];
-        NSDictionary *trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_trip.Consume};
-        NSDictionary *param = @{@"type":@"pay",@"trip":trip};
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if([[responseObject objectForKey:@"status"] boolValue]){
-                _trip.State = @"finish";
-                [_mapView removeFromSuperview];
-                [self initMapView];
-                [Toast showAlertWithMessage:@"支付成功" withView:self];
-                [_vInUse setHidden:YES];
-                [_vPay setHidden:YES];
-                [_vScan setHidden:NO];
-            }
-            else{
-                NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
-            }
+        if (error.code == AMapLocationErrorLocateFailed)
+        {
+            NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            CGRect cGRect = CGRectMake(([[UIScreen mainScreen] bounds].size.width-200)/2, ([[UIScreen mainScreen] bounds].size.height-40)/2, 200, 40);
+            [Toast showAlertWithMessage:@"定位失败，请重新确认" withView:self withCGRect:&cGRect];
             [HUD removeFromSuperview];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"TripError: %@",error);
-            [HUD removeFromSuperview];
-        }];
+            return;
+        }
+        if (location)
+        {
+            NSString *strURL = [HTTP stringByAppendingString: TripHandler];
+            NSDictionary *trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_trip.Consume};
+            NSDictionary *param = @{@"type":@"pay",@"trip":trip};
+            manager.requestSerializer = [AFJSONRequestSerializer serializer];
+            [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if([[responseObject objectForKey:@"status"] boolValue]){
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    RedViewController *redVC = (RedViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDRedVC"];
+//                    if([_trip.Consume floatValue]>=1){
+//                        [redVC showRed];
+//                    }
+//                    else{
+//                        [redVC overRed];
+//                    }
+                    [redVC showRed];
+                    [self.navigationController pushViewController:redVC animated:YES];
+                    _trip.State = @"finish";
+                    [_mapView removeFromSuperview];
+                    [self initMapView];
+                    [Toast showAlertWithMessage:@"支付成功" withView:self];
+                    [_vInUse setHidden:YES];
+                    [_vPay setHidden:YES];
+                    [_vScan setHidden:NO];
+                }
+                else{
+                    NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
+                }
+                [HUD removeFromSuperview];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"TripError: %@",error);
+                [HUD removeFromSuperview];
+            }];
+        }
     }];
 }
 
