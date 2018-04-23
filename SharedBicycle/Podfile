@@ -8,4 +8,5 @@ target 'SharedBicycle' do
  pod 'CWLateralSlide', '~> 1.5.8'
  pod 'MBProgressHUD'
  pod 'TZImagePickerController'
+ pod 'MJRefresh'
 end

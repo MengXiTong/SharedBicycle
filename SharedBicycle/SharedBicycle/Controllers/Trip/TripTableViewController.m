@@ -11,6 +11,7 @@
 #import <MBProgressHUD.h>
 #import <AFNetworking.h>
 #import "Config.h"
+#import <MJRefresh.h>
 
 @interface TripTableViewController ()
 
@@ -20,13 +21,13 @@
     NSMutableArray *listTrip;
     AFHTTPSessionManager *manager;
     NSString *strURL;
-    MBProgressHUD *HUD;
+    int pageNum;
+    bool isLast;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
-    [self initValue];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,26 +37,58 @@
 
 - (void)initView{
     self.navigationItem.title = @"我的行程";
+    isLast = false;
+    [self loadNewData];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)initValue{
-    [self initHUD];
+- (void)loadNewData{
+    pageNum = 1;
+    listTrip = [[NSMutableArray alloc] init];
+    [self initValue:^{
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer setState:MJRefreshStateIdle];
+    }];
+}
+
+- (void)loadMoreData{
+    if(isLast){
+        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+    }
+    else{
+        pageNum++;
+        [self initValue:^{
+            [self.tableView.mj_footer endRefreshing];
+        }];
+    }
+}
+
+- (void)initValue:(void(^)(void))callBack{
     manager = [AFHTTPSessionManager manager];
     strURL = [HTTP stringByAppendingString: TripHandler];
-    NSDictionary *param = @{@"UserID":_user.UserID,@"Type":@"info"};
+    NSDictionary *param = @{@"UserID":_user.UserID,@"Type":@"info",@"PageNum":[NSString stringWithFormat:@"%i",pageNum]};
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if([[responseObject objectForKey:@"status"] boolValue]){
-            listTrip = [responseObject objectForKey:@"tripList"];
-            [self.tableView reloadData];
+            NSMutableArray *list = [responseObject objectForKey:@"tripList"];
+            if(list.count>0){
+                isLast = false;
+                [listTrip addObjectsFromArray:list];
+                [self.tableView reloadData];
+            }
+            else{
+                isLast = true;
+            }
         }
         else{
             NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
-        [HUD removeFromSuperview];
+        callBack();
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"TripError: %@",error);
-        [HUD removeFromSuperview];
+        callBack();
     }];
 }
 
@@ -69,15 +102,8 @@
     TripTableViewCell *tripCell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifierTrip" forIndexPath:indexPath];
     tripCell.lblStartTime.text = [dicTrip objectForKey:@"StartTime"];
     tripCell.lblInfo.text = [NSString stringWithFormat:@"车牌号%@ | 花费%0.2f元",[dicTrip objectForKey:@"BikeID"],[[dicTrip objectForKey:@"Consume"] floatValue]];
+    
     return tripCell;
-}
-
-//初始化加载条
-- (void)initHUD {
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:HUD];
-    HUD.label.text = @"加载中";
-    [HUD showAnimated:YES];
 }
 
 @end

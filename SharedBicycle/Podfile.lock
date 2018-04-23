@@ -23,6 +23,7 @@ PODS:
     - AMapFoundation (~> 1.4)
   - CWLateralSlide (1.5.9)
   - MBProgressHUD (1.0.0)
+  - MJRefresh (3.1.15.3)
   - TZImagePickerController (2.0.1)
 
 DEPENDENCIES:
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - AMapSearch
   - CWLateralSlide (~> 1.5.8)
   - MBProgressHUD
+  - MJRefresh
   - TZImagePickerController
 
 SPEC CHECKSUMS:
@@ -42,8 +44,9 @@ SPEC CHECKSUMS:
   AMapSearch: e3f96bd0681abe70abba303709a1a05625a8f76c
   CWLateralSlide: f91ec07f1b8f0d22ebcb661c879b7f91a3e7481d
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   TZImagePickerController: 34ecb53af8c349964394407e42b6e54e22589ebe
 
-PODFILE CHECKSUM: e568616042c576eb56a3604d5dd66bc3a1cdb072
+PODFILE CHECKSUM: b7b8644b1cdb83bda501b5aa9cb3aa54d897e9ea
 
 COCOAPODS: 1.4.0
