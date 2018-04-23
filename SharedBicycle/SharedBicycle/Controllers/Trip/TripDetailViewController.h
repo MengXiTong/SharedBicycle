@@ -1,0 +1,18 @@
+//
+//  TripDetailViewController.h
+//  SharedBicycle
+//
+//  Created by 俞健 on 2018/4/23.
+//  Copyright © 2018年 俞健. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "User.h"
+#import "Trip.h"
+
+@interface TripDetailViewController : UIViewController
+
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) Trip *trip;
+
+@end

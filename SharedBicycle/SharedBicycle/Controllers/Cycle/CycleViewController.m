@@ -225,7 +225,7 @@
 - (void)initTripState{
     _trip = [[Trip alloc] init];
     NSString *strURL = [HTTP stringByAppendingString: TripHandler];
-    NSDictionary *param = @{@"UserID":self.user.UserID};
+    NSDictionary *param = @{@"UserID":self.user.UserID,@"Type":@"state"};
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

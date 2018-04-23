@@ -10,6 +10,7 @@
 #import "UIViewController+CWLateralSlide.h"
 #import "MenuTableViewCell.h"
 #import "UserInfoTableViewController.h"
+#import "TripTableViewController.h"
 
 @interface MenuViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -46,13 +47,13 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     _aryTitle = [[NSMutableArray alloc] init];
-    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"我的行程",@"title",@"Order",@"icon",nil]];
-    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"我的钱包",@"title",@"Wallet",@"icon",nil]];
-    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"违章记录",@"title",@"Illegal",@"icon",nil]];
-    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"维修处理",@"title",@"Repair",@"icon",nil]];
-    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"单车信息",@"title",@"Bike",@"icon",nil]];
-    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"身份认证",@"title",@"Authentication",@"icon",nil]];
-    [_aryTitle addObject:[[NSDictionary alloc] initWithObjectsAndKeys:@"收益报表",@"title",@"ReportForm",@"icon",nil]];
+    [_aryTitle addObject:@{@"title":@"我的行程",@"icon":@"Order",@"storyID":@"storyIDTripTblVC"}];
+    [_aryTitle addObject:@{@"title":@"我的钱包",@"icon":@"Wallet",@"storyID":@"storyIDTripTblVC"}];
+    [_aryTitle addObject:@{@"title":@"违章记录",@"icon":@"Illegal",@"storyID":@"storyIDTripTblVC"}];
+    [_aryTitle addObject:@{@"title":@"维修处理",@"icon":@"Repair",@"storyID":@"storyIDTripTblVC"}];
+    [_aryTitle addObject:@{@"title":@"单车信息",@"icon":@"Bike",@"storyID":@"storyIDTripTblVC"}];
+    [_aryTitle addObject:@{@"title":@"身份认证",@"icon":@"Authentication",@"storyID":@"storyIDTripTblVC"}];
+    [_aryTitle addObject:@{@"title":@"收益报表",@"icon":@"ReportForm",@"storyID":@"storyIDTripTblVC"}];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -64,6 +65,17 @@
     cell.lblName.text = [_aryTitle[indexPath.row] objectForKey:@"title"];
     cell.imgIcon.image = [UIImage imageNamed:[_aryTitle[indexPath.row] objectForKey:@"icon"]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *dicTitle = _aryTitle[indexPath.row];
+    if([(NSString *)[dicTitle objectForKey:@"storyID"] isEqualToString:@"storyIDTripTblVC"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TripTableViewController *tripTblVC = (TripTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDTripTblVC"];
+        tripTblVC.user = _user;
+        [self cw_pushViewController:tripTblVC];
+        return;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

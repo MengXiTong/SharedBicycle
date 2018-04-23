@@ -22,6 +22,9 @@
 		A0563877203FCDBC00BB0A9C /* SharedBicycleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */; };
 		A05E4B4E208D849100BB0B00 /* CouponTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05E4B4D208D849100BB0B00 /* CouponTableViewController.m */; };
 		A05E4B51208D855400BB0B00 /* CouponTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05E4B50208D855400BB0B00 /* CouponTableViewCell.m */; };
+		A05E4B55208DC60D00BB0B00 /* TripTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05E4B54208DC60D00BB0B00 /* TripTableViewCell.m */; };
+		A05E4B58208DC62200BB0B00 /* TripTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05E4B57208DC62200BB0B00 /* TripTableViewController.m */; };
+		A05E4B5B208DC6F900BB0B00 /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05E4B5A208DC6F900BB0B00 /* TripDetailViewController.m */; };
 		A0A522892080E9DC00D45903 /* RegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A522882080E9DC00D45903 /* RegisterTableViewController.m */; };
 		A0C31B2A208C7F7A00B25917 /* RedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C31B29208C7F7A00B25917 /* RedViewController.m */; };
 		A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D0547B204ECCA600654513 /* MenuTableViewCell.m */; };
@@ -84,6 +87,12 @@
 		A05E4B4D208D849100BB0B00 /* CouponTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponTableViewController.m; sourceTree = "<group>"; };
 		A05E4B4F208D855400BB0B00 /* CouponTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponTableViewCell.h; sourceTree = "<group>"; };
 		A05E4B50208D855400BB0B00 /* CouponTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponTableViewCell.m; sourceTree = "<group>"; };
+		A05E4B53208DC60D00BB0B00 /* TripTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripTableViewCell.h; sourceTree = "<group>"; };
+		A05E4B54208DC60D00BB0B00 /* TripTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripTableViewCell.m; sourceTree = "<group>"; };
+		A05E4B56208DC62200BB0B00 /* TripTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripTableViewController.h; sourceTree = "<group>"; };
+		A05E4B57208DC62200BB0B00 /* TripTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripTableViewController.m; sourceTree = "<group>"; };
+		A05E4B59208DC6F900BB0B00 /* TripDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripDetailViewController.h; sourceTree = "<group>"; };
+		A05E4B5A208DC6F900BB0B00 /* TripDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripDetailViewController.m; sourceTree = "<group>"; };
 		A0A522872080E9DC00D45903 /* RegisterTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterTableViewController.h; sourceTree = "<group>"; };
 		A0A522882080E9DC00D45903 /* RegisterTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterTableViewController.m; sourceTree = "<group>"; };
 		A0C31B28208C7F7A00B25917 /* RedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedViewController.h; sourceTree = "<group>"; };
@@ -212,6 +221,7 @@
 		A056388520401B5900BB0A9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A05E4B52208DC32200BB0B00 /* Trip */,
 				A0814207207103E500B9BAE3 /* User */,
 				A0E9441B206F95B60097845A /* Cycle */,
 				A0BC3873204EBC9D0031F880 /* Menu */,
@@ -246,6 +256,19 @@
 				A0020F732089D38100077804 /* Trip.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A05E4B52208DC32200BB0B00 /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				A05E4B53208DC60D00BB0B00 /* TripTableViewCell.h */,
+				A05E4B54208DC60D00BB0B00 /* TripTableViewCell.m */,
+				A05E4B56208DC62200BB0B00 /* TripTableViewController.h */,
+				A05E4B57208DC62200BB0B00 /* TripTableViewController.m */,
+				A05E4B59208DC6F900BB0B00 /* TripDetailViewController.h */,
+				A05E4B5A208DC6F900BB0B00 /* TripDetailViewController.m */,
+			);
+			path = Trip;
 			sourceTree = "<group>";
 		};
 		A0814207207103E500B9BAE3 /* User */ = {
@@ -511,10 +534,13 @@
 				A0563857203FCDBC00BB0A9C /* CycleViewController.m in Sources */,
 				A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */,
 				A0D22983205AD7CE003871FA /* ScanCodeeViewController.m in Sources */,
+				A05E4B55208DC60D00BB0B00 /* TripTableViewCell.m in Sources */,
 				A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */,
 				A01F6FA2207E433A00FF7912 /* UserInfoTableViewController.m in Sources */,
 				A0563862203FCDBC00BB0A9C /* main.m in Sources */,
+				A05E4B58208DC62200BB0B00 /* TripTableViewController.m in Sources */,
 				A0E575C120859BD7008BCFC2 /* Until.m in Sources */,
+				A05E4B5B208DC6F900BB0B00 /* TripDetailViewController.m in Sources */,
 				A0C31B2A208C7F7A00B25917 /* RedViewController.m in Sources */,
 				A0E575BB20859176008BCFC2 /* UpdateUserViewController.m in Sources */,
 				A05E4B51208D855400BB0B00 /* CouponTableViewCell.m in Sources */,
