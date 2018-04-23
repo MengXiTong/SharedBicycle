@@ -538,7 +538,6 @@
                                 <connections>
                                     <outlet property="lblInfo" destination="B6z-Ki-f46" id="Woz-zU-iRp"/>
                                     <outlet property="lblStartTime" destination="QqW-w6-94b" id="BEv-i8-Olg"/>
-                                    <segue destination="hca-pV-ovT" kind="push" id="sBL-4l-2no"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -555,7 +554,7 @@
         <!--行程详情-->
         <scene sceneID="4bA-lR-idH">
             <objects>
-                <viewController id="hca-pV-ovT" customClass="TripDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="storyIDTripDetailVC" id="hca-pV-ovT" customClass="TripDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jKO-Xc-4wy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -590,27 +589,33 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开始时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCY-h0-uS9">
-                                        <rect key="frame" x="50" y="114" width="70" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="38" y="114" width="82" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="结束时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmL-CT-FDD">
-                                        <rect key="frame" x="255" y="114" width="70" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="255" y="114" width="82" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-6-23 12:21:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLm-Wh-7RQ">
-                                        <rect key="frame" x="10" y="150" width="151" height="21"/>
+                                        <rect key="frame" x="10" y="153" width="151" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-6-23 12:21:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KU1-rs-DD0">
-                                        <rect key="frame" x="214" y="150" width="151" height="21"/>
+                                        <rect key="frame" x="214" y="153" width="151" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车牌号：nj001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNR-jr-jpi">
+                                        <rect key="frame" x="138" y="194" width="99" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -621,13 +626,15 @@
                                     <constraint firstItem="KU1-rs-DD0" firstAttribute="top" secondItem="SmL-CT-FDD" secondAttribute="bottom" constant="15" id="G8K-HO-5Sm"/>
                                     <constraint firstItem="dLm-Wh-7RQ" firstAttribute="leading" secondItem="UF6-r1-cls" secondAttribute="leading" constant="10" id="HdQ-xa-Ovr"/>
                                     <constraint firstItem="vLz-ox-7TG" firstAttribute="centerX" secondItem="UF6-r1-cls" secondAttribute="centerX" id="Weh-A1-Jda"/>
+                                    <constraint firstItem="rNR-jr-jpi" firstAttribute="centerX" secondItem="UF6-r1-cls" secondAttribute="centerX" id="bzQ-CP-mDo"/>
                                     <constraint firstAttribute="height" constant="250" id="cth-vq-iXM"/>
                                     <constraint firstItem="vXN-EJ-t3C" firstAttribute="centerX" secondItem="UF6-r1-cls" secondAttribute="centerX" id="gTA-dH-4tD"/>
                                     <constraint firstItem="vLz-ox-7TG" firstAttribute="top" secondItem="J3Y-Gv-iGi" secondAttribute="bottom" constant="10" id="lV1-pg-dMj"/>
                                     <constraint firstItem="vXN-EJ-t3C" firstAttribute="top" secondItem="vLz-ox-7TG" secondAttribute="bottom" constant="5" id="tJv-du-8lS"/>
-                                    <constraint firstItem="tCY-h0-uS9" firstAttribute="leading" secondItem="UF6-r1-cls" secondAttribute="leading" constant="50" id="tz0-b6-lXW"/>
+                                    <constraint firstItem="tCY-h0-uS9" firstAttribute="leading" secondItem="UF6-r1-cls" secondAttribute="leading" constant="38" id="tz0-b6-lXW"/>
                                     <constraint firstItem="dLm-Wh-7RQ" firstAttribute="top" secondItem="tCY-h0-uS9" secondAttribute="bottom" constant="15" id="vHG-al-UwR"/>
-                                    <constraint firstAttribute="trailing" secondItem="SmL-CT-FDD" secondAttribute="trailing" constant="50" id="wy6-s7-IaW"/>
+                                    <constraint firstItem="rNR-jr-jpi" firstAttribute="top" secondItem="dLm-Wh-7RQ" secondAttribute="bottom" constant="20" id="wcK-Lt-OHS"/>
+                                    <constraint firstAttribute="trailing" secondItem="SmL-CT-FDD" secondAttribute="trailing" constant="38" id="wy6-s7-IaW"/>
                                     <constraint firstAttribute="trailing" secondItem="KU1-rs-DD0" secondAttribute="trailing" constant="10" id="xvN-1R-roP"/>
                                     <constraint firstItem="J3Y-Gv-iGi" firstAttribute="centerX" secondItem="UF6-r1-cls" secondAttribute="centerX" id="zmU-NS-qPc"/>
                                 </constraints>
@@ -644,6 +651,7 @@
                     <navigationItem key="navigationItem" title="行程详情" id="7Xw-cF-qgI"/>
                     <connections>
                         <outlet property="imgPhoto" destination="J3Y-Gv-iGi" id="Ele-VI-rqP"/>
+                        <outlet property="lblBikeID" destination="rNR-jr-jpi" id="x1s-vB-rm3"/>
                         <outlet property="lblConsume" destination="vXN-EJ-t3C" id="9v6-We-Tsv"/>
                         <outlet property="lblEndTime" destination="KU1-rs-DD0" id="66e-uf-VXD"/>
                         <outlet property="lblPhone" destination="vLz-ox-7TG" id="pI2-xD-Lpl"/>

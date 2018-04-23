@@ -248,8 +248,8 @@
                     }
                     NSDictionary *dicPosition = @{@"latitude":[arrayPosition[i] componentsSeparatedByString:@","][0],@"longitude":[arrayPosition[i] componentsSeparatedByString:@","][1]};
                     [listPosition addObject:dicPosition];
-                    [self draw];
                 }
+                [self draw];
             }
             if([_trip.State isEqual:@"finish"]){
                 [_vInUse setHidden:YES];

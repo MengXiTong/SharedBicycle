@@ -12,6 +12,7 @@
 #import <AFNetworking.h>
 #import "Config.h"
 #import <MJRefresh.h>
+#import "TripDetailViewController.h"
 
 @interface TripTableViewController ()
 
@@ -102,8 +103,16 @@
     TripTableViewCell *tripCell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifierTrip" forIndexPath:indexPath];
     tripCell.lblStartTime.text = [dicTrip objectForKey:@"StartTime"];
     tripCell.lblInfo.text = [NSString stringWithFormat:@"车牌号%@ | 花费%0.2f元",[dicTrip objectForKey:@"BikeID"],[[dicTrip objectForKey:@"Consume"] floatValue]];
-    
     return tripCell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TripDetailViewController *tripDetailVC = (TripDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDTripDetailVC"];
+    tripDetailVC.user = _user;
+    tripDetailVC.trip = [[Trip alloc] init];
+    tripDetailVC.trip.TripID = [listTrip[indexPath.row] objectForKey:@"TripID"];
+    [self.navigationController pushViewController:tripDetailVC animated:YES];
 }
 
 @end

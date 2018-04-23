@@ -69,8 +69,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dicTitle = _aryTitle[indexPath.row];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if([(NSString *)[dicTitle objectForKey:@"storyID"] isEqualToString:@"storyIDTripTblVC"]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         TripTableViewController *tripTblVC = (TripTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDTripTblVC"];
         tripTblVC.user = _user;
         [self cw_pushViewController:tripTblVC];
