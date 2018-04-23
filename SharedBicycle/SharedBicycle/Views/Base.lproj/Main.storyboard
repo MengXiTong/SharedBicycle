@@ -420,6 +420,78 @@
             </objects>
             <point key="canvasLocation" x="-855" y="830"/>
         </scene>
+        <!--Coupon Table View Controller-->
+        <scene sceneID="udo-1s-jiL">
+            <objects>
+                <tableViewController storyboardIdentifier="storyIDCouponTblVC" id="PIC-8R-RZW" customClass="CouponTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="95N-YE-OQW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellIdentifierCoupon" rowHeight="80" id="QRH-R1-UBa" customClass="CouponTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QRH-R1-UBa" id="zUs-nE-6rg">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家立减券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2Y-fT-cXj">
+                                            <rect key="frame" x="26" y="21" width="92" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有效期至：2018-04-23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTn-VY-Sg9">
+                                            <rect key="frame" x="26" y="48" width="151" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0C3-2B-Yy2">
+                                            <rect key="frame" x="321.5" y="29.5" width="17.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6l-9P-Vw8">
+                                            <rect key="frame" x="304" y="23.5" width="17" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="27" id="zIy-du-Gjp"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NTn-VY-Sg9" firstAttribute="top" secondItem="V2Y-fT-cXj" secondAttribute="bottom" constant="5" id="1Zb-KM-JhM"/>
+                                        <constraint firstItem="NTn-VY-Sg9" firstAttribute="leading" secondItem="zUs-nE-6rg" secondAttribute="leadingMargin" constant="10" id="DLy-Kj-eyA"/>
+                                        <constraint firstItem="0C3-2B-Yy2" firstAttribute="leading" secondItem="E6l-9P-Vw8" secondAttribute="trailing" id="IXZ-WJ-3Wg"/>
+                                        <constraint firstItem="0C3-2B-Yy2" firstAttribute="bottom" secondItem="E6l-9P-Vw8" secondAttribute="bottom" id="NF5-hv-vOG"/>
+                                        <constraint firstItem="0C3-2B-Yy2" firstAttribute="trailing" secondItem="zUs-nE-6rg" secondAttribute="trailingMargin" constant="-20" id="syT-bt-d0s"/>
+                                        <constraint firstItem="V2Y-fT-cXj" firstAttribute="leading" secondItem="zUs-nE-6rg" secondAttribute="leadingMargin" constant="10" id="t7w-bT-FHL"/>
+                                        <constraint firstItem="V2Y-fT-cXj" firstAttribute="top" secondItem="zUs-nE-6rg" secondAttribute="topMargin" constant="10" id="xn3-Ao-cMO"/>
+                                        <constraint firstItem="0C3-2B-Yy2" firstAttribute="centerY" secondItem="zUs-nE-6rg" secondAttribute="centerY" id="yWg-4w-POV"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lblExpirationDate" destination="NTn-VY-Sg9" id="Jgj-MG-7qb"/>
+                                    <outlet property="lblFavorablePrice" destination="E6l-9P-Vw8" id="bsV-vW-mco"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PIC-8R-RZW" id="FaM-rk-1bE"/>
+                            <outlet property="delegate" destination="PIC-8R-RZW" id="cys-n3-E4I"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <navigationItem title="优惠券" id="qhS-sk-w2u"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lYj-hE-XhA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-74.400000000000006" y="829.83508245877067"/>
+        </scene>
         <!--User Nav Controller-->
         <scene sceneID="bY1-zy-N05">
             <objects>
@@ -589,8 +661,8 @@
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠券：-1.00元&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5c-1W-N3R">
-                                        <rect key="frame" x="210" y="134" width="145" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠券&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5c-1W-N3R">
+                                        <rect key="frame" x="288.5" y="134" width="66.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" red="1" green="0.28120110590000003" blue="0.1980800207" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>

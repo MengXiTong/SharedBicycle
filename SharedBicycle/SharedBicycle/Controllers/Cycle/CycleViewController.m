@@ -20,6 +20,7 @@
 #import "Until.h"
 #import "Toast.h"
 #import "RedViewController.h"
+#import "CouponTableViewController.h"
 
 @interface CycleViewController () <MAMapViewDelegate, AMapLocationManagerDelegate>
 
@@ -42,6 +43,7 @@
     NSDateFormatter *formatter;
     NSDateComponents *comps;
     NSMutableArray *listPosition;
+    NSMutableArray *listBikePosition;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,10 +63,22 @@
     [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     //初始化位置数组
     listPosition = [[NSMutableArray alloc] init];
+    //初始化优惠券点击事件
+    _lblPayCoupon.userInteractionEnabled = YES;
+    [_lblPayCoupon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionCoupon:)]];
     [self initMap];
     [self initSource];
     [self initUserInfo];
     [self initTripState];
+    [self initBikePosition];
+}
+
+- (IBAction)actionCoupon:(id)sender{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CouponTableViewController *couponTblVC = (CouponTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDCouponTblVC"];
+    couponTblVC.user = _user;
+    couponTblVC.type = @"select";
+    [self.navigationController pushViewController:couponTblVC animated:YES];
 }
 
 -(void)initSource{
@@ -72,7 +86,7 @@
     count = 0;
     source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
     dispatch_source_set_event_handler(source, ^{
-        if(dispatch_source_get_data(source)==2){
+        if(dispatch_source_get_data(source)==3){
             [HUD removeFromSuperview];
         }
     });
@@ -265,6 +279,37 @@
     }];
 }
 
+- (void)initBikePosition {
+    NSString *strURL = [HTTP stringByAppendingString: BikeHandler];
+    NSDictionary *param = @{@"Type":@"bike",@"SubType":@"position"};
+    //[AFHTTPRequestSerializer serializer]这是默认编码格式
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_source_merge_data(source, ++count);
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            listBikePosition = [responseObject objectForKey:@"bikeList"];
+            [self drawBikePosition];
+        }
+        else{
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"UserError: %@",error);
+        dispatch_source_merge_data(source, ++count);
+    }];
+}
+
+- (void)drawBikePosition{
+    for (int i=0; i<listBikePosition.count; i++) {
+        MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+        double Latitude = [[listBikePosition[i] objectForKey:@"BikeLatitude"] doubleValue];
+        double Longitude = [[listBikePosition[i] objectForKey:@"BikeLongitude"] doubleValue];
+        pointAnnotation.coordinate = CLLocationCoordinate2DMake(Latitude, Longitude);
+        [_mapView addAnnotation:pointAnnotation];
+    }
+}
+
 - (void)putOverTrip{
     [self initHUD];
     _trip.EndTime = [formatter stringFromDate:[NSDate date]];
@@ -312,25 +357,32 @@
         if (location)
         {
             NSString *strURL = [HTTP stringByAppendingString: TripHandler];
-            NSDictionary *trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_trip.Consume};
+            NSDictionary *trip = [[NSDictionary alloc] init];
+            if([Until isBlankString:_trip.CouponID]){
+                trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_lblPayReal.text};
+            }
+            else{
+                trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_lblPayReal.text,@"CouponID":_trip.CouponID};
+            }
             NSDictionary *param = @{@"type":@"pay",@"trip":trip};
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
             [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 if([[responseObject objectForKey:@"status"] boolValue]){
                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                     RedViewController *redVC = (RedViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDRedVC"];
-//                    if([_trip.Consume floatValue]>=1){
-//                        redVC.type = @"show";
-//                    }
-//                    else{
-//                        redVC.type = @"over";
-//                    }
+                    if([_lblPayReal.text floatValue]>=1){
+                        redVC.type = @"show";
+                    }
+                    else{
+                        redVC.type = @"over";
+                    }
                     redVC.type = @"show";
                     redVC.user = _user;
                     [self.navigationController pushViewController:redVC animated:YES];
                     _trip.State = @"finish";
                     [_mapView removeFromSuperview];
                     [self initMapView];
+                    [self drawBikePosition];
                     [Toast showAlertWithMessage:@"支付成功" withView:self];
                     [_vInUse setHidden:YES];
                     [_vPay setHidden:YES];

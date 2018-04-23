@@ -10,6 +10,7 @@
 #import <MBProgressHUD.h>
 #import <AFNetworking.h>
 #import "Config.h"
+#import "CouponTableViewController.h"
 
 @interface RedViewController ()
 @end
@@ -18,7 +19,6 @@
     AFHTTPSessionManager *manager;
     NSString *strURL;
     MBProgressHUD *HUD;
-    NSMutableArray *listCouponType;
 }
 
 - (void)viewDidLoad {
@@ -48,6 +48,11 @@
     [self openRed];
 }
 - (IBAction)actionLook:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CouponTableViewController *couponTblVC = (CouponTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDCouponTblVC"];
+    couponTblVC.user = _user;
+    couponTblVC.type = @"unselect";
+    [self.navigationController pushViewController:couponTblVC animated:YES];
 }
 
 - (void)showRed{
@@ -56,33 +61,17 @@
     [_btnOpen setHidden:NO];
     [_lblHide setHidden:YES];
     [_lblCouponTypeName setHidden:YES];
-    [self initHUD];
-    NSDictionary *param = @{@"Type":@"couponType"};
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if([[responseObject objectForKey:@"status"] boolValue]){
-            listCouponType = [responseObject objectForKey:@"couponTypeList"];
-        }
-        else{
-           NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
-        }
-        [HUD removeFromSuperview];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"RedError: %@",error);
-        [HUD removeFromSuperview];
-    }];
 }
 
 - (void)openRed{
     [self initHUD];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    int index = arc4random() % listCouponType.count;
-    NSDictionary *param = @{@"CouponTypeID":[listCouponType[index] objectForKey:@"CouponTypeID"],@"UserID":_user.UserID};
+    NSDictionary *param = @{@"UserID":_user.UserID};
     [manager POST:strURL parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if([[responseObject objectForKey:@"status"] boolValue]){
-            _lblCouponTypeName.text = [listCouponType[index] objectForKey:@"CouponTypeName"];
+            NSDictionary *dicCoupon = [responseObject objectForKey:@"coupon"];
+            _lblCouponTypeName.text = [dicCoupon objectForKey:@"CouponTypeName"];
             _imgBg.image = [UIImage imageNamed:@"RedOpen"];
             [_btnLook setHidden:NO];
             [_btnOpen setHidden:YES];

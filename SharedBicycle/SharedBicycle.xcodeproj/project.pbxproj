@@ -20,6 +20,8 @@
 		A0563862203FCDBC00BB0A9C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563861203FCDBC00BB0A9C /* main.m */; };
 		A056386C203FCDBC00BB0A9C /* SharedBicycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A056386B203FCDBC00BB0A9C /* SharedBicycleTests.m */; };
 		A0563877203FCDBC00BB0A9C /* SharedBicycleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */; };
+		A05E4B4E208D849100BB0B00 /* CouponTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05E4B4D208D849100BB0B00 /* CouponTableViewController.m */; };
+		A05E4B51208D855400BB0B00 /* CouponTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05E4B50208D855400BB0B00 /* CouponTableViewCell.m */; };
 		A0A522892080E9DC00D45903 /* RegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A522882080E9DC00D45903 /* RegisterTableViewController.m */; };
 		A0C31B2A208C7F7A00B25917 /* RedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C31B29208C7F7A00B25917 /* RedViewController.m */; };
 		A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D0547B204ECCA600654513 /* MenuTableViewCell.m */; };
@@ -78,6 +80,10 @@
 		A0563872203FCDBC00BB0A9C /* SharedBicycleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedBicycleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0563876203FCDBC00BB0A9C /* SharedBicycleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedBicycleUITests.m; sourceTree = "<group>"; };
 		A0563878203FCDBC00BB0A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A05E4B4C208D849100BB0B00 /* CouponTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponTableViewController.h; sourceTree = "<group>"; };
+		A05E4B4D208D849100BB0B00 /* CouponTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponTableViewController.m; sourceTree = "<group>"; };
+		A05E4B4F208D855400BB0B00 /* CouponTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouponTableViewCell.h; sourceTree = "<group>"; };
+		A05E4B50208D855400BB0B00 /* CouponTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouponTableViewCell.m; sourceTree = "<group>"; };
 		A0A522872080E9DC00D45903 /* RegisterTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterTableViewController.h; sourceTree = "<group>"; };
 		A0A522882080E9DC00D45903 /* RegisterTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterTableViewController.m; sourceTree = "<group>"; };
 		A0C31B28208C7F7A00B25917 /* RedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedViewController.h; sourceTree = "<group>"; };
@@ -277,6 +283,10 @@
 				A0D22982205AD7CE003871FA /* ScanCodeeViewController.m */,
 				A0C31B28208C7F7A00B25917 /* RedViewController.h */,
 				A0C31B29208C7F7A00B25917 /* RedViewController.m */,
+				A05E4B4C208D849100BB0B00 /* CouponTableViewController.h */,
+				A05E4B4D208D849100BB0B00 /* CouponTableViewController.m */,
+				A05E4B4F208D855400BB0B00 /* CouponTableViewCell.h */,
+				A05E4B50208D855400BB0B00 /* CouponTableViewCell.m */,
 			);
 			path = Cycle;
 			sourceTree = "<group>";
@@ -507,9 +517,11 @@
 				A0E575C120859BD7008BCFC2 /* Until.m in Sources */,
 				A0C31B2A208C7F7A00B25917 /* RedViewController.m in Sources */,
 				A0E575BB20859176008BCFC2 /* UpdateUserViewController.m in Sources */,
+				A05E4B51208D855400BB0B00 /* CouponTableViewCell.m in Sources */,
 				A0E575AC2081E504008BCFC2 /* Toast.m in Sources */,
 				A0A522892080E9DC00D45903 /* RegisterTableViewController.m in Sources */,
 				A0E575AF2082EFB0008BCFC2 /* User.m in Sources */,
+				A05E4B4E208D849100BB0B00 /* CouponTableViewController.m in Sources */,
 				A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */,
 				A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */,
 				A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */,
