@@ -315,7 +315,7 @@
     _trip.EndTime = [formatter stringFromDate:[NSDate date]];
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         NSString *strURL = [HTTP stringByAppendingString: TripHandler];
-        NSDictionary *trip = @{@"TripID":_trip.TripID,@"Position":[NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude],@"BikeID":_trip.BikeID,@"Consume":_trip.Consume,@"EndTime":_trip.EndTime,@"StartTime":_trip.StartTime};
+        NSDictionary *trip = @{@"TripID":_trip.TripID,@"Position":[NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude],@"BikeID":_trip.BikeID,@"Consume":_trip.Consume,@"EndTime":_trip.EndTime,@"StartTime":_trip.StartTime,@"UserID":_user.UserID};
         NSDictionary *param = @{@"type":@"end",@"trip":trip};
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

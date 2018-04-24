@@ -11,6 +11,7 @@
 #import "MenuTableViewCell.h"
 #import "UserInfoTableViewController.h"
 #import "TripTableViewController.h"
+#import "BikeTableViewController.h"
 
 @interface MenuViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -51,7 +52,7 @@
     [_aryTitle addObject:@{@"title":@"我的钱包",@"icon":@"Wallet",@"storyID":@"storyIDTripTblVC"}];
     [_aryTitle addObject:@{@"title":@"违章记录",@"icon":@"Illegal",@"storyID":@"storyIDTripTblVC"}];
     [_aryTitle addObject:@{@"title":@"维修处理",@"icon":@"Repair",@"storyID":@"storyIDTripTblVC"}];
-    [_aryTitle addObject:@{@"title":@"单车信息",@"icon":@"Bike",@"storyID":@"storyIDTripTblVC"}];
+    [_aryTitle addObject:@{@"title":@"单车信息",@"icon":@"Bike",@"storyID":@"storyIDBikeTblVC"}];
     [_aryTitle addObject:@{@"title":@"身份认证",@"icon":@"Authentication",@"storyID":@"storyIDTripTblVC"}];
     [_aryTitle addObject:@{@"title":@"收益报表",@"icon":@"ReportForm",@"storyID":@"storyIDTripTblVC"}];
 }
@@ -74,6 +75,11 @@
         TripTableViewController *tripTblVC = (TripTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDTripTblVC"];
         tripTblVC.user = _user;
         [self cw_pushViewController:tripTblVC];
+        return;
+    }
+    if([(NSString *)[dicTitle objectForKey:@"storyID"] isEqualToString:@"storyIDBikeTblVC"]){
+        BikeTableViewController *bikeTblVC = (BikeTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDBikeTblVC"];
+        [self cw_pushViewController:bikeTblVC];
         return;
     }
 }

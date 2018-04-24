@@ -37,6 +37,16 @@
 		A0E575B2208351FC008BCFC2 /* UserNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E575B1208351FC008BCFC2 /* UserNavController.m */; };
 		A0E575BB20859176008BCFC2 /* UpdateUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E575BA20859176008BCFC2 /* UpdateUserViewController.m */; };
 		A0E575C120859BD7008BCFC2 /* Until.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E575C020859BD7008BCFC2 /* Until.m */; };
+		A0FFB994208ED1DF00071CFD /* WalletTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFB993208ED1DF00071CFD /* WalletTableViewController.m */; };
+		A0FFB998208EF54C00071CFD /* BikeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFB997208EF54C00071CFD /* BikeTableViewController.m */; };
+		A0FFB99B208EF78700071CFD /* BikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFB99A208EF78700071CFD /* BikeTableViewCell.m */; };
+		A0FFB99E208EF88F00071CFD /* Bike.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFB99D208EF88F00071CFD /* Bike.m */; };
+		A0FFB9A4208F1BAD00071CFD /* BikeSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFB9A3208F1BAD00071CFD /* BikeSearchTableViewController.m */; };
+		A0FFB9A7208F1BF600071CFD /* BikeDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFB9A6208F1BF600071CFD /* BikeDetailTableViewController.m */; };
+		A0FFB9AA208F1FCA00071CFD /* StateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFB9A9208F1FCA00071CFD /* StateTableViewController.m */; };
+		A0FFB9AD208F1FDF00071CFD /* ModelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFB9AC208F1FDF00071CFD /* ModelTableViewController.m */; };
+		A0FFB9B3208F35B800071CFD /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FFB9B1208F35B800071CFD /* CommonTableViewCell.m */; };
+		A0FFB9B4208F35B800071CFD /* CommonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FFB9B2208F35B800071CFD /* CommonTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +126,25 @@
 		A0E575BA20859176008BCFC2 /* UpdateUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateUserViewController.m; sourceTree = "<group>"; };
 		A0E575BF20859BD7008BCFC2 /* Until.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Until.h; sourceTree = "<group>"; };
 		A0E575C020859BD7008BCFC2 /* Until.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Until.m; sourceTree = "<group>"; };
+		A0FFB992208ED1DF00071CFD /* WalletTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletTableViewController.h; sourceTree = "<group>"; };
+		A0FFB993208ED1DF00071CFD /* WalletTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletTableViewController.m; sourceTree = "<group>"; };
+		A0FFB996208EF54C00071CFD /* BikeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeTableViewController.h; sourceTree = "<group>"; };
+		A0FFB997208EF54C00071CFD /* BikeTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BikeTableViewController.m; sourceTree = "<group>"; };
+		A0FFB999208EF78700071CFD /* BikeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeTableViewCell.h; sourceTree = "<group>"; };
+		A0FFB99A208EF78700071CFD /* BikeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BikeTableViewCell.m; sourceTree = "<group>"; };
+		A0FFB99C208EF88F00071CFD /* Bike.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bike.h; sourceTree = "<group>"; };
+		A0FFB99D208EF88F00071CFD /* Bike.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bike.m; sourceTree = "<group>"; };
+		A0FFB9A2208F1BAD00071CFD /* BikeSearchTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeSearchTableViewController.h; sourceTree = "<group>"; };
+		A0FFB9A3208F1BAD00071CFD /* BikeSearchTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BikeSearchTableViewController.m; sourceTree = "<group>"; };
+		A0FFB9A5208F1BF600071CFD /* BikeDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeDetailTableViewController.h; sourceTree = "<group>"; };
+		A0FFB9A6208F1BF600071CFD /* BikeDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BikeDetailTableViewController.m; sourceTree = "<group>"; };
+		A0FFB9A8208F1FCA00071CFD /* StateTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StateTableViewController.h; sourceTree = "<group>"; };
+		A0FFB9A9208F1FCA00071CFD /* StateTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateTableViewController.m; sourceTree = "<group>"; };
+		A0FFB9AB208F1FDF00071CFD /* ModelTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelTableViewController.h; sourceTree = "<group>"; };
+		A0FFB9AC208F1FDF00071CFD /* ModelTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelTableViewController.m; sourceTree = "<group>"; };
+		A0FFB9B0208F35B800071CFD /* CommonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCell.h; sourceTree = "<group>"; };
+		A0FFB9B1208F35B800071CFD /* CommonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCell.m; sourceTree = "<group>"; };
+		A0FFB9B2208F35B800071CFD /* CommonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonTableViewCell.xib; sourceTree = "<group>"; };
 		D25C88AB0B5B8EEA66B3DC86 /* libPods-SharedBicycle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SharedBicycle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -221,6 +250,9 @@
 		A056388520401B5900BB0A9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A0FFB9B5208F35D400071CFD /* Common */,
+				A0FFB995208EF4E600071CFD /* Bike */,
+				A0FFB991208ED1B000071CFD /* Wallet */,
 				A05E4B52208DC32200BB0B00 /* Trip */,
 				A0814207207103E500B9BAE3 /* User */,
 				A0E9441B206F95B60097845A /* Cycle */,
@@ -236,6 +268,7 @@
 				A0563858203FCDBC00BB0A9C /* Main.storyboard */,
 				A0D27525204AE24400ABF73B /* MenuViewController.xib */,
 				A0D0547C204ECCA600654513 /* MenuTableViewCell.xib */,
+				A0FFB9B2208F35B800071CFD /* CommonTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,6 +287,8 @@
 				A0E575AD2082EFAF008BCFC2 /* User.m */,
 				A0020F722089D38100077804 /* Trip.h */,
 				A0020F732089D38100077804 /* Trip.m */,
+				A0FFB99C208EF88F00071CFD /* Bike.h */,
+				A0FFB99D208EF88F00071CFD /* Bike.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,6 +347,43 @@
 				A05E4B50208D855400BB0B00 /* CouponTableViewCell.m */,
 			);
 			path = Cycle;
+			sourceTree = "<group>";
+		};
+		A0FFB991208ED1B000071CFD /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				A0FFB992208ED1DF00071CFD /* WalletTableViewController.h */,
+				A0FFB993208ED1DF00071CFD /* WalletTableViewController.m */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		A0FFB995208EF4E600071CFD /* Bike */ = {
+			isa = PBXGroup;
+			children = (
+				A0FFB996208EF54C00071CFD /* BikeTableViewController.h */,
+				A0FFB997208EF54C00071CFD /* BikeTableViewController.m */,
+				A0FFB999208EF78700071CFD /* BikeTableViewCell.h */,
+				A0FFB99A208EF78700071CFD /* BikeTableViewCell.m */,
+				A0FFB9A2208F1BAD00071CFD /* BikeSearchTableViewController.h */,
+				A0FFB9A3208F1BAD00071CFD /* BikeSearchTableViewController.m */,
+				A0FFB9A5208F1BF600071CFD /* BikeDetailTableViewController.h */,
+				A0FFB9A6208F1BF600071CFD /* BikeDetailTableViewController.m */,
+				A0FFB9A8208F1FCA00071CFD /* StateTableViewController.h */,
+				A0FFB9A9208F1FCA00071CFD /* StateTableViewController.m */,
+				A0FFB9AB208F1FDF00071CFD /* ModelTableViewController.h */,
+				A0FFB9AC208F1FDF00071CFD /* ModelTableViewController.m */,
+			);
+			path = Bike;
+			sourceTree = "<group>";
+		};
+		A0FFB9B5208F35D400071CFD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A0FFB9B0208F35B800071CFD /* CommonTableViewCell.h */,
+				A0FFB9B1208F35B800071CFD /* CommonTableViewCell.m */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		AF77B08ED16E4E74E855CE60 /* Frameworks */ = {
@@ -449,6 +521,7 @@
 				A0D27527204AE24400ABF73B /* MenuViewController.xib in Resources */,
 				A056385C203FCDBC00BB0A9C /* Assets.xcassets in Resources */,
 				A0D0547E204ECCA600654513 /* MenuTableViewCell.xib in Resources */,
+				A0FFB9B4208F35B800071CFD /* CommonTableViewCell.xib in Resources */,
 				A056385A203FCDBC00BB0A9C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,27 +605,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0FFB9B3208F35B800071CFD /* CommonTableViewCell.m in Sources */,
+				A0FFB99E208EF88F00071CFD /* Bike.m in Sources */,
 				A0020F742089D38100077804 /* Trip.m in Sources */,
 				A0563857203FCDBC00BB0A9C /* CycleViewController.m in Sources */,
+				A0FFB9A7208F1BF600071CFD /* BikeDetailTableViewController.m in Sources */,
+				A0FFB994208ED1DF00071CFD /* WalletTableViewController.m in Sources */,
 				A0D27526204AE24400ABF73B /* MenuViewController.m in Sources */,
 				A0D22983205AD7CE003871FA /* ScanCodeeViewController.m in Sources */,
 				A05E4B55208DC60D00BB0B00 /* TripTableViewCell.m in Sources */,
 				A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */,
+				A0FFB9AD208F1FDF00071CFD /* ModelTableViewController.m in Sources */,
 				A01F6FA2207E433A00FF7912 /* UserInfoTableViewController.m in Sources */,
 				A0563862203FCDBC00BB0A9C /* main.m in Sources */,
 				A05E4B58208DC62200BB0B00 /* TripTableViewController.m in Sources */,
+				A0FFB9AA208F1FCA00071CFD /* StateTableViewController.m in Sources */,
 				A0E575C120859BD7008BCFC2 /* Until.m in Sources */,
 				A05E4B5B208DC6F900BB0B00 /* TripDetailViewController.m in Sources */,
 				A0C31B2A208C7F7A00B25917 /* RedViewController.m in Sources */,
 				A0E575BB20859176008BCFC2 /* UpdateUserViewController.m in Sources */,
+				A0FFB9A4208F1BAD00071CFD /* BikeSearchTableViewController.m in Sources */,
 				A05E4B51208D855400BB0B00 /* CouponTableViewCell.m in Sources */,
 				A0E575AC2081E504008BCFC2 /* Toast.m in Sources */,
 				A0A522892080E9DC00D45903 /* RegisterTableViewController.m in Sources */,
 				A0E575AF2082EFB0008BCFC2 /* User.m in Sources */,
 				A05E4B4E208D849100BB0B00 /* CouponTableViewController.m in Sources */,
 				A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */,
+				A0FFB99B208EF78700071CFD /* BikeTableViewCell.m in Sources */,
 				A0D0547D204ECCA600654513 /* MenuTableViewCell.m in Sources */,
 				A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */,
+				A0FFB998208EF54C00071CFD /* BikeTableViewController.m in Sources */,
 				A0E575B2208351FC008BCFC2 /* UserNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

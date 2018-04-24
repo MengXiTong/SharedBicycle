@@ -8,7 +8,6 @@
 
 #import "TripTableViewController.h"
 #import "TripTableViewCell.h"
-#import <MBProgressHUD.h>
 #import <AFNetworking.h>
 #import "Config.h"
 #import <MJRefresh.h>
@@ -37,8 +36,10 @@
 }
 
 - (void)initView{
-    self.navigationItem.title = @"我的行程";
+    self.navigationItem.title = @"单车信息";
     isLast = false;
+    manager = [AFHTTPSessionManager manager];
+    strURL = [HTTP stringByAppendingString: TripHandler];
     [self loadNewData];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
@@ -50,7 +51,7 @@
     listTrip = [[NSMutableArray alloc] init];
     [self initValue:^{
         [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer setState:MJRefreshStateIdle];
+        [self.tableView.mj_footer resetNoMoreData];
     }];
 }
 
@@ -67,21 +68,21 @@
 }
 
 - (void)initValue:(void(^)(void))callBack{
-    manager = [AFHTTPSessionManager manager];
-    strURL = [HTTP stringByAppendingString: TripHandler];
     NSDictionary *param = @{@"UserID":_user.UserID,@"Type":@"info",@"PageNum":[NSString stringWithFormat:@"%i",pageNum]};
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if([[responseObject objectForKey:@"status"] boolValue]){
             NSMutableArray *list = [responseObject objectForKey:@"tripList"];
-            if(list.count>0){
-                isLast = false;
-                [listTrip addObjectsFromArray:list];
-                [self.tableView reloadData];
-            }
-            else{
+            if(list.count<10){
                 isLast = true;
             }
+            else{
+                isLast = false;
+            }
+            if(list.count>0){
+                [listTrip addObjectsFromArray:list];
+            }
+            [self.tableView reloadData];
         }
         else{
             NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
