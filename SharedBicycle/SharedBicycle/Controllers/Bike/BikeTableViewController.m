@@ -40,10 +40,6 @@
 
 
 - (void)initView{
-    self.navigationItem.title = @"单车信息";
-    UIBarButtonItem *rightBarButtonItemAdd = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddBike"] style:UIBarButtonItemStyleDone target:self action:@selector(actionAdd:)];
-    UIBarButtonItem *rightBarButtonItemSearch = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SearchBike"] style:UIBarButtonItemStyleDone target:self action:@selector(actionSearch:)];
-    self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:rightBarButtonItemSearch,rightBarButtonItemAdd,nil];
     isLast = false;
     manager = [AFHTTPSessionManager manager];
     strURL = [HTTP stringByAppendingString: BikeHandler];
@@ -54,6 +50,18 @@
     _bike.ModelName = @"";
     _bike.StateName = @"";
     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    if ([_comeFrom isEqualToString:@"info"]) {
+        self.navigationItem.title = @"单车信息";
+        UIBarButtonItem *rightBarButtonItemAdd = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"AddBike"] style:UIBarButtonItemStyleDone target:self action:@selector(actionAdd:)];
+        UIBarButtonItem *rightBarButtonItemSearch = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SearchBike"] style:UIBarButtonItemStyleDone target:self action:@selector(actionSearch:)];
+        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:rightBarButtonItemSearch,rightBarButtonItemAdd,nil];
+    }
+    else if([_comeFrom isEqualToString:@"repair"]){
+        self.navigationItem.title = @"维修处理";
+        UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"我的订单" style:UIBarButtonItemStyleDone target:self action:@selector(actionMyOrder:)];
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+        _bike.StateID = @"3";
+    }
     [self loadNewData];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
@@ -124,19 +132,24 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dicBike = listBike[indexPath.row];
-    BikeDetailTableViewController *bikeDetailTblVC = (BikeDetailTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDBikeDetailTblVC"];
-    bikeDetailTblVC.comeFrom = @"updateBike";
-    Bike *updateBike = [[Bike alloc] init];
-    updateBike.BikeID = [dicBike objectForKey:@"BikeID"];
-    updateBike.ModelID = [dicBike objectForKey:@"ModelID"];
-    updateBike.StateID = [dicBike objectForKey:@"StateID"];
-    updateBike.BikeLongitude = [dicBike objectForKey:@"BikeLongitude"];
-    updateBike.BikeLatitude = [dicBike objectForKey:@"BikeLatitude"];
-    updateBike.ModelName = [dicBike objectForKey:@"ModelName"];
-    updateBike.StateName = [dicBike objectForKey:@"StateName"];
-    bikeDetailTblVC.bike = updateBike;
-    [self.navigationController pushViewController:bikeDetailTblVC animated:YES];
+    if ([_comeFrom isEqualToString:@"info"]) {
+        NSDictionary *dicBike = listBike[indexPath.row];
+        BikeDetailTableViewController *bikeDetailTblVC = (BikeDetailTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDBikeDetailTblVC"];
+        bikeDetailTblVC.comeFrom = @"updateBike";
+        Bike *updateBike = [[Bike alloc] init];
+        updateBike.BikeID = [dicBike objectForKey:@"BikeID"];
+        updateBike.ModelID = [dicBike objectForKey:@"ModelID"];
+        updateBike.StateID = [dicBike objectForKey:@"StateID"];
+        updateBike.BikeLongitude = [dicBike objectForKey:@"BikeLongitude"];
+        updateBike.BikeLatitude = [dicBike objectForKey:@"BikeLatitude"];
+        updateBike.ModelName = [dicBike objectForKey:@"ModelName"];
+        updateBike.StateName = [dicBike objectForKey:@"StateName"];
+        bikeDetailTblVC.bike = updateBike;
+        [self.navigationController pushViewController:bikeDetailTblVC animated:YES];
+    }
+    else if([_comeFrom isEqualToString:@"repair"]){
+        
+    }
 }
 
 - (IBAction)actionAdd:(id)sender{
@@ -149,6 +162,10 @@
     BikeSearchTableViewController *bikeSearchTblVC = (BikeSearchTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDBikeSearchTblVC"];
     bikeSearchTblVC.bike = _bike;
     [self.navigationController pushViewController:bikeSearchTblVC animated:YES];
+}
+
+-(IBAction)actionMyOrder:(id)sender{
+    
 }
 
 @end

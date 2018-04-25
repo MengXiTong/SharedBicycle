@@ -1,24 +1,23 @@
 //
-//  TripTableViewController.m
+//  DetailedTableViewController.m
 //  SharedBicycle
 //
-//  Created by 俞健 on 2018/4/23.
+//  Created by 俞健 on 2018/4/25.
 //  Copyright © 2018年 俞健. All rights reserved.
 //
 
-#import "TripTableViewController.h"
-#import "TripTableViewCell.h"
+#import "DetailedTableViewController.h"
+#import "InfoShowTableViewCell.h"
 #import <AFNetworking.h>
 #import "Config.h"
 #import <MJRefresh.h>
-#import "TripDetailViewController.h"
 
-@interface TripTableViewController ()
+@interface DetailedTableViewController ()
 
 @end
 
-@implementation TripTableViewController{
-    NSMutableArray *listTrip;
+@implementation DetailedTableViewController{
+    NSMutableArray *listDetailed;
     AFHTTPSessionManager *manager;
     NSString *strURL;
     int pageNum;
@@ -36,19 +35,21 @@
 }
 
 - (void)initView{
-    self.navigationItem.title = @"我的行程";
+    self.navigationItem.title = @"消费明细";
     isLast = false;
     manager = [AFHTTPSessionManager manager];
-    strURL = [HTTP stringByAppendingString: TripHandler];
-    [self loadNewData];
+    strURL = [HTTP stringByAppendingString: UserHandler];
+    [self.tableView registerNib:[UINib nibWithNibName:@"InfoShowTableViewCell" bundle:nil] forCellReuseIdentifier:@"CellIdentifierDetailed"];
+    [self.tableView setRowHeight:70];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self loadNewData];
 }
 
 - (void)loadNewData{
     pageNum = 1;
-    listTrip = [[NSMutableArray alloc] init];
+    listDetailed = [[NSMutableArray alloc] init];
     [self initValue:^{
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer resetNoMoreData];
@@ -68,11 +69,11 @@
 }
 
 - (void)initValue:(void(^)(void))callBack{
-    NSDictionary *param = @{@"UserID":_user.UserID,@"Type":@"info",@"PageNum":[NSString stringWithFormat:@"%i",pageNum]};
+    NSDictionary *param = @{@"UserID":_user.UserID,@"Type":@"detailed",@"PageNum":[NSString stringWithFormat:@"%i",pageNum]};
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if([[responseObject objectForKey:@"status"] boolValue]){
-            NSMutableArray *list = [responseObject objectForKey:@"tripList"];
+            NSMutableArray *list = [responseObject objectForKey:@"detailedList"];
             if(list.count<10){
                 isLast = true;
             }
@@ -80,7 +81,7 @@
                 isLast = false;
             }
             if(list.count>0){
-                [listTrip addObjectsFromArray:list];
+                [listDetailed addObjectsFromArray:list];
             }
             [self.tableView reloadData];
         }
@@ -89,31 +90,23 @@
         }
         callBack();
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"TripError: %@",error);
+        NSLog(@"DetailedError: %@",error);
         callBack();
     }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return listTrip.count;
+    return listDetailed.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *dicTrip = listTrip[indexPath.row];
-    TripTableViewCell *tripCell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifierTrip" forIndexPath:indexPath];
-    tripCell.lblStartTime.text = [dicTrip objectForKey:@"StartTime"];
-    tripCell.lblInfo.text = [NSString stringWithFormat:@"车牌号%@ | 花费%0.2f元",[dicTrip objectForKey:@"BikeID"],[[dicTrip objectForKey:@"Consume"] floatValue]];
-    return tripCell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    TripDetailViewController *tripDetailVC = (TripDetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDTripDetailVC"];
-    tripDetailVC.user = _user;
-    tripDetailVC.trip = [[Trip alloc] init];
-    tripDetailVC.trip.TripID = [listTrip[indexPath.row] objectForKey:@"TripID"];
-    [self.navigationController pushViewController:tripDetailVC animated:YES];
+    NSDictionary *dicDetailed = listDetailed[indexPath.row];
+    InfoShowTableViewCell *detailedCell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifierDetailed" forIndexPath:indexPath];
+    detailedCell.lblExplain.text = [dicDetailed objectForKey:@"DetailedTypeName"];
+    detailedCell.lblTime.text = [dicDetailed objectForKey:@"DetailTime"];
+    detailedCell.lblValue.text = [NSString stringWithFormat:@"%0.2f元",[[dicDetailed objectForKey:@"Sum"] floatValue]];
+    [detailedCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    return detailedCell;
 }
 
 @end

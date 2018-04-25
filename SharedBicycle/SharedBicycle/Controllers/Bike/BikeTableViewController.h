@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Bike.h"
+#import "User.h"
 
 @interface BikeTableViewController : UITableViewController
 
 @property (nonatomic, strong) Bike *bike;
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSString *comeFrom;
 
 - (void)loadNewData;
 

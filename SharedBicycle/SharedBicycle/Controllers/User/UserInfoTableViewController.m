@@ -14,6 +14,7 @@
 #import "Config.h"
 #import <MBProgressHUD.h>
 #import "Toast.h"
+#import "CreditScoreTableViewController.h"
 
 @interface UserInfoTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
 
@@ -71,6 +72,8 @@
     _lblPhone.text = strPhone;
     _lblShowPhone.text = strPhone;
     _lblCreditScore.text = [[NSString alloc] initWithFormat:@"信用分 %@ >",_user.CreditScore];
+    _lblCreditScore.userInteractionEnabled = YES;
+    [_lblCreditScore addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionCreditScore:)]];
     _lblName.text = _user.Name;
     _lblSex.text = [[_user.Sex lowercaseString] isEqualToString:@"true"]?@"男":@"女";
     _lblIdentity.text = _user.IdentityName;
@@ -98,6 +101,18 @@
             updateUserVC.type = @"phone";
             [self.navigationController pushViewController:updateUserVC animated:YES];
             break;
+        }
+        case 6:{
+            UpdateUserViewController *updateUserVC = (UpdateUserViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDUpdateUserVC"];
+            updateUserVC.user = _user;
+            updateUserVC.type = @"pwd";
+            [self.navigationController pushViewController:updateUserVC animated:YES];
+            break;
+        }
+        case 7:{
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UINavigationController *indexNavC= (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDIndexNavC"];
+            [self presentViewController:indexNavC animated:YES completion:nil];
         }
         default:
             break;
@@ -276,6 +291,12 @@
 
 - (IBAction)actionImgPhoto:(id)sender {
     [self presentViewController:alertPhoto animated:YES completion:nil];
+}
+
+- (IBAction)actionCreditScore:(id)sender {
+    CreditScoreTableViewController *creditScoreTblVC = [[CreditScoreTableViewController alloc] init];
+    creditScoreTblVC.user = _user;
+    [self.navigationController pushViewController:creditScoreTblVC animated:YES];
 }
 
 //初始化加载条

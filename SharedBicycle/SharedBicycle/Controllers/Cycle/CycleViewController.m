@@ -192,12 +192,11 @@
     UserNavController *userNavC = (UserNavController *)self.navigationController;
     _user = userNavC.user;
     NSString *strURL = [HTTP stringByAppendingString: UserHandler];
-    NSDictionary *param = @{@"UserID":self.user.UserID};
+    NSDictionary *param = @{@"UserID":self.user.UserID,@"Type":@"user"};
     //[AFHTTPRequestSerializer serializer]这是默认编码格式
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        dispatch_source_merge_data(source, ++count);
         if([[responseObject objectForKey:@"status"] boolValue]){
             NSDictionary *dicUser = [responseObject objectForKey:@"user"];
             _user.UserID = [dicUser objectForKey:@"UserID"];
@@ -216,6 +215,7 @@
         else{
             NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
+        dispatch_source_merge_data(source, ++count);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"UserError: %@",error);
         dispatch_source_merge_data(source, ++count);
@@ -229,7 +229,6 @@
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        dispatch_source_merge_data(source, ++count);
         if([[responseObject objectForKey:@"status"] boolValue]){
             NSDictionary *dicTrip = [responseObject objectForKey:@"trip"];
             _trip.State = [dicTrip objectForKey:@"State"];
@@ -273,6 +272,7 @@
         else{
             NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
+        dispatch_source_merge_data(source, ++count);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"TripError: %@",error);
         dispatch_source_merge_data(source, ++count);
@@ -286,7 +286,6 @@
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        dispatch_source_merge_data(source, ++count);
         if([[responseObject objectForKey:@"status"] boolValue]){
             listBikePosition = [responseObject objectForKey:@"bikeList"];
             [self drawBikePosition];
@@ -294,6 +293,7 @@
         else{
             NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
         }
+        dispatch_source_merge_data(source, ++count);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"UserError: %@",error);
         dispatch_source_merge_data(source, ++count);
@@ -437,9 +437,11 @@
 }
 
 - (IBAction)scanning:(id)sender {
-    ScanCodeViewController *scanCodeVC = [[ScanCodeViewController alloc] init];
-    scanCodeVC.user = _user;
-    [[self navigationController] pushViewController:scanCodeVC animated:YES];
+    if(_user){
+        ScanCodeViewController *scanCodeVC = [[ScanCodeViewController alloc] init];
+        scanCodeVC.user = _user;
+        [[self navigationController] pushViewController:scanCodeVC animated:YES];
+    }
 }
 - (IBAction)overTrip:(id)sender {
     [self putOverTrip];

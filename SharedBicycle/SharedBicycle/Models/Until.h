@@ -28,4 +28,8 @@
 //判断字符串是否为空
 + (BOOL) isBlankString:(NSString *)string;
 
++(void)setKeyboardHide:(UIView *)view;
+
++(void)keyboardHide:(UITapGestureRecognizer*)tap;
+
 @end

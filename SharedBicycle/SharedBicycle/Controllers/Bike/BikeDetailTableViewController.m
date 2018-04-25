@@ -120,6 +120,12 @@
         if([[responseObject objectForKey:@"status"] boolValue]){
             [Toast showAlertWithMessage:@"新增成功" withView:self];
             [bikeTblVC loadNewData];
+            _tfBikeID.text = @"";
+            _tfLatitude.text = @"";
+            _tfLongitude.text = @"";
+            _lblState.text = @"";
+            _lblModel.text = @"";
+            _bike = [[Bike alloc] init];
         }
         else{
             NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);

@@ -91,7 +91,6 @@
                 [userDef setObject:self.tfID.text forKey:@"ID"];
                 [userDef setObject:self.tfPwd.text forKey:@"Pwd"];
                 [userDef synchronize];
-                [Toast showAlertWithMessage:@"登录成功" withView:self];
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 UserNavController *userNavC = (UserNavController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDNavC"];
                 User *user = [[User alloc] init];
@@ -100,6 +99,7 @@
                 [self presentViewController:userNavC animated:YES completion:^(void){
                     [[UIApplication sharedApplication] delegate].window.rootViewController = userNavC;
                     [[[UIApplication sharedApplication] delegate].window makeKeyWindow];
+                    [Toast showAlertWithMessage:@"登录成功" withView:userNavC];
                 }];
             }
             else{

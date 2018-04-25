@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *type;
 @property (weak, nonatomic) IBOutlet UITextField *tfUpdate;
 @property (weak, nonatomic) IBOutlet UILabel *lblholder;
+@property (weak, nonatomic) IBOutlet UITextField *tfUpdateAgain;
 
 @property (nonatomic, strong) User *user;
 
