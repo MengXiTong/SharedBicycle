@@ -21,6 +21,7 @@
 #import "Toast.h"
 #import "RedViewController.h"
 #import "CouponTableViewController.h"
+#import "RepairViewController.h"
 
 @interface CycleViewController () <MAMapViewDelegate, AMapLocationManagerDelegate>
 
@@ -99,7 +100,7 @@
     if(comps.day>0){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"您已违规超时" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"结束用车" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self putOverTrip];
+            [self putOverTrip:^{}];
         }];
         [alert addAction:cancelAction];
         [self presentViewController:alert animated:YES completion:nil];
@@ -310,7 +311,7 @@
     }
 }
 
-- (void)putOverTrip{
+- (void)putOverTrip:(void(^)(void))callBack{
     [self initHUD];
     _trip.EndTime = [formatter stringFromDate:[NSDate date]];
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
@@ -331,6 +332,7 @@
                 [_vInUse setHidden:YES];
                 [_vPay setHidden:NO];
                 [_vScan setHidden:YES];
+                callBack();
             }
             else{
                 NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
@@ -368,6 +370,8 @@
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
             [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 if([[responseObject objectForKey:@"status"] boolValue]){
+                    float banlance = [_user.Balance floatValue]-[_lblPayReal.text floatValue];
+                    _user.Balance = [NSString stringWithFormat:@"%f",banlance];
                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                     RedViewController *redVC = (RedViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDRedVC"];
                     if([_lblPayReal.text floatValue]>=1){
@@ -376,7 +380,6 @@
                     else{
                         redVC.type = @"over";
                     }
-                    redVC.type = @"show";
                     redVC.user = _user;
                     [self.navigationController pushViewController:redVC animated:YES];
                     _trip.State = @"finish";
@@ -440,14 +443,21 @@
     if(_user){
         ScanCodeViewController *scanCodeVC = [[ScanCodeViewController alloc] init];
         scanCodeVC.user = _user;
+        scanCodeVC.comeFrom = @"cycle";
         [[self navigationController] pushViewController:scanCodeVC animated:YES];
     }
 }
 - (IBAction)overTrip:(id)sender {
-    [self putOverTrip];
+    [self putOverTrip:^{}];
 }
 - (IBAction)pay:(id)sender {
     [self putPay];
+}
+- (IBAction)repair:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RepairViewController *repairVC = (RepairViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDRepairVC"];
+    repairVC.trip = _trip;
+    [self.navigationController pushViewController:repairVC animated:YES];
 }
 
 - (void)dealloc {

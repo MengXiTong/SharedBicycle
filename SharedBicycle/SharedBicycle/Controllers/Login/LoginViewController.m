@@ -72,10 +72,10 @@
         [Toast showAlertWithMessage:@"请输入登录密码" withView:self];
         return;
     }
-//    if(_tfVerification.text != _lblVerification.text){
-//        [Toast showAlertWithMessage:@"请输入正确的验证码" withView:self];
-//        return;
-//    }
+    if(_tfVerification.text != _lblVerification.text){
+        [Toast showAlertWithMessage:@"请输入正确的验证码" withView:self];
+        return;
+    }
     //初始化加载条
     [self initHUD];
     NSString *strURL = [HTTP stringByAppendingString: LoginHandler];

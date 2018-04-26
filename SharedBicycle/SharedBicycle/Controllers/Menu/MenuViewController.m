@@ -14,6 +14,8 @@
 #import "BikeTableViewController.h"
 #import "IllegalTableViewController.h"
 #import "IdentityValidateTableViewController.h"
+#import "WalletTableViewController.h"
+#import "ProfitViewController.h"
 
 @interface MenuViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -51,12 +53,16 @@
     [self.view addSubview:_tableView];
     _aryTitle = [[NSMutableArray alloc] init];
     [_aryTitle addObject:@{@"title":@"我的行程",@"icon":@"Order",@"storyID":@"storyIDTripTblVC"}];
-    [_aryTitle addObject:@{@"title":@"我的钱包",@"icon":@"Wallet",@"storyID":@"storyIDTripTblVC"}];
+    [_aryTitle addObject:@{@"title":@"我的钱包",@"icon":@"Wallet",@"storyID":@"storyIDWalletTblVC"}];
     [_aryTitle addObject:@{@"title":@"违规记录",@"icon":@"Illegal",@"storyID":@"illegal"}];
-    [_aryTitle addObject:@{@"title":@"维修处理",@"icon":@"Repair",@"storyID":@"repair"}];
-    [_aryTitle addObject:@{@"title":@"单车信息",@"icon":@"Bike",@"storyID":@"storyIDBikeTblVC"}];
-    [_aryTitle addObject:@{@"title":@"身份认证",@"icon":@"Authentication",@"storyID":@"storyIDIdentityValidateTblVC"}];
-    [_aryTitle addObject:@{@"title":@"收益报表",@"icon":@"ReportForm",@"storyID":@"storyIDTripTblVC"}];
+    if([_user.IdentityID isEqualToString:@"2"]){
+        [_aryTitle addObject:@{@"title":@"单车信息",@"icon":@"Bike",@"storyID":@"storyIDBikeTblVC"}];
+        [_aryTitle addObject:@{@"title":@"身份认证",@"icon":@"Authentication",@"storyID":@"storyIDIdentityValidateTblVC"}];
+        [_aryTitle addObject:@{@"title":@"收益报表",@"icon":@"ReportForm",@"storyID":@"storyIDProfitVC"}];
+    }
+    else if([_user.IdentityID isEqualToString:@"3"]){
+        [_aryTitle addObject:@{@"title":@"维修处理",@"icon":@"Repair",@"storyID":@"repair"}];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -79,6 +85,12 @@
         [self cw_pushViewController:tripTblVC];
         return;
     }
+    if([(NSString *)[dicTitle objectForKey:@"storyID"] isEqualToString:@"storyIDWalletTblVC"]){
+        WalletTableViewController *walletTblVC = (WalletTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDWalletTblVC"];
+        walletTblVC.user = _user;
+        [self cw_pushViewController:walletTblVC];
+        return;
+    }
     if([(NSString *)[dicTitle objectForKey:@"storyID"] isEqualToString:@"storyIDBikeTblVC"]){
         BikeTableViewController *bikeTblVC = (BikeTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDBikeTblVC"];
         bikeTblVC.comeFrom = @"info";
@@ -93,9 +105,6 @@
         return;
     }
     if([(NSString *)[dicTitle objectForKey:@"storyID"] isEqualToString:@"illegal"]){
-//        DetailedTableViewController *detailedTblVC = [[DetailedTableViewController alloc] init];
-//        detailedTblVC.user = _user;
-//        [self cw_pushViewController:detailedTblVC];
         IllegalTableViewController *illegalTblVC = [[IllegalTableViewController alloc] init];
         illegalTblVC.user = _user;
         [self cw_pushViewController:illegalTblVC];
@@ -104,6 +113,12 @@
     if([(NSString *)[dicTitle objectForKey:@"storyID"] isEqualToString:@"storyIDIdentityValidateTblVC"]){
         IdentityValidateTableViewController *identityValidateTblVC = (IdentityValidateTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDIdentityValidateTblVC"];
         [self cw_pushViewController:identityValidateTblVC];
+        return;
+    }
+    if([(NSString *)[dicTitle objectForKey:@"storyID"] isEqualToString:@"storyIDProfitVC"]){
+        ProfitViewController *profitVC = (ProfitViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDProfitVC"];
+        [self cw_pushViewController:profitVC];
+        return;
     }
 }
 

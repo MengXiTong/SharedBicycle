@@ -46,7 +46,6 @@
 
 -(void)initValue{
     [self initHUD];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSDictionary *param = @{@"Type":@"state"};
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

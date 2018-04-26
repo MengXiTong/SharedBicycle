@@ -11,6 +11,12 @@
 		A0020F742089D38100077804 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = A0020F732089D38100077804 /* Trip.m */; };
 		A006D8B7204D78A000E4B85E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A006D8B6204D78A000E4B85E /* LoginViewController.m */; };
 		A01F6FA2207E433A00FF7912 /* UserInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01F6FA1207E433A00FF7912 /* UserInfoTableViewController.m */; };
+		A024A75C2091658000F79EB9 /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A024A75B2091658000F79EB9 /* RechargeViewController.m */; };
+		A024A75F2091B07B00F79EB9 /* RepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A024A75E2091B07B00F79EB9 /* RepairViewController.m */; };
+		A024A7632091C6AA00F79EB9 /* AchieveBikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A024A7622091C6AA00F79EB9 /* AchieveBikeViewController.m */; };
+		A024A7662091E31400F79EB9 /* RepairTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A024A7652091E31400F79EB9 /* RepairTableViewController.m */; };
+		A024A7692091E67400F79EB9 /* RepairTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A024A7682091E67400F79EB9 /* RepairTableViewCell.m */; };
+		A024A76C2092092200F79EB9 /* ProfitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A024A76B2092092200F79EB9 /* ProfitViewController.m */; };
 		A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04D6373205AD5EC0013E26A /* ShadowView.m */; };
 		A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563853203FCDBC00BB0A9C /* AppDelegate.m */; };
 		A0563857203FCDBC00BB0A9C /* CycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563856203FCDBC00BB0A9C /* CycleViewController.m */; };
@@ -82,6 +88,18 @@
 		A006D8B6204D78A000E4B85E /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A01F6FA0207E433A00FF7912 /* UserInfoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewController.h; sourceTree = "<group>"; };
 		A01F6FA1207E433A00FF7912 /* UserInfoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewController.m; sourceTree = "<group>"; };
+		A024A75A2091658000F79EB9 /* RechargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RechargeViewController.h; sourceTree = "<group>"; };
+		A024A75B2091658000F79EB9 /* RechargeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RechargeViewController.m; sourceTree = "<group>"; };
+		A024A75D2091B07B00F79EB9 /* RepairViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepairViewController.h; sourceTree = "<group>"; };
+		A024A75E2091B07B00F79EB9 /* RepairViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairViewController.m; sourceTree = "<group>"; };
+		A024A7612091C6AA00F79EB9 /* AchieveBikeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AchieveBikeViewController.h; sourceTree = "<group>"; };
+		A024A7622091C6AA00F79EB9 /* AchieveBikeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AchieveBikeViewController.m; sourceTree = "<group>"; };
+		A024A7642091E31400F79EB9 /* RepairTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepairTableViewController.h; sourceTree = "<group>"; };
+		A024A7652091E31400F79EB9 /* RepairTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairTableViewController.m; sourceTree = "<group>"; };
+		A024A7672091E67400F79EB9 /* RepairTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepairTableViewCell.h; sourceTree = "<group>"; };
+		A024A7682091E67400F79EB9 /* RepairTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairTableViewCell.m; sourceTree = "<group>"; };
+		A024A76A2092092200F79EB9 /* ProfitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfitViewController.h; sourceTree = "<group>"; };
+		A024A76B2092092200F79EB9 /* ProfitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfitViewController.m; sourceTree = "<group>"; };
 		A04D6372205AD5EC0013E26A /* ShadowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShadowView.h; sourceTree = "<group>"; };
 		A04D6373205AD5EC0013E26A /* ShadowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadowView.m; sourceTree = "<group>"; };
 		A056384F203FCDBC00BB0A9C /* SharedBicycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharedBicycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +221,21 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		A024A7602091C66500F79EB9 /* Repair */ = {
+			isa = PBXGroup;
+			children = (
+				A024A75D2091B07B00F79EB9 /* RepairViewController.h */,
+				A024A75E2091B07B00F79EB9 /* RepairViewController.m */,
+				A024A7612091C6AA00F79EB9 /* AchieveBikeViewController.h */,
+				A024A7622091C6AA00F79EB9 /* AchieveBikeViewController.m */,
+				A024A7642091E31400F79EB9 /* RepairTableViewController.h */,
+				A024A7652091E31400F79EB9 /* RepairTableViewController.m */,
+				A024A7672091E67400F79EB9 /* RepairTableViewCell.h */,
+				A024A7682091E67400F79EB9 /* RepairTableViewCell.m */,
+			);
+			path = Repair;
+			sourceTree = "<group>";
+		};
 		A0563846203FCDBC00BB0A9C = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +303,7 @@
 		A056388520401B5900BB0A9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A024A7602091C66500F79EB9 /* Repair */,
 				A0FFB9B5208F35D400071CFD /* Common */,
 				A0FFB995208EF4E600071CFD /* Bike */,
 				A0FFB991208ED1B000071CFD /* Wallet */,
@@ -346,6 +380,8 @@
 				A08ED5122090B14A007C8FB7 /* IdentityTableViewController.m */,
 				A08ED5142090B293007C8FB7 /* IdentityValidateTableViewController.h */,
 				A08ED5152090B293007C8FB7 /* IdentityValidateTableViewController.m */,
+				A024A76A2092092200F79EB9 /* ProfitViewController.h */,
+				A024A76B2092092200F79EB9 /* ProfitViewController.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -385,6 +421,8 @@
 				A0FFB993208ED1DF00071CFD /* WalletTableViewController.m */,
 				A08ED50320907209007C8FB7 /* DetailedTableViewController.h */,
 				A08ED50420907209007C8FB7 /* DetailedTableViewController.m */,
+				A024A75A2091658000F79EB9 /* RechargeViewController.h */,
+				A024A75B2091658000F79EB9 /* RechargeViewController.m */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -649,9 +687,12 @@
 				A0D22983205AD7CE003871FA /* ScanCodeeViewController.m in Sources */,
 				A05E4B55208DC60D00BB0B00 /* TripTableViewCell.m in Sources */,
 				A08ED5132090B14A007C8FB7 /* IdentityTableViewController.m in Sources */,
+				A024A7692091E67400F79EB9 /* RepairTableViewCell.m in Sources */,
 				A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */,
+				A024A76C2092092200F79EB9 /* ProfitViewController.m in Sources */,
 				A0FFB9AD208F1FDF00071CFD /* ModelTableViewController.m in Sources */,
 				A01F6FA2207E433A00FF7912 /* UserInfoTableViewController.m in Sources */,
+				A024A7632091C6AA00F79EB9 /* AchieveBikeViewController.m in Sources */,
 				A0563862203FCDBC00BB0A9C /* main.m in Sources */,
 				A08ED50B20907255007C8FB7 /* IllegalTableViewController.m in Sources */,
 				A05E4B58208DC62200BB0B00 /* TripTableViewController.m in Sources */,
@@ -661,8 +702,11 @@
 				A0C31B2A208C7F7A00B25917 /* RedViewController.m in Sources */,
 				A0E575BB20859176008BCFC2 /* UpdateUserViewController.m in Sources */,
 				A0FFB9A4208F1BAD00071CFD /* BikeSearchTableViewController.m in Sources */,
+				A024A7662091E31400F79EB9 /* RepairTableViewController.m in Sources */,
 				A05E4B51208D855400BB0B00 /* CouponTableViewCell.m in Sources */,
+				A024A75C2091658000F79EB9 /* RechargeViewController.m in Sources */,
 				A0E575AC2081E504008BCFC2 /* Toast.m in Sources */,
+				A024A75F2091B07B00F79EB9 /* RepairViewController.m in Sources */,
 				A0A522892080E9DC00D45903 /* RegisterTableViewController.m in Sources */,
 				A0E575AF2082EFB0008BCFC2 /* User.m in Sources */,
 				A05E4B4E208D849100BB0B00 /* CouponTableViewController.m in Sources */,

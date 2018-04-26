@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPayCoupon;
 
 - (void)takeUse;
+- (void)putOverTrip:(void(^)(void))callBack;
 
 @end
 

@@ -19,6 +19,8 @@
 + (BOOL)checkUserName:(NSString *) userName;
 //账号验证
 + (BOOL)checkUserID : (NSString *) userID;
+//金额验证
++ (BOOL)checkMoney : (NSString *) money;
 //图片转字符串
 + (NSString *)getPhotoString:(UIImage *) imgPhoto isNeedCompress:(BOOL) isNeedCompress;
 //获取两个时间的差

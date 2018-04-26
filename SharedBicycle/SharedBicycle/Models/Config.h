@@ -19,6 +19,8 @@ static NSString *TripHandler = @"/TripHandler.ashx";
 static NSString *CouponHandler = @"/CouponHandler.ashx";
 //单车信息接口地址
 static NSString *BikeHandler = @"/BikeHandler.ashx";
+//报修处理
+static NSString *RepairHandler = @"/RepairHandler.ashx";
 
 
 #endif /* Config_h */

@@ -14,6 +14,8 @@
 #import <MJRefresh.h>
 #import "BikeDetailTableViewController.h"
 #import "BikeSearchTableViewController.h"
+#import "AchieveBikeViewController.h"
+#import "RepairTableViewController.h"
 
 @interface BikeTableViewController ()
 
@@ -132,22 +134,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *dicBike = listBike[indexPath.row];
+    Bike *updateBike = [[Bike alloc] init];
+    updateBike.BikeID = [dicBike objectForKey:@"BikeID"];
+    updateBike.ModelID = [dicBike objectForKey:@"ModelID"];
+    updateBike.StateID = [dicBike objectForKey:@"StateID"];
+    updateBike.BikeLongitude = [dicBike objectForKey:@"BikeLongitude"];
+    updateBike.BikeLatitude = [dicBike objectForKey:@"BikeLatitude"];
+    updateBike.ModelName = [dicBike objectForKey:@"ModelName"];
+    updateBike.StateName = [dicBike objectForKey:@"StateName"];
     if ([_comeFrom isEqualToString:@"info"]) {
-        NSDictionary *dicBike = listBike[indexPath.row];
         BikeDetailTableViewController *bikeDetailTblVC = (BikeDetailTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDBikeDetailTblVC"];
         bikeDetailTblVC.comeFrom = @"updateBike";
-        Bike *updateBike = [[Bike alloc] init];
-        updateBike.BikeID = [dicBike objectForKey:@"BikeID"];
-        updateBike.ModelID = [dicBike objectForKey:@"ModelID"];
-        updateBike.StateID = [dicBike objectForKey:@"StateID"];
-        updateBike.BikeLongitude = [dicBike objectForKey:@"BikeLongitude"];
-        updateBike.BikeLatitude = [dicBike objectForKey:@"BikeLatitude"];
-        updateBike.ModelName = [dicBike objectForKey:@"ModelName"];
-        updateBike.StateName = [dicBike objectForKey:@"StateName"];
         bikeDetailTblVC.bike = updateBike;
         [self.navigationController pushViewController:bikeDetailTblVC animated:YES];
     }
     else if([_comeFrom isEqualToString:@"repair"]){
+        AchieveBikeViewController *achieveBikeVC = (AchieveBikeViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDAchieveBikeVC"];
+        achieveBikeVC.user = _user;
+        achieveBikeVC.bike = updateBike;
+        [self.navigationController pushViewController:achieveBikeVC animated:YES];
         
     }
 }
@@ -165,7 +171,9 @@
 }
 
 -(IBAction)actionMyOrder:(id)sender{
-    
+    RepairTableViewController *repairTblVC = (RepairTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDRepairTblVC"];
+    repairTblVC.user = _user;
+    [self.navigationController pushViewController:repairTblVC animated:YES];
 }
 
 @end

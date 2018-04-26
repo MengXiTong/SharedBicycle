@@ -42,6 +42,13 @@
     return [pred evaluateWithObject:userID];
 }
 
++ (BOOL)checkMoney : (NSString *) money
+{
+    NSString *regex = @"^\\d{1,3}+(\\.\\d{1,2})?$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [pred evaluateWithObject:money];
+}
+
 + (NSString *)getPhotoString:(UIImage *) imgPhoto isNeedCompress:(BOOL) isNeedCompress{
     NSData *data = nil;
     if(isNeedCompress){

@@ -13,6 +13,7 @@
 #import <AFNetworking.h>
 #import "Trip.h"
 #import "Toast.h"
+#import "BikeTableViewController.h"
 
 @interface ScanCodeViewController () <AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -106,19 +107,24 @@
         if([strResult hasPrefix:@"BikeID:"]){
             //输出扫描字符串
             NSLog(@"%@",[strResult substringFromIndex:7]);
-            [self postStartTrip:^(Trip *trip) {
-                CycleViewController *cycleVC = (CycleViewController *)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-                cycleVC.trip.BikeID = [strResult substringFromIndex:7];
-                cycleVC.trip.UserID = trip.UserID;
-                cycleVC.trip.StartTime = trip.StartTime;
-                cycleVC.trip.TripID = trip.TripID;
-                cycleVC.trip.State = trip.State;
-                [cycleVC.vInUse setHidden:NO];
-                [cycleVC.vPay setHidden:YES];
-                [cycleVC.vScan setHidden:YES];
-                [cycleVC takeUse];
-                [self.navigationController popToViewController:cycleVC animated:true];
-            } withBikeID:[strResult substringFromIndex:7]];
+            if([_comeFrom isEqualToString:@"cycle"]){
+                [self postStartTrip:^(Trip *trip) {
+                    CycleViewController *cycleVC = (CycleViewController *)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                    cycleVC.trip.BikeID = [strResult substringFromIndex:7];
+                    cycleVC.trip.UserID = trip.UserID;
+                    cycleVC.trip.StartTime = trip.StartTime;
+                    cycleVC.trip.TripID = trip.TripID;
+                    cycleVC.trip.State = trip.State;
+                    [cycleVC.vInUse setHidden:NO];
+                    [cycleVC.vPay setHidden:YES];
+                    [cycleVC.vScan setHidden:YES];
+                    [cycleVC takeUse];
+                    [self.navigationController popToViewController:cycleVC animated:true];
+                } withBikeID:[strResult substringFromIndex:7]];
+            }
+            else if([_comeFrom isEqualToString:@"repair"]){
+                [self postRepair:[strResult substringFromIndex:7]];
+            }
         }
         else{
             [self initAlert:@"请扫描正确的二维码"];
@@ -150,6 +156,27 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"ScanCodeError: %@",error);
         [HUD removeFromSuperview];
+    }];
+}
+
+- (void)postRepair:(NSString *)BikeID{
+    [self initHUD];
+    NSString *strURL = [HTTP stringByAppendingString: RepairHandler];
+    NSDictionary *repair = @{@"BikeID":BikeID,@"RepairUserID":_user.UserID};
+    NSDictionary *param = @{@"type":@"achieve",@"repair":repair};
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            BikeTableViewController *bikeTblVC = (BikeTableViewController *)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
+            [bikeTblVC loadNewData];
+            [self.navigationController popToViewController:bikeTblVC animated:YES];
+        }
+        else{
+            [self initAlert:[responseObject objectForKey:@"message"]];
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"ScanCodeError: %@",error);
     }];
 }
 

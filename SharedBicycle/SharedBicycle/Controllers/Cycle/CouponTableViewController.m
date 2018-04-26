@@ -36,6 +36,8 @@
 }
 
 - (void)initView{
+    self.navigationItem.title = @"我的优惠券";
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     if([_type isEqualToString:@"select"]){
         UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"不使用" style:UIBarButtonItemStyleDone target:self action:@selector(actionUnUse:)];
         self.navigationItem.rightBarButtonItem = rightBarButtonItem;
@@ -46,7 +48,7 @@
     [self initHUD];
     manager = [AFHTTPSessionManager manager];
     strURL = [HTTP stringByAppendingString: CouponHandler];
-    NSDictionary *param = @{@"UserID":_user.UserID};
+    NSDictionary *param = @{@"UserID":_user.UserID,@"Type":@"detail"};
     [manager GET:strURL parameters:param progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if([[responseObject objectForKey:@"status"] boolValue]){
@@ -84,7 +86,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dicCoupon = listCoupon[indexPath.row];
-    CouponTableViewCell *couponCell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifierCoupon" forIndexPath:indexPath];
+    CouponTableViewCell *couponCell = [tableView cellForRowAtIndexPath:indexPath];
     if(couponCell.selectionStyle == UITableViewCellSelectionStyleDefault){
         CycleViewController *cycleVC = (CycleViewController *)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
         float favorablePrice = [[dicCoupon objectForKey:@"FavorablePrice"] floatValue];

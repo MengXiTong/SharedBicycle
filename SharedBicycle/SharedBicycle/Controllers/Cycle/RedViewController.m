@@ -100,7 +100,7 @@
 - (void)initHUD {
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
-    HUD.label.text = @"加载中";
+    HUD.label.text = @"请稍等";
     [HUD showAnimated:YES];
 }
 

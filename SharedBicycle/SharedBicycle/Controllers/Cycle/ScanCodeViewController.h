@@ -18,5 +18,6 @@
 @interface ScanCodeViewController : UIViewController
 
 @property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSString *comeFrom;
 
 @end
