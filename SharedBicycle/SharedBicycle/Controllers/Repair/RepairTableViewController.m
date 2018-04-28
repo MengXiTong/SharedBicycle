@@ -126,9 +126,11 @@
     if([strState isEqualToString:@"finish"]){
         [repairTblVC setSelectionStyle:UITableViewCellSelectionStyleNone];
         strState = @"维修完成";
+        repairTblVC.lblState.textColor = [UIColor greenColor];
     }
     else{
         [repairTblVC setSelectionStyle:UITableViewCellSelectionStyleDefault];
+        repairTblVC.lblState.textColor = [UIColor redColor];
         if([strState isEqualToString:@"achieve"]){
             strState = @"已回收";
         }
@@ -153,6 +155,7 @@
                 [repairTblVC setSelected:NO animated:YES];
                 [repairTblVC setSelectionStyle:UITableViewCellSelectionStyleNone];
                 repairTblVC.lblState.text = @"状态：维修完成";
+                repairTblVC.lblState.textColor = [UIColor greenColor];
             } withRepairID:[dicRepair objectForKey:@"RepairID"]withBikeID:[dicRepair objectForKey:@"BikeID"]];
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {

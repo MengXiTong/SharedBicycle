@@ -15,6 +15,7 @@
 #import "UserNavController.h"
 #import "User.h"
 #import <TZImagePickerController.h>
+#import "MQVerCodeImageView.h"
 
 @interface RegisterTableViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,TZImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lblVerification;
@@ -29,8 +30,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfVerification;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellBirthday;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellSex;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellVerification;
 
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (strong, nonatomic) MQVerCodeImageView *codeImageView;
 
 @end
 
@@ -45,6 +48,7 @@
     CGRect screen;
     CGRect cGRect;
     User *user;
+    NSString *strImageCode;
 }
 
 - (void)viewDidLoad {
@@ -70,7 +74,7 @@
     //将触摸事件添加到当前view
     [self.view addGestureRecognizer:tapGestureRecognizer];
     //获取随机数
-    self.lblVerification.text = [self getVerification];
+    [self initVerification];
     //初始化Session
     manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -99,10 +103,22 @@
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
-- (NSString *) getVerification {
-    int value = arc4random() % 900000 + 100000;
-    NSString *str = [[NSString alloc] initWithFormat:@"%d",value];
-    return str;
+- (void) initVerification {
+    _codeImageView = [[MQVerCodeImageView alloc] initWithFrame:CGRectMake(_lblVerification.frame.origin.x, _lblVerification.frame.origin.y, _lblVerification.frame.size.width, _lblVerification.frame.size.height)];
+    _codeImageView.bolck = ^(NSString *imageCodeStr){//看情况是否需要
+        strImageCode = imageCodeStr;
+    };
+    _codeImageView.isRotation = NO;
+    [_codeImageView freshVerCode];
+    //点击刷新
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];
+    [_codeImageView addGestureRecognizer:tap];
+    [_cellVerification addSubview: _codeImageView];
+}
+
+- (void)tapClick:(UITapGestureRecognizer*)tap
+{
+    [_codeImageView freshVerCode];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -122,8 +138,6 @@
 {
     UIDatePicker *dpBirthday = [[UIDatePicker alloc] initWithFrame:CGRectMake(18, 15, screen.size.width*0.85, 167)];
     dpBirthday.datePickerMode = UIDatePickerModeDate;//时间模式的选择 有多种
-//    NSDate *date = [formatter dateFromString:self.lblBirthday.text];
-//    dpBirthday.date = date;
     //用自定义的UIAlertController选择ActionShee信息模式  并将中间的信息显示范围空出来 高度自由指定
     alertBirthday = [UIAlertController alertControllerWithTitle:nil message:@"\n\n\n\n\n\n\n\n\n" preferredStyle:UIAlertControllerStyleActionSheet];
     [alertBirthday.view addSubview:dpBirthday];
@@ -271,11 +285,15 @@
         [Toast showAlertWithMessage:@"姓名2-20位的中文或者英文组成" withView:self withCGRect:&(cGRect)];
         return;
     }
+    if([_lblBirthday.text isEqualToString:@"请选择日期"]){
+        [Toast showAlertWithMessage:@"请选择日期" withView:self];
+        return;
+    }
     if(![Until checkPhone:_tfPhone.text]){
         [Toast showAlertWithMessage:@"手机号码格式错误" withView:self];
         return;
     }
-    if(![_tfVerification.text isEqualToString:_lblVerification.text]){
+    if(![_tfVerification.text isEqualToString:strImageCode]){
         [Toast showAlertWithMessage:@"验证码错误" withView:self];
         return;
     }

@@ -15,6 +15,7 @@
 #import <AFNetworking.h>
 #import <MBProgressHUD.h>
 #import "Config.h"
+#import "SearchUserTableViewController.h"
 
 @interface BikeDetailTableViewController ()
 
@@ -60,6 +61,8 @@
         _lblState.text = _bike.StateName;
         _lblModel.text = _bike.ModelName;
         self.navigationItem.title = @"单车信息详情";
+        UIBarButtonItem *rightBarButtonItemSearch = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SearchBike"] style:UIBarButtonItemStyleDone target:self action:@selector(actionSearch:)];
+        self.navigationItem.rightBarButtonItem = rightBarButtonItemSearch;
     }
     else if([_comeFrom isEqualToString:@"addBike"]){
         [_btnSave setTitle:@"新增" forState:UIControlStateNormal];
@@ -214,6 +217,13 @@
         default:
             break;
     }
+}
+
+- (IBAction)actionSearch:(id)sender{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SearchUserTableViewController *searchUserTblVC = (SearchUserTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDSearchUserTblVC"];
+    searchUserTblVC.bike = _bike;
+    [self.navigationController pushViewController:searchUserTblVC animated:YES];
 }
 
 //初始化加载条

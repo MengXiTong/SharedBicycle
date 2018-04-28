@@ -17,6 +17,8 @@
 		A024A7662091E31400F79EB9 /* RepairTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A024A7652091E31400F79EB9 /* RepairTableViewController.m */; };
 		A024A7692091E67400F79EB9 /* RepairTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A024A7682091E67400F79EB9 /* RepairTableViewCell.m */; };
 		A024A76C2092092200F79EB9 /* ProfitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A024A76B2092092200F79EB9 /* ProfitViewController.m */; };
+		A041BA0020946F8100881BD7 /* SearchUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A041B9FF20946F8100881BD7 /* SearchUserTableViewController.m */; };
+		A04C26D9209498C3002C6311 /* MQVerCodeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04C26D8209498C3002C6311 /* MQVerCodeImageView.m */; };
 		A04D6374205AD5EC0013E26A /* ShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A04D6373205AD5EC0013E26A /* ShadowView.m */; };
 		A0563854203FCDBC00BB0A9C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563853203FCDBC00BB0A9C /* AppDelegate.m */; };
 		A0563857203FCDBC00BB0A9C /* CycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0563856203FCDBC00BB0A9C /* CycleViewController.m */; };
@@ -100,6 +102,10 @@
 		A024A7682091E67400F79EB9 /* RepairTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepairTableViewCell.m; sourceTree = "<group>"; };
 		A024A76A2092092200F79EB9 /* ProfitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfitViewController.h; sourceTree = "<group>"; };
 		A024A76B2092092200F79EB9 /* ProfitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfitViewController.m; sourceTree = "<group>"; };
+		A041B9FE20946F8100881BD7 /* SearchUserTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchUserTableViewController.h; sourceTree = "<group>"; };
+		A041B9FF20946F8100881BD7 /* SearchUserTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserTableViewController.m; sourceTree = "<group>"; };
+		A04C26D7209498C3002C6311 /* MQVerCodeImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQVerCodeImageView.h; sourceTree = "<group>"; };
+		A04C26D8209498C3002C6311 /* MQVerCodeImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQVerCodeImageView.m; sourceTree = "<group>"; };
 		A04D6372205AD5EC0013E26A /* ShadowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShadowView.h; sourceTree = "<group>"; };
 		A04D6373205AD5EC0013E26A /* ShadowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShadowView.m; sourceTree = "<group>"; };
 		A056384F203FCDBC00BB0A9C /* SharedBicycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharedBicycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,6 +337,8 @@
 		A056388720401B7700BB0A9C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A04C26D7209498C3002C6311 /* MQVerCodeImageView.h */,
+				A04C26D8209498C3002C6311 /* MQVerCodeImageView.m */,
 				A0E575AB2081E504008BCFC2 /* Toast.h */,
 				A0E575AA2081E503008BCFC2 /* Toast.m */,
 				A04D6372205AD5EC0013E26A /* ShadowView.h */,
@@ -442,6 +450,8 @@
 				A0FFB9A9208F1FCA00071CFD /* StateTableViewController.m */,
 				A0FFB9AB208F1FDF00071CFD /* ModelTableViewController.h */,
 				A0FFB9AC208F1FDF00071CFD /* ModelTableViewController.m */,
+				A041B9FE20946F8100881BD7 /* SearchUserTableViewController.h */,
+				A041B9FF20946F8100881BD7 /* SearchUserTableViewController.m */,
 			);
 			path = Bike;
 			sourceTree = "<group>";
@@ -695,6 +705,7 @@
 				A024A7632091C6AA00F79EB9 /* AchieveBikeViewController.m in Sources */,
 				A0563862203FCDBC00BB0A9C /* main.m in Sources */,
 				A08ED50B20907255007C8FB7 /* IllegalTableViewController.m in Sources */,
+				A04C26D9209498C3002C6311 /* MQVerCodeImageView.m in Sources */,
 				A05E4B58208DC62200BB0B00 /* TripTableViewController.m in Sources */,
 				A0FFB9AA208F1FCA00071CFD /* StateTableViewController.m in Sources */,
 				A0E575C120859BD7008BCFC2 /* Until.m in Sources */,
@@ -707,6 +718,7 @@
 				A024A75C2091658000F79EB9 /* RechargeViewController.m in Sources */,
 				A0E575AC2081E504008BCFC2 /* Toast.m in Sources */,
 				A024A75F2091B07B00F79EB9 /* RepairViewController.m in Sources */,
+				A041BA0020946F8100881BD7 /* SearchUserTableViewController.m in Sources */,
 				A0A522892080E9DC00D45903 /* RegisterTableViewController.m in Sources */,
 				A0E575AF2082EFB0008BCFC2 /* User.m in Sources */,
 				A05E4B4E208D849100BB0B00 /* CouponTableViewController.m in Sources */,
