@@ -75,11 +75,16 @@
 }
 
 - (IBAction)actionCoupon:(id)sender{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    CouponTableViewController *couponTblVC = (CouponTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDCouponTblVC"];
-    couponTblVC.user = _user;
-    couponTblVC.type = @"select";
-    [self.navigationController pushViewController:couponTblVC animated:YES];
+    if([_trip.Consume floatValue]>0){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        CouponTableViewController *couponTblVC = (CouponTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDCouponTblVC"];
+        couponTblVC.user = _user;
+        couponTblVC.type = @"select";
+        [self.navigationController pushViewController:couponTblVC animated:YES];
+    }
+    else{
+        [Toast showAlertWithMessage:@"无需优惠券" withView:self];
+    }
 }
 
 -(void)initSource{
