@@ -41,6 +41,7 @@
 }
 
 - (void)initView{
+    self.navigationItem.title = @"使用者查询";
     //获取屏幕信息
     screen = [[UIScreen mainScreen] bounds];
     cGRect = CGRectMake((screen.size.width-270)/2, (screen.size.height-40)/2, 270, 40);
