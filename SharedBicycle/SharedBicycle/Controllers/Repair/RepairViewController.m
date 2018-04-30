@@ -42,6 +42,7 @@
 }
 
 - (void)initView{
+    self.navigationItem.title = @"单车报修";
     listRepairContent = [[NSMutableArray alloc] init];
     [listRepairContent addObject:_btnIndex0];
     [listRepairContent addObject:_btnIndex1];
