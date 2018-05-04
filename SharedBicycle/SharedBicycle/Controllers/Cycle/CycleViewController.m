@@ -320,39 +320,6 @@
     [self initHUD];
     _trip.EndTime = [formatter stringFromDate:[NSDate date]];
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-        NSString *strURL = [HTTP stringByAppendingString: TripHandler];
-        NSDictionary *trip = @{@"TripID":_trip.TripID,@"Position":[NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude],@"BikeID":_trip.BikeID,@"Consume":_trip.Consume,@"EndTime":_trip.EndTime,@"StartTime":_trip.StartTime,@"UserID":_user.UserID};
-        NSDictionary *param = @{@"type":@"end",@"trip":trip};
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if([[responseObject objectForKey:@"status"] boolValue]){
-                [Toast showAlertWithMessage:@"结束行程成功" withView:self];
-                _trip.State = @"defray";
-                [timer invalidate];
-                timer = nil;
-                [updateTimer invalidate];
-                updateTimer = nil;
-                _lblPayTotal.text = [NSString stringWithFormat:@"总费用：%0.1f元",[_trip.Consume floatValue]];
-                _lblPayReal.text = [NSString stringWithFormat:@"%0.2f",[_trip.Consume floatValue]];
-                [_vInUse setHidden:YES];
-                [_vPay setHidden:NO];
-                [_vScan setHidden:YES];
-                callBack();
-            }
-            else{
-                NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
-            }
-            [HUD removeFromSuperview];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"TripError: %@",error);
-            [HUD removeFromSuperview];
-        }];
-    }];
-}
-
-- (void)putPay{
-    [self initHUD];
-    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error.code == AMapLocationErrorLocateFailed)
         {
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
@@ -364,37 +331,23 @@
         if (location)
         {
             NSString *strURL = [HTTP stringByAppendingString: TripHandler];
-            NSDictionary *trip = [[NSDictionary alloc] init];
-            if([Until isBlankString:_trip.CouponID]){
-                trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_lblPayReal.text};
-            }
-            else{
-                trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_lblPayReal.text,@"CouponID":_trip.CouponID};
-            }
-            NSDictionary *param = @{@"type":@"pay",@"trip":trip};
+            NSDictionary *trip = @{@"TripID":_trip.TripID,@"Position":[NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude],@"BikeID":_trip.BikeID,@"Consume":_trip.Consume,@"EndTime":_trip.EndTime,@"StartTime":_trip.StartTime,@"UserID":_user.UserID};
+            NSDictionary *param = @{@"type":@"end",@"trip":trip};
             manager.requestSerializer = [AFJSONRequestSerializer serializer];
             [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 if([[responseObject objectForKey:@"status"] boolValue]){
-                    float banlance = [_user.Balance floatValue]-[_lblPayReal.text floatValue];
-                    _user.Balance = [NSString stringWithFormat:@"%f",banlance];
-                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    RedViewController *redVC = (RedViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDRedVC"];
-                    if([_lblPayReal.text floatValue]>=1){
-                        redVC.type = @"show";
-                    }
-                    else{
-                        redVC.type = @"over";
-                    }
-                    redVC.user = _user;
-                    [self.navigationController pushViewController:redVC animated:YES];
-                    _trip.State = @"finish";
-                    [_mapView removeFromSuperview];
-                    [self initMapView];
-                    [self drawBikePosition];
-                    [Toast showAlertWithMessage:@"支付成功" withView:self];
+                    [Toast showAlertWithMessage:@"结束行程成功" withView:self];
+                    _trip.State = @"defray";
+                    [timer invalidate];
+                    timer = nil;
+                    [updateTimer invalidate];
+                    updateTimer = nil;
+                    _lblPayTotal.text = [NSString stringWithFormat:@"总费用：%0.1f元",[_trip.Consume floatValue]];
+                    _lblPayReal.text = [NSString stringWithFormat:@"%0.2f",[_trip.Consume floatValue]];
                     [_vInUse setHidden:YES];
-                    [_vPay setHidden:YES];
-                    [_vScan setHidden:NO];
+                    [_vPay setHidden:NO];
+                    [_vScan setHidden:YES];
+                    callBack();
                 }
                 else{
                     NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
@@ -405,6 +358,51 @@
                 [HUD removeFromSuperview];
             }];
         }
+    }];
+}
+
+- (void)putPay{
+    [self initHUD];
+    NSString *strURL = [HTTP stringByAppendingString: TripHandler];
+    NSDictionary *trip = [[NSDictionary alloc] init];
+    if([Until isBlankString:_trip.CouponID]){
+        trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_lblPayReal.text};
+    }
+    else{
+        trip = @{@"TripID":_trip.TripID,@"UserID":_trip.UserID,@"Consume":_lblPayReal.text,@"CouponID":_trip.CouponID};
+    }
+    NSDictionary *param = @{@"type":@"pay",@"trip":trip};
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager PUT:strURL parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if([[responseObject objectForKey:@"status"] boolValue]){
+            float banlance = [_user.Balance floatValue]-[_lblPayReal.text floatValue];
+            _user.Balance = [NSString stringWithFormat:@"%f",banlance];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            RedViewController *redVC = (RedViewController *)[storyboard instantiateViewControllerWithIdentifier:@"storyIDRedVC"];
+            if([_lblPayReal.text floatValue]>=1){
+                redVC.type = @"show";
+            }
+            else{
+                redVC.type = @"over";
+            }
+            redVC.user = _user;
+            [self.navigationController pushViewController:redVC animated:YES];
+            _trip.State = @"finish";
+            [_mapView removeFromSuperview];
+            [self initMapView];
+            [self drawBikePosition];
+            [Toast showAlertWithMessage:@"支付成功" withView:self];
+            [_vInUse setHidden:YES];
+            [_vPay setHidden:YES];
+            [_vScan setHidden:NO];
+        }
+        else{
+            NSLog(@"ServiceError: %@",[responseObject objectForKey:@"message"]);
+        }
+        [HUD removeFromSuperview];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"TripError: %@",error);
+        [HUD removeFromSuperview];
     }];
 }
 

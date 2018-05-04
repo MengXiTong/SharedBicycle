@@ -8,8 +8,8 @@
 
 #ifndef Config_h
 #define Config_h
-//static NSString *HTTP = @"http://10.0.176.218:20072";
-static NSString *HTTP = @"http://192.168.0.105:20072";
+static NSString *HTTP = @"http://10.0.42.63:20072";
+//static NSString *HTTP = @"http://192.168.0.105:20072";
 //用户登录接口地址
 static NSString *LoginHandler = @"/LoginHandler.ashx";
 //用户信息接口地址
