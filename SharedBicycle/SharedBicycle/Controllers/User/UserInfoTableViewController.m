@@ -64,8 +64,10 @@
 
 - (void)initValue{
     self.navigationItem.title = @"个人信息";
-    NSData *dataPhoto   = [[NSData alloc] initWithBase64EncodedString:_user.Photo options:0];
-    _imgPhoto.image = [UIImage imageWithData:dataPhoto];
+    if(![Until isBlankString:_user.Phone]){
+        NSData *dataPhoto   = [[NSData alloc] initWithBase64EncodedString:_user.Photo options:0];
+        _imgPhoto.image = [UIImage imageWithData:dataPhoto];
+    }
     _imgPhoto.userInteractionEnabled = YES;
     [_imgPhoto addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionImgPhoto:)]];
     NSString *strPhone = [[NSString alloc] initWithFormat:@"%@****%@",[_user.Phone substringToIndex:3],[_user.Phone substringFromIndex:7]];

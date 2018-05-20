@@ -16,6 +16,7 @@
 #import "IdentityValidateTableViewController.h"
 #import "WalletTableViewController.h"
 #import "ProfitViewController.h"
+#import "Until.h"
 
 @interface MenuViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -33,8 +34,10 @@
     //加载背景图片
 //    _viewMain.layer.contents = (id)([UIImage imageNamed:@"ImgMenu"].CGImage);
     [self initMenu];
-    NSData *dataPhoto   = [[NSData alloc] initWithBase64EncodedString:_user.Photo options:0];
-    _imgHead.image = [UIImage imageWithData:dataPhoto];
+    if(![Until isBlankString:_user.Phone]){
+        NSData *dataPhoto   = [[NSData alloc] initWithBase64EncodedString:_user.Photo options:0];
+        _imgHead.image = [UIImage imageWithData:dataPhoto];
+    }
     //添加查看个人信息点击事件
     _imgHead.userInteractionEnabled = YES;
     [_imgHead addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionImgHead:)]];

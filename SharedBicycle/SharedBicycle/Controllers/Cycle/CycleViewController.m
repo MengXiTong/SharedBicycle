@@ -439,7 +439,12 @@
 - (IBAction)leftViewShow:(id)sender {
     MenuViewController *vc = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
     vc.user = self.user;
-    [self cw_showDefaultDrawerViewController:vc];
+    if([Until isBlankString:self.user.Name]){
+        [Toast showAlertWithMessage:@"获取信息失败" withView:self];
+    }
+    else{
+        [self cw_showDefaultDrawerViewController:vc];
+    }
 }
 
 - (IBAction)scanning:(id)sender {

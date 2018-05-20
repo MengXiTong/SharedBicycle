@@ -49,6 +49,7 @@
     //初始化Session
     manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     strURL = [HTTP stringByAppendingString: UserHandler];
     if([_comeFrom isEqualToString:@"balance"]){
         self.navigationItem.title = @"充值";
